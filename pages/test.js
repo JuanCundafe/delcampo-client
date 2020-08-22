@@ -10,9 +10,7 @@ export default function Home() {
       </Head>
 
       <main className={styles.main}>
-        <h1 className={styles.title}>
-          Bienvenido <a href="https://nextjs.org">a del Campo</a>
-        </h1>
+        <h1 className={styles.title}>Hola que hace</h1>
 
         <p className={styles.description}>
           Get started by editing{" "}
