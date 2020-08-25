@@ -1,1 +1,5 @@
-/* No CSS *//*# sourceMappingURL=CardShoppingCar.css.map */
+.imageCardCar {
+  -o-object-fit: cover;
+     object-fit: cover;
+}
+/*# sourceMappingURL=CardShoppingCar.css.map */
