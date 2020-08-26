@@ -1,8 +1,9 @@
-import CustomButton from "../Components/CustomButton";
+import CardHarvest from "../Components/CardHarvest";
+
 export default function Home() {
   return (
     <>
-      <CustomButton>hola mamá</CustomButton>
+      <CardHarvest />
     </>
   );
 }
