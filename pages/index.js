@@ -1,8 +1,10 @@
-import CustomButton from "../Components/CustomButton";
-export default function Home() {
+// Components
+import CardShoppingCar from '../Components/CardShoppingCar';
+
+export default function Home () {
   return (
-    <>
-      <CustomButton>hola mamá</CustomButton>
-    </>
-  );
+    <div>
+      <CardShoppingCar />
+    </div>
+  )
 }
