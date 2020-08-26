@@ -1,4 +1,3 @@
-// import "../../pages/CardShoppingCar.css;
 import { Card, Typography, Col, Row, Space } from 'antd';
 
 const { Title, Text } = Typography
