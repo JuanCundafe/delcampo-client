@@ -4,6 +4,14 @@
   min-width: 104px;
   height: 35.18px;
   box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.4), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+  &:focus {
+    background-color: $color-orange;
+    opacity: 0.8;
+  }
+  &:hover {
+    background-color: $color-orange;
+    opacity: 0.8;
+  }
 }
 
 .btn-green {
@@ -15,5 +23,8 @@
   &:focus {
     background-color: $color-green;
     opacity: 0.8;
+  }
+  &:hover {
+    background-color: $color-green;
   }
 }
