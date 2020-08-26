@@ -1,36 +1,54 @@
-import { Card, Typography, Col, Row, Space } from 'antd';
+import { Typography, Col, Row, Space, Avatar } from 'antd';
+import { CloseCircleOutlined } from '@ant-design/icons';
 
-const { Title, Text } = Typography
+const { Text } = Typography
 
 function CardShoppingCar () {
   return (
     <div>
       <div>
-        <Card hoverable style={{ width: 300, height: 200 }}>
+        <div className='card'>
           <Row>
             <Col span={12}>
               <img
                 className='imageCardCar'
-                width={120}
-                height={95}
                 src='https://camposdeazahar.es/wp-content/uploads/2019/02/puedo-comer-naranja-si-soy-diabetico-campos-de-azahar.jpg'
               />
             </Col>
-            <Col span={12}>
-              <Title level={5}>Naranjas Navalentes</Title>
-              <Text type='secondary'>Fran Frutas y verduras</Text>
+            <Col span={10}>
+              <br />
+              <Text className='titleCard'>Naranjas Navalentes</Text>
+              <br />
+              <div>
+                <Avatar
+                  size={20}
+                  src='https://us.123rf.com/450wm/aldonat/aldonat1603/aldonat160300060/53859207-logotipo-de-la-fruta.jpg?ver=6'
+                />
+                <Text className='productor' type='secondary'>
+                  Fran Frutería
+                </Text>
+              </div>
+            </Col>
+            <Col span={2}>
+              <CloseCircleOutlined className='close' />
             </Col>
           </Row>
-          <hr />
-          <div className='space-align-container'>
-            <div className='space-align-block'>
+          <Row className='space-align-container'>
+            <Col span={13} className='space-align-block'>
               <Space align='center'>
                 <br />
-                <p>10 MXN / Kg x 50Kg Total: 500 MXN</p>
+                <Text className='texto3' strong>
+                  $10.00 / Kg x 100Kg
+                </Text>
               </Space>
-            </div>
-          </div>
-        </Card>
+            </Col>
+            <Col span={11}>
+              <Text className='texto4' strong>
+                Total: $1000.00
+              </Text>
+            </Col>
+          </Row>
+        </div>
       </div>
     </div>
   )

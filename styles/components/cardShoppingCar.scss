@@ -1,3 +1,130 @@
+.card {
+  background-color: white;
+  border-radius: 8px;
+  width: 300px;
+  height: 180px;
+}
+.ant-card-body {
+  padding: 0px;
+}
+
 .imageCardCar {
+  width: 120px;
+  height: 100px;
+  margin-top: 10px;
+  margin-left: 10px;
+  border-radius: 5px;
   object-fit: cover;
+}
+
+.productor {
+  margin-top: 10px;
+  margin-left: 5px;
+  font-size: 10px;
+}
+
+.titleCard {
+  margin-top: 20px;
+  font-size: 18px;
+  font-weight: bold;
+}
+
+.close {
+  margin-top: 5px;
+  font-size: 23px;
+  color: $color-orange;
+}
+
+.space-align-container {
+  margin-top: 10px;
+  align-content: center;
+  border-bottom-left-radius: 8px;
+  border-bottom-right-radius: 8px;
+  height: 60px;
+  width: 300px;
+  background-color: $color-green;
+}
+
+.texto3 {
+  justify-content: space-between;
+  text-align: center;
+  font-size: 12px;
+  color: white;
+}
+
+.texto4 {
+  padding: 5px;
+  align-content: center;
+  border-radius: 5px;
+  height: 30%;
+  width: 50%;
+  background-color: white;
+  font-size: 12px;
+}
+
+@media only screen and (min-width: 728px) {
+  .card {
+    background-color: white;
+    border-radius: 8px;
+    width: 500px;
+    height: 180px;
+  }
+  .ant-card-body {
+    padding: 0px;
+  }
+
+  .imageCardCar {
+    width: 200px;
+    height: 100px;
+    margin-top: 10px;
+    margin-left: 10px;
+    border-radius: 5px;
+    object-fit: cover;
+  }
+  .productor {
+    margin-top: 10px;
+    margin-left: 5px;
+    font-size: 10px;
+  }
+
+  .titleCard {
+    margin-top: 20px;
+    font-size: 18px;
+    font-weight: bold;
+  }
+
+  .close {
+    margin-left: 10px;
+    font-size: 23px;
+    color: $color-orange;
+  }
+
+  .space-align-container {
+    margin-top: 10px;
+    align-content: center;
+    border-bottom-left-radius: 8px;
+    border-bottom-right-radius: 8px;
+    height: 60px;
+    width: 500px;
+    background-color: $color-green;
+  }
+
+  .texto3 {
+    margin-left: 10px;
+    justify-content: space-between;
+    text-align: center;
+    font-size: 12px;
+    color: white;
+  }
+
+  .texto4 {
+    margin-left: 70px;
+    padding: 5px;
+    align-content: center;
+    border-radius: 5px;
+    height: 30%;
+    width: 50%;
+    background-color: white;
+    font-size: 12px;
+  }
 }
