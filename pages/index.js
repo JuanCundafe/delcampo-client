@@ -1,9 +1,9 @@
-import CardHarvest from "../Components/CardHarvest";
+import NavBar from "../Components/NavBar";
 
 export default function Home() {
   return (
     <>
-      <CardHarvest />
+      <NavBar />
     </>
   );
 }
