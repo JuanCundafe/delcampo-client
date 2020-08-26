@@ -1,8 +1,15 @@
-import CustomButton from "../Components/CustomButton";
+import CardAddress from "../Components/CardAddress";
+
 export default function Home() {
   return (
     <>
-      <CustomButton>hola mamá</CustomButton>
+      <CardAddress
+        phone="9999999999"
+        email="email@gmail.com"
+        address="Tlaxiaco, Oaxaca"
+        title="Contacto"
+        btnSelect={true}
+      />
     </>
   );
 }
