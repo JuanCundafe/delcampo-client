@@ -1,4 +1,5 @@
 import "antd/dist/antd.css";
+import "../styles/antd.less";
 import "../styles/app.scss";
 
 function MyApp({ Component, pageProps }) {
