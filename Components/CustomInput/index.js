@@ -1,11 +1,11 @@
+import { Form, Input } from "antd";
+
 function CustomInput({ type, placeholder, label, name }) {
   return (
-    <div>
-      <div className="input-container">
-        <label>{label}</label>
-        <input type={type || "text"} name={name} placeholder={placeholder} />
-      </div>
-    </div>
+    <Form.Item>
+      <label>{label}</label>
+      <Input type={type || "text"} name={name} placeholder={placeholder} />
+    </Form.Item>
   );
 }
 
