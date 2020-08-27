@@ -1,3 +1,9 @@
-export default function Home() {
-  return <></>;
+import Register from './register';
+
+export default function Home () {
+  return (
+    <>
+      <Register />
+    </>
+  )
 }
