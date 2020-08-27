@@ -1,14 +1,9 @@
-<<<<<<< HEAD
-import NavBar from "../Components/NavBar";
+import MenuFooter from "../Components/MenuFooter";
 
 export default function Home() {
   return (
     <>
-      <NavBar />
+      <MenuFooter />
     </>
   );
-=======
-export default function Home() {
-  return <></>;
->>>>>>> develop
 }

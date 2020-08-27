@@ -1,5 +1,6 @@
 import { Menu, Avatar, Dropdown, Row, Col } from "antd";
 import React, { useState, useEffect } from "react";
+import Search from "../Search";
 
 const menu = (
   <Menu className="menu-dropdown">
@@ -48,12 +49,15 @@ class NavBar extends React.Component {
               <img src="images/logo-navbar.png" width="30" height="30" />{" "}
             </a>
           </Col>
-          <Col className="perfil" span={20}>
+          <Col xs={{ order: 3 }} sm={{ order: 2 }}>
+            <Search />
+          </Col>
+          <Col className="perfil" span={4} xs={{ order: 2 }} sm={{ order: 3 }}>
             <div>
               <a className="message-desk">
                 {" "}
                 <img
-                  className="icons"
+                  className="icons2"
                   src="images/message-icon-blanco.png"
                   width="30"
                   height="30"
@@ -64,7 +68,7 @@ class NavBar extends React.Component {
               <a className="shopping-desk">
                 {" "}
                 <img
-                  className="icons"
+                  className="icons2"
                   src="images/shoppingcar-icon-blanco.png"
                   width="30"
                   height="30"
