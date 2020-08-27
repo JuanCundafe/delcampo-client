@@ -1,11 +1,11 @@
-.card-address-container {
+.form-address-container {
   width: 300px;
   height: 520px;
   border-radius: 8px;
   margin: 5px;
   box-shadow: 0 2px 4px 0 rgba(0, 0, 0, 0.4), 0 2px 4px 0 rgba(0, 0, 0, 0.19);
 
-  .card-address-header {
+  .form-address-header {
     background-color: $color-green;
     border-top-left-radius: 8px;
     border-top-right-radius: 8px;
@@ -17,7 +17,7 @@
     }
   }
 
-  .card-address-body {
+  .form-address-body {
     padding: 15px;
 
     p {
@@ -25,13 +25,16 @@
       margin-bottom: -2px;
       color: $color-dark-green;
     }
+
     Input {
       background-color: rgb(227, 227, 227);
     }
+
     .spaceRow {
       margin-top: -1px;
     }
-    .card-container-button {
+
+    .form-container-button {
       display: flex;
       justify-content: center;
       margin-top: 30px;
