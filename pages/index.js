@@ -1,10 +1,9 @@
-import MenuFooter from '../Components/MenuFooter';
-import CardHarvest from '../Components/CardHarvest';
+import Product from "../pages/product";
 
-export default function Home () {
+export default function Home() {
   return (
     <>
-      <CardHarvest />
+      <Product />
     </>
-  )
+  );
 }
