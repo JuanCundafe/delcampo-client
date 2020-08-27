@@ -12,14 +12,24 @@
   height: 36px;
 }
 
-.ant-dropdown-menu-item > a:hover {
-  color: white;
-  background: #f29e00;
+.ant-dropdown-menu-item {
+  a {
+    color: #f29e00;
+    &:hover {
+      color: white;
+      background: #f29e00;
+    }
+  }
 }
 
-.ant-dropdown-menu-item > a {
-  color: #f29e00;
-}
+// .ant-dropdown-menu-item > a:hover {
+//   color: white;
+//   background: #f29e00;
+// }
+
+// .ant-dropdown-menu-item > a {
+//   color: #f29e00;
+// }
 
 .dropdown {
   right: 500px;
