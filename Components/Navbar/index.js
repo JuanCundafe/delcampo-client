@@ -1,107 +1,101 @@
-import { Menu, Avatar, Dropdown, Row, Col } from "antd";
 import React, { useState, useEffect } from "react";
 import Search from "../Search";
+import UserAvatar from "./user-avatar";
+import { Row, Col } from "antd";
 
-const menu = (
-  <Menu className="menu-dropdown">
-    <Menu.Item>
-      <a target="_blank" rel="noopener noreferrer" href="">
-        Agegar cosecha
-      </a>
-    </Menu.Item>
-    <Menu.Item>
-      <a target="_blank" rel="noopener noreferrer" href="">
-        Historial
-      </a>
-    </Menu.Item>
-    <Menu.Item>
-      <a target="_blank" rel="noopener noreferrer" href="">
-        Publicaciones
-      </a>
-    </Menu.Item>
-    <Menu.Item>
-      <a target="_blank" rel="noopener noreferrer" href="">
-        Editar perfil
-      </a>
-    </Menu.Item>
-  </Menu>
-);
+export default function NavBar() {
+  const [home, setHome] = useState("images/logo-navbar.png");
+  const [home_on, sethome_on] = useState("home_on");
+  const [shopping_on, setshopping_on] = useState("shopping_off");
+  const [message_on, setmessage_on] = useState("message_off");
+  const [message, setMessage] = useState("images/message-icon-blanco.png");
+  const [shopping, setShopping] = useState(
+    "images/shoppingcar-icon-naranja.png"
+  );
+  const [activeHome, setactiveHome] = useState(true);
+  const [activeShopping, setactiveShopping] = useState(false);
+  const [activeMessage, setactiveMessage] = useState(false);
 
-class NavBar extends React.Component {
-  state = {
-    current: "mail",
-  };
+  const handleActiveHome = () => setactiveHome(!activeHome);
+  const handleActiveShopping = () => setactiveShopping(!activeShopping);
+  const handleActiveMessage = () => setactiveMessage(!activeMessage);
 
-  handleClick = (e) => {
-    console.log("click ", e);
-    this.setState({ current: e.key });
-  };
+  useEffect(() => {
+    if (activeShopping == true) {
+      setShopping("images/shoppingcar-icon-verde.png");
+      setshopping_on("shopping_on");
+      setactiveHome(false);
+      setactiveMessage(false);
+      setMessage("images/message-icon-blanco.png");
+      setHome("images/logo-navbar.png");
+      sethome_on("home_off");
+      setmessage_on("message_off");
+    }
+  }, [handleActiveHome, handleActiveShopping, handleActiveMessage]);
 
-  render() {
-    const { current } = this.state;
-    return (
-      <>
-        {" "}
-        <Row className="navbar">
-          <Col span={4}>
-            {" "}
-            <a>
-              <img src="images/logo-navbar.png" width="30" height="30" />{" "}
+  useEffect(() => {
+    if (activeMessage == true) {
+      setMessage("images/message-icon-verde.png");
+      setmessage_on("message_on");
+      setactiveHome(false);
+      setactiveShopping(false);
+      setShopping("images/shoppingcar-icon-blanco.png");
+      setHome("images/logo-navbar.png");
+      sethome_on("home_off");
+      setshopping_on("shopping_off");
+    }
+  }, [handleActiveHome, handleActiveShopping, handleActiveMessage]);
+
+  useEffect(() => {
+    if (activeHome == true) {
+      setHome("images/logo-navbar.png");
+      sethome_on("home_on");
+      setactiveShopping(false);
+      setactiveMessage(false);
+      setShopping("images/shoppingcar-icon-blanco.png");
+      setMessage("images/message-icon-blanco.png");
+      setmessage_on("message_off");
+      setshopping_on("shopping_off");
+    }
+  }, [handleActiveHome, handleActiveShopping, handleActiveMessage]);
+
+  return (
+    <>
+      {" "}
+      <Row className="navbar">
+        <Col span={4}>
+          {" "}
+          <a onClick={handleActiveHome}>
+            <img src={home} width="40" height="40" />{" "}
+          </a>
+        </Col>
+        <Col xs={{ order: 3 }} sm={{ order: 2 }}>
+          <Search />
+        </Col>
+        <Col className="perfil" span={4} xs={{ order: 2 }} sm={{ order: 3 }}>
+          <div>
+            <a className={message_on} onClick={handleActiveMessage}>
+              {" "}
+              <img
+                className="icons2"
+                src={message}
+                width="26"
+                height="26"
+              />{" "}
             </a>
-          </Col>
-          <Col xs={{ order: 3 }} sm={{ order: 2 }}>
-            <Search />
-          </Col>
-          <Col className="perfil" span={4} xs={{ order: 2 }} sm={{ order: 3 }}>
-            <div>
-              <a className="message-desk">
-                {" "}
-                <img
-                  className="icons2"
-                  src="images/message-icon-blanco.png"
-                  width="30"
-                  height="30"
-                />{" "}
-              </a>
-            </div>
-            <div>
-              <a className="shopping-desk">
-                {" "}
-                <img
-                  className="icons2"
-                  src="images/shoppingcar-icon-blanco.png"
-                  width="30"
-                  height="30"
-                />{" "}
-              </a>
-            </div>
-            <div>
-              <p className="nombre-perfil">Ernestino</p>
-              <p className="rol-perfil">Productor</p>
-            </div>
-            <div>
-              <Dropdown
-                clasName="dropdown"
-                overlay={menu}
-                placement="bottomLeft"
-                arrow
-              >
-                <a
-                  className="ant-dropdown-link"
-                  onClick={(e) => e.preventDefault()}
-                >
-                  <Avatar
-                    className="avatar-navBar"
-                    src="images/avatar-test.png"
-                  />{" "}
-                </a>
-              </Dropdown>
-            </div>
-          </Col>
-        </Row>
-      </>
-    );
-  }
+          </div>
+          <div>
+            <a className={shopping_on} onClick={handleActiveShopping}>
+              <img className="icons2" src={shopping} width="26" height="26" />{" "}
+            </a>
+          </div>
+          <div>
+            <p className="nombre-perfil">Ernestino</p>
+            <p className="rol-perfil">Productor</p>
+          </div>
+          <UserAvatar />
+        </Col>
+      </Row>
+    </>
+  );
 }
-
-export default NavBar;
