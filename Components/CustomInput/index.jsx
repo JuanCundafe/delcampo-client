@@ -1,10 +1,9 @@
 import { Form, Input } from "antd";
 
-function CustomInput({ type, placeholder, label, name }) {
+function CustomInput({ type, placeholder, icon, name, rules }) {
   return (
-    <Form.Item>
-      <label>{label}</label>
-      <Input type={type || "text"} name={name} placeholder={placeholder} />
+    <Form.Item name={name} rules={rules}>
+      <Input type={type} prefix={icon} placeholder={placeholder} />
     </Form.Item>
   );
 }

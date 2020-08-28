@@ -1,11 +1,37 @@
-import { Layout, Row, Col, Form, Input, Button } from "antd";
-const { Header, Content } = Layout;
+import Link from "next/link";
+import Router from "next/router";
+// import React, { useForm } from "react";
 
+// Components
+import CustomInput from "../../Components/CustomInput";
+
+// Services
+import { signIn } from "../../lib/services.js";
+
+// ANT Design
+import { Layout, Row, Col, Form, Button } from "antd";
+const { Header, Content } = Layout;
 import { UserOutlined, LockOutlined } from "@ant-design/icons";
 
 export default function Login() {
-  const onFinish = (values) => {
-    console.log("Received values of form: ", values);
+  const [form] = Form.useForm();
+
+  const onFinish = async (values) => {
+    try {
+      const response = await signIn(values);
+
+      if (!response.success) {
+        alert(response.error);
+        return;
+      }
+
+      const accessToken = response.data.token;
+      localStorage.setItem("token", accessToken);
+      form.resetFields();
+      Router.push("/home");
+    } catch (error) {
+      console.log("error", error);
+    }
   };
 
   return (
@@ -13,43 +39,48 @@ export default function Login() {
       <div id="login-screen">
         <Layout>
           <Header>
-            <a href="/">
-              <img src="images/logo-delcampo.png" alt="Logo del campo" />
-            </a>
-            <a href="">
-              <Button type="primary" className="register">
-                Registrate
-              </Button>
-            </a>
+            <Link href="/">
+              <a>
+                <img src="images/logo-delcampo.png" alt="Logo del campo" />
+              </a>
+            </Link>
+            <Link href="/register">
+              <a>
+                <Button type="primary" className="register">
+                  Regístrate
+                </Button>
+              </a>
+            </Link>
           </Header>
           <Content>
             <Row className="login-section">
               <Col>
                 <Form
+                  form={form}
                   name="normal_login"
                   className="login-form"
-                  initialValues={{ remember: true }}
+                  // initialValues={{ remember: true }}
                   onFinish={onFinish}
                 >
                   <h1>Inicia Sesión</h1>
 
-                  <Form.Item
-                    name="username"
+                  <CustomInput
+                    type="email"
+                    placeholder="Correo"
+                    icon={<UserOutlined className="site-form-item-icon" />}
+                    name="email"
                     rules={[
                       {
                         required: true,
                         message: "Por favor ingresa tu correo",
                       },
                     ]}
-                  >
-                    <Input
-                      type="email"
-                      prefix={<UserOutlined className="site-form-item-icon" />}
-                      placeholder="Correo"
-                    />
-                  </Form.Item>
+                  />
 
-                  <Form.Item
+                  <CustomInput
+                    type="password"
+                    placeholder="Contraseña"
+                    icon={<LockOutlined className="site-form-item-icon" />}
                     name="password"
                     rules={[
                       {
@@ -57,18 +88,12 @@ export default function Login() {
                         message: "Por favor ingresa tu contraseña",
                       },
                     ]}
-                  >
-                    <Input
-                      prefix={<LockOutlined className="site-form-item-icon" />}
-                      type="password"
-                      placeholder="Contraseña"
-                    />
-                  </Form.Item>
+                  />
 
                   <Form.Item>
-                    <a className="login-form-forgot" href="">
-                      ¿Olvidaste tu contraseña?
-                    </a>
+                    <Link href="/">
+                      <a className="forgot-pass">¿Olvidaste tu contraseña?</a>
+                    </Link>
                   </Form.Item>
 
                   <Form.Item>
@@ -82,7 +107,10 @@ export default function Login() {
                   </Form.Item>
 
                   <p className="login-form-forgot">
-                    ¿Aún no tienes una cuenta? <a href="">Click aquí.</a>
+                    ¿Aún no tienes una cuenta?{" "}
+                    <Link href="/register">
+                      <a>Click aquí.</a>
+                    </Link>
                   </p>
                 </Form>
               </Col>
