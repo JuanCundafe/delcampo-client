@@ -1,0 +1,110 @@
+#register-screen {
+  .ant-layout-header {
+    display: none;
+  }
+
+  .ant-layout-content {
+    background-color: @dark-green-color;
+    height: 100vh;
+    display: flex;
+    justify-content: center;
+
+    .ant-row {
+      &.login-section {
+        width: 100%;
+        display: flex;
+        justify-content: space-evenly;
+      }
+    }
+
+    h1 {
+      color: @white-color;
+      margin: 0 0 40px 0;
+      text-align: center;
+    }
+
+    .ant-radio-wrapper {
+      color: @white-color;
+    }
+
+    .ant-checkbox-wrapper {
+      color: @white-color;
+    }
+
+    a {
+      color: @white-color;
+    }
+
+    .img-welcome {
+      display: none;
+    }
+  }
+
+  #normal_login {
+    .ant-form-item-control-input-content {
+      display: flex;
+      justify-content: center;
+    }
+
+    .login-form-forgot {
+      color: @white-color;
+    }
+    .login-form-button {
+      background-color: @orange-color;
+    }
+
+    .ant-input-number {
+      width: 100%;
+    }
+  }
+
+  @media (min-width: 768px) {
+    .ant-layout-header {
+      display: flex;
+      justify-content: space-between;
+      background-color: @dark-green-color;
+
+      img {
+        height: 65%;
+      }
+      .register {
+        border: solid 2px @orange-color;
+      }
+    }
+
+    .ant-layout-content {
+      background-image: url("@{base-url}oranges.jpg");
+      background-size: cover;
+      display: flex;
+      justify-content: space-evenly;
+
+      h1 {
+        padding-top: 50px;
+      }
+
+      .ant-form {
+        margin: 50px;
+        .ant-radio-group {
+          align-items: center;
+        }
+      }
+
+      .register-form {
+        background-color: @dark-green-color;
+        height: 600px;
+        width: 370px;
+        border-radius: 10px;
+      }
+
+      .img-welcome {
+        display: block;
+        width: 338px;
+        height: 308px;
+
+        img {
+          width: 100%;
+        }
+      }
+    }
+  }
+}

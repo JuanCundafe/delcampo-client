@@ -5,9 +5,7 @@ import Layout from '../../Components/Layout';
 export default function Home () {
   return (
     <>
-      <Layout>
-        <h1>Hola que hace?</h1>
-      </Layout>
+      <Layout></Layout>
     </>
   )
 }
