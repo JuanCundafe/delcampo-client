@@ -1,9 +1,5 @@
-import Product from "../pages/product";
+import Register from './register';
 
-export default function Home() {
-  return (
-    <>
-      <Product />
-    </>
-  );
+export default function Home () {
+  return <></>
 }
