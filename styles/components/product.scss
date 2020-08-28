@@ -49,10 +49,14 @@
   }
   .image-product-card {
     width: 120px;
-    height: 100px;
     margin-top: 13%;
     border-radius: 5px;
     object-fit: cover;
+  }
+  @media (min-width: 480px) {
+    .image-product-card {
+      width: 200px;
+    }
   }
 }
 
