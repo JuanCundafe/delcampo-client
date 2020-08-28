@@ -1,9 +1,9 @@
-import MenuFooter from "../Components/MenuFooter";
+import Register from './register';
 
-export default function Home() {
+export default function Home () {
   return (
     <>
-      <MenuFooter />
+      <Register />
     </>
-  );
+  )
 }
