@@ -62,7 +62,7 @@
 }
 
 .btn-categories {
-  margin-left: 30px;
+  display: none;
 }
 
 @media (min-width: 576px) {
@@ -142,8 +142,7 @@
     }
   }
   .btn-categories {
-    &.text-category-btn {
-      display: flex;
-    }
+    margin-left: 30px;
+    display: flex;
   }
 }
