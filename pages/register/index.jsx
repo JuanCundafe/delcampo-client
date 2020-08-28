@@ -11,7 +11,6 @@ import {
 } from "antd";
 
 const { Header, Content } = Layout;
-const { Link } = Anchor;
 
 import { UserOutlined, LockOutlined, MailOutlined } from "@ant-design/icons";
 
