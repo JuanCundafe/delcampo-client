@@ -1,5 +1,5 @@
-import Register from "./register";
+import Register from './register';
 
-export default function Home() {
-  return <></>;
+export default function Home () {
+  return <></>
 }

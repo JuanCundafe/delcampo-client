@@ -1,4 +1,4 @@
-@media (max-width: 480px) {
+.MenuFooter {
   .home_on {
     position: fixed;
     bottom: 4.5vh;
@@ -78,32 +78,32 @@
     justify-content: center;
     // border: 1px solid red;
   }
-}
 
-@media (min-width: 480px) {
-  .home_on {
-    display: none;
-  }
-  .home_off {
-    display: none;
-  }
-  .shopping_off {
-    display: none;
-  }
-  .shopping_on {
-    display: none;
-  }
-  .message_off {
-    display: none;
-  }
-  .message_on {
-    display: none;
-  }
-  .icons {
-    display: none;
-  }
+  @media (min-width: 480px) {
+    .home_on {
+      display: none;
+    }
+    .home_off {
+      display: none;
+    }
+    .shopping_off {
+      display: none;
+    }
+    .shopping_on {
+      display: none;
+    }
+    .message_off {
+      display: none;
+    }
+    .message_on {
+      display: none;
+    }
+    .icons {
+      display: none;
+    }
 
-  .Wrapper-MenuFooter {
-    display: none;
+    .Wrapper-MenuFooter {
+      display: none;
+    }
   }
 }

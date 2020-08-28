@@ -4,11 +4,21 @@
   height: 30px;
 }
 
-@media only screen and (min-width: 400px) {
+.ant-btn {
+  &.btn-orange-categories2 {
+    &.ant-btn-primary {
+      &.ant-btn-icon-only {
+        margin-left: -12px;
+      }
+    }
+  }
+}
+@media (max-width: 480px) {
   .buscador {
     border-radius: 30px;
-    width: 370px;
+    width: 290px;
     height: 30px;
+    justify-content: space-evenly;
   }
 }
 
