@@ -1,9 +1,72 @@
 .btn-orange {
   background-color: $color-orange;
   border: none;
+  font-family: $font-family;
   min-width: 104px;
   height: 35.18px;
-  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.4), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+  border-radius: 5px;
+  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.1), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+  &:focus {
+    background-color: $color-orange;
+    opacity: 0.8;
+  }
+  &:hover {
+    background-color: $color-orange;
+    opacity: 0.8;
+  }
+}
+
+.btn-orange-login {
+  background-color: $color-orange;
+  border: none;
+  font-family: $font-family;
+  width: 80px;
+  padding: unset;
+  justify-content: center;
+  height: 30.18px;
+  border-radius: 5px;
+  font-size: 12px;
+  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.1), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+  &:focus {
+    background-color: $color-orange;
+    opacity: 0.8;
+  }
+  &:hover {
+    background-color: $color-orange;
+    opacity: 0.8;
+  }
+}
+
+.btn-outline-orange {
+  border: 2px solid $color-orange;
+  background-color: transparent;
+  font-family: $font-family;
+  min-width: 104px;
+  height: 35.18px;
+  border-radius: 5px;
+  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.1), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+  &:focus {
+    background-color: $color-orange;
+    opacity: 0.8;
+  }
+  &:hover {
+    background-color: $color-orange;
+    opacity: 0.8;
+  }
+}
+
+.btn-outline-orange-signup {
+  background-color: transparent;
+  border: 2px solid $color-orange;
+  font-family: $font-family;
+  width: 80px;
+  padding: unset;
+  justify-content: center;
+  height: 30.18px;
+  border-radius: 5px;
+  font-size: 12px;
+  margin-left: 5px;
+  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.1), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
   &:focus {
     background-color: $color-orange;
     opacity: 0.8;

@@ -1,4 +1,3 @@
-<<<<<<< HEAD
 .menu-dropdown {
   .ant-dropdown-menu-item {
     a {
@@ -20,40 +19,6 @@
   .ant-menu-horizontal:not(.ant-menu-dark) > .ant-menu-item-selected {
     color: white;
   }
-=======
-.ant-menu-horizontal:not(.ant-menu-dark) > .ant-menu-item-selected {
-  color: white;
-}
-
-.ant-menu-horizontal:not(.ant-menu-dark) > .ant-menu-item,
-.ant-menu-horizontal:not(.ant-menu-dark) > .ant-menu-submenu {
-  color: white;
-}
-
-.ant-avatar {
-  width: 36px;
-  height: 36px;
-}
-
-.ant-dropdown-menu-item {
-  a {
-    color: #f29e00;
-    &:hover {
-      color: white;
-      background: #f29e00;
-    }
-  }
-}
-
-// .ant-dropdown-menu-item > a:hover {
-//   color: white;
-//   background: #f29e00;
-// }
-
-// .ant-dropdown-menu-item > a {
-//   color: #f29e00;
-// }
->>>>>>> develop
 
   .ant-menu-horizontal:not(.ant-menu-dark) > .ant-menu-item,
   .ant-menu-horizontal:not(.ant-menu-dark) > .ant-menu-submenu {
