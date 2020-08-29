@@ -1,12 +1,40 @@
-import { Row, Col, Card, Typography, Space, Avatar } from 'antd';
+import { Row, Col, Card, Typography, Space, Avatar, List } from 'antd';
 import Search from '../../Components/Search';
 import CustomButton from '../../Components/CustomButton';
 import Categories from '../../Components/Categories';
+import CardHarvest from '../../Components/CardHarvest';
+import { getHarvest } from '../../lib/services';
+import { useState, useEffect } from 'react';
 // import CustomButton from "../../Components/CustomButton";
 // import Categories from "../../Components/Categories";
 const { Meta } = Card
 
 export default function Product () {
+  const [products, setProducts] = useState([])
+
+  useEffect(async () => {
+    const response = await getHarvest()
+
+    if (response.data.harvest) {
+      setProducts(response.data.harvest)
+    }
+  }, [])
+
+  const uiCards = products.map(
+    ({ _id, product: { name }, price, description, picture }, index) => {
+      return (
+        <li key={_id} className='item'>
+          <CardHarvest
+            product={name}
+            price={price}
+            description={description}
+            picture={picture}
+          />
+        </li>
+      )
+    }
+  )
+
   return (
     <>
       <div className='product-wrapper'>
@@ -81,7 +109,7 @@ export default function Product () {
           >
             <div className='product-card'>
               <Row justify='space-around' align='middle'>
-                <Col span={10}>
+                <Col span={8}>
                   <img
                     className='image-product-card'
                     src='images/productor.png'
@@ -105,7 +133,7 @@ export default function Product () {
           >
             <div className='product-card'>
               <Row justify='space-around' align='middle'>
-                <Col span={10}>
+                <Col span={8}>
                   <img
                     className='image-product-card'
                     src='images/comprador.png'
@@ -123,6 +151,12 @@ export default function Product () {
             </div>
           </Col>
         </Row>
+        <div className='product-section-cardsHarvest'>
+          <div className='container-cards-list'>
+            <p>Mas populares</p>
+            <ul className='hs full'>{Object.keys(uiCards) ? uiCards : null}</ul>
+          </div>
+        </div>
         <div className='product-footer'>
           <Row>
             <Col

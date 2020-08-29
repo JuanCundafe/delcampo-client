@@ -7,20 +7,33 @@ html {
   .card-harvest {
     box-shadow: 0px 1px 10px 1px rgba(0, 0, 0, 0.1);
     font-family: $font-family;
+    width: 230px;
   }
 
   .meta-cardHarvest {
     &.module {
-      width: 214px;
+      width: auto;
       margin: 0 0 1em 0;
       overflow: hidden;
     }
     &.overflow {
       --max-lines: 2.5;
+      font-size: 11px;
       position: relative;
       max-height: calc(var(--lh) * var(--max-lines));
       overflow: hidden;
       padding-right: 1rem; /* space for ellipsis */
+    }
+    @media (min-width: 480px) {
+      &.overflow {
+        font-size: 16px;
+        --max-lines: 3.9;
+      }
+      .ant-card-meta-title {
+        font-size: 25px;
+      }
+      .col-precio-cardHarvest {
+      }
     }
     &.overflow::before {
       position: absolute;
@@ -47,11 +60,19 @@ html {
     }
     .col-precio-cardHarvest {
       margin: 10px;
+      @media (min-width: 480px) {
+        .precio-cardHarvest {
+          font-size: 19px;
+        }
+      }
     }
     .precio-cardHarvest {
       font-size: 13px;
       display: flex;
       justify-content: flex-end;
+    }
+    @media (min-width: 480px) {
+      font-size: 18px;
     }
   }
 
@@ -108,5 +129,15 @@ html {
   .ant-card-meta {
     margin: -9px 0;
     margin-left: 7px;
+  }
+  @media (min-width: 480px) {
+    .card-harvest {
+      width: 535px;
+    }
+    .cardHarvest-img {
+      width: 530px;
+      height: 192px;
+      object-fit: cover;
+    }
   }
 }
