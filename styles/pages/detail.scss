@@ -1,0 +1,84 @@
+.details-view{
+
+    .btn-return{
+        padding-left: 20px;
+
+        img{
+            height: 30px;
+        }
+    }
+
+    .creation-date{
+        display: flex;
+        justify-content: flex-end;
+        padding-right: 20px;
+
+        div{
+            border-radius: 5px;
+            border: 1px solid $color-orange;
+            padding: 5px;
+        }
+    }
+
+    .header{
+        margin: 15px 15px;
+
+        img{
+            width: 100%;
+            border-radius: 5px;
+        }
+
+        .price-per-kilogram{
+            padding-top: 10px;
+            display: flex;
+            justify-content: flex-end;
+            font-weight: bold;
+
+            .kilogram{
+                padding: 3px 20px;
+                color: white;
+                
+                background-color: $color-dark-green;
+                border-radius: 15px;
+                margin-right: 10px;
+            }
+
+            .price-kg{
+                padding: 3px 10px 3px 0;
+            }
+        }
+        
+        .description{
+            padding: 0 20px;
+        }
+    }
+
+    .footer{
+        padding: 0 15px;
+
+        img{
+            width: 100%;
+        }
+
+        .description{
+            padding: 0 30px;
+        }
+
+        .title-green{
+            color: $color-dark-green;
+            font-size: 1.2em;
+            font-weight: bold;
+        }
+    }
+
+}
+
+@media (min-width: 576px) {
+    .details-view{
+        padding: 15px 100px;
+
+        .footer{
+            
+        }
+    }       
+}

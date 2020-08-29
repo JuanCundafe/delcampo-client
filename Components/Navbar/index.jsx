@@ -1,9 +1,14 @@
 import React, { useState, useEffect } from "react";
+import { useRouter } from 'next/router'
+
 import Search from "../Search";
 import UserAvatar from "./user-avatar";
 import { Row, Col } from "antd";
 
 export default function NavBar() {
+
+  const router = useRouter()
+  console.log(router.pathname)
   const [home, setHome] = useState("images/logo-navbar.png");
   const [home_on, sethome_on] = useState("home_on");
   const [shopping_on, setshopping_on] = useState("shopping_off");
@@ -19,6 +24,15 @@ export default function NavBar() {
   const handleActiveHome = () => setactiveHome(!activeHome);
   const handleActiveShopping = () => setactiveShopping(!activeShopping);
   const handleActiveMessage = () => setactiveMessage(!activeMessage);
+
+  let searchIsActive;
+  switch(router.pathname){
+    case '/detail':
+      searchIsActive = false;
+      break;
+    default:
+      searchIsActive = true;
+  }
 
   useEffect(() => {
     if (activeShopping == true) {
@@ -69,9 +83,17 @@ export default function NavBar() {
             <img src={home} width="35" height="35" />{" "}
           </a>
         </Col>
-        <Col className="navbar-search-col" xs={{ order: 3 }} sm={{ order: 2 }}>
-          <Search />
-        </Col>
+        
+        {
+        searchIsActive 
+          ? (
+            <Col className="navbar-search-col" xs={{ order: 3 }} sm={{ order: 2 }}>
+              <Search />
+            </Col>
+          ) 
+          : null
+        }
+        
         <Col className="perfil" span={4} xs={{ order: 2 }} sm={{ order: 3 }}>
           <div>
             <a className={message_on} onClick={handleActiveMessage}>
