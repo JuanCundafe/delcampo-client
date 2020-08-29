@@ -1,9 +1,10 @@
 import { Select, Row, Col } from "antd";
 
 const { Option } = Select;
-export default function InputKilograms() {
+export default function InputKilograms({ callback }) {
   function handleChange(value) {
     console.log(`selected ${value}`);
+    callback(value);
   }
   return (
     <>
@@ -11,14 +12,16 @@ export default function InputKilograms() {
         <Col span={12} xs={24} sm={12}>
           <div className="container-kilograms">
             <Select
+              name="category"
               className="custo-select"
               defaultValue=""
               onChange={handleChange}
             >
-              <Option value="frutas">Frutas</Option>
-              <Option value="vainas">Vainas</Option>
-              <Option value="flores">Flores</Option>
-              <Option value="verduras">Verduras</Option>
+              <Option value="Frutas">Frutas</Option>
+              <Option value="Vainas">Vainas</Option>
+              <Option value="Flores">Flores</Option>
+              <Option value="Verduras">Verduras</Option>
+              <Option value="Raíces">Raices</Option>
             </Select>
           </div>
         </Col>

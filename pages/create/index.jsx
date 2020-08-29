@@ -1,15 +1,21 @@
+import { useState } from "react";
+
 import { Layout, Upload, message, Col, Row, Input, DatePicker } from "antd";
 
 import Navbar from "../../Components/Navbar";
 import MenuFooter from "../../Components/MenuFooter";
-import CustomSelect from "../../Components/CustomSelect";
 import CustomButton from "../../Components/CustomButton";
 import InputKilograms from "../../Components/InputKilograms";
+import UploadProduct from "./components/UploadProduct";
 
 const { Content } = Layout;
 const { TextArea } = Input;
 
 export default function Create() {
+  const [product, setProduct] = useState(false);
+  const handelFormProduct = () => {
+    setProduct(true);
+  };
   return (
     <div>
       <Layout>
@@ -21,11 +27,10 @@ export default function Create() {
               <div className="uploadImage">
                 <h1>Upload image</h1>
               </div>
-              <p>Elige el tipo de cosecha</p>
-              <CustomSelect />
-              <p>Nombre del producto:</p>
-              <Input placeholder="Ej: Limón" />
-              {/* <CustomButton>+ Agregar Producto</CustomButton> */}
+              <CustomButton callback={handelFormProduct}>
+                + Agregar Producto
+              </CustomButton>
+              {product && <UploadProduct />}
               <p>Describe tu cosecha:</p>
               <TextArea rows={6} />
               <p>Precio por kilogramo</p>
