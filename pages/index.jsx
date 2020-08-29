@@ -1,5 +1,9 @@
-import Register from './register';
+import Create from "./create";
 
-export default function Home () {
-  return <></>
+export default function Home() {
+  return (
+    <>
+      <Create />
+    </>
+  );
 }
