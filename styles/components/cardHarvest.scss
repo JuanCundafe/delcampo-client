@@ -37,16 +37,16 @@ html {
     }
     &.overflow::before {
       position: absolute;
-      content: "...";
-      /*   inset-block-end: 0;
-        inset-inline-end: 0; */
+      //content: "...";
+      // inset-block-end: 0;
+      // inset-inline-end: 0;
       bottom: 0px;
       right: 5px;
     }
     &.overflow::after {
       content: "";
       position: absolute;
-      /*   inset-inline-end: 0; */
+      // inset-inline-end: 0;
       right: 0;
       width: 1rem;
       height: 1rem;
@@ -59,7 +59,6 @@ html {
       bottom: -1px;
     }
     .col-precio-cardHarvest {
-      margin: 10px;
       @media (min-width: 480px) {
         .precio-cardHarvest {
           font-size: 19px;
@@ -67,9 +66,10 @@ html {
       }
     }
     .precio-cardHarvest {
-      font-size: 13px;
-      display: flex;
-      justify-content: flex-end;
+      font-size: 12px;
+      color: #383a46;
+      font-weight: bolder;
+      float: right;
     }
     @media (min-width: 480px) {
       font-size: 18px;
