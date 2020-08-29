@@ -6,8 +6,10 @@ export default function Layout({ children }) {
   return (
     <>
       <NavBar />
+
       <Categories />
       {children}
+
       <MenuFooter />
     </>
   );

@@ -21,7 +21,7 @@ export default function Categories() {
 
   const show = (elem) => {
     elem.style.display = "block"; // Make it visible
-    let height = elem.scrollHeight + 90 + "px"; // Get it's height
+    const height = elem.scrollHeight + 90 + "px"; // Get it's height
     elem.style.display = ""; //  Hide it again
 
     elem.classList.add("is-visible"); // Make the element visible
@@ -47,10 +47,10 @@ export default function Categories() {
   };
 
   const showDesktop = (elem) => {
-    let menu = document.querySelector(".categories-container");
+    const menu = document.querySelector(".categories-container");
 
     elem.style.display = "block"; // Make it visible
-    let height = elem.scrollHeight + "px"; // Get it's height
+    const height = elem.scrollHeight + "px"; // Get it's height
     elem.style.display = ""; //  Hide it again
     elem.classList.add("is-visible"); // Make the element visible
     elem.style.height = height; // Update the max-height
@@ -63,7 +63,7 @@ export default function Categories() {
   };
 
   const hideDesktop = (elem) => {
-    let menu = document.querySelector(".categories-container");
+    const menu = document.querySelector(".categories-container");
 
     elem.classList.remove("is-visible");
     menu.classList.remove("is-visible");
@@ -86,7 +86,7 @@ export default function Categories() {
     <>
       <CustomButton
         icon={<MenuOutlined />}
-        btnStyle="btn-orange"
+        btnStyle="btn-orange-categories"
         callback={handleMenu}
       >
         Categorías

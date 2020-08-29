@@ -1,0 +1,43 @@
+body {
+  background: #f8f8fa;
+}
+.ant-card-head {
+  background: $color-green;
+  border-radius: 10px 10px 0px 0px;
+  font-size: 40px;
+  color: $color-white;
+  text-align: center;
+}
+// .ant-card-body {
+//   border: silver;
+//   border-bottom-left-radius: 10px;
+//   box-shadow: purple;
+// }
+@media (max-width: 480px) {
+  .navbar-search-col {
+    display: none;
+  }
+}
+@media (max-width: 480px) {
+  .ant-dropdown-link {
+    display: none;
+  }
+}
+@media (max-width: 480px) {
+  .nombre-perfil {
+    display: none;
+  }
+}
+@media (max-width: 480px) {
+  .rol-perfil {
+    display: none;
+  }
+}
+.container-card-shipping {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+}
+.card-address-container {
+  background: $color-white;
+}
