@@ -1,20 +1,12 @@
-import {
-  Layout,
-  Upload,
-  message,
-  Col,
-  Row,
-  Input,
-  Select,
-  DatePicker,
-} from "antd";
+import { Layout, Upload, message, Col, Row, Input, DatePicker } from "antd";
 
 import Navbar from "../../Components/Navbar";
 import MenuFooter from "../../Components/MenuFooter";
 import CustomSelect from "../../Components/CustomSelect";
 import CustomButton from "../../Components/CustomButton";
+import InputKilograms from "../../Components/InputKilograms";
 
-const { Header, Content, Footer } = Layout;
+const { Content } = Layout;
 const { TextArea } = Input;
 
 export default function Create() {
@@ -22,23 +14,27 @@ export default function Create() {
     <div>
       <Layout>
         <Navbar />
-        <Content>
+        <Content className="container-create">
           <Row>
             <Col xs={{ span: 20, offset: 2 }} md={{ span: 16, offset: 4 }}>
               <p>Agrega una foto interesante de tu cosecha</p>
               <div className="uploadImage">
                 <h1>Upload image</h1>
               </div>
-              <p>Elige un producto o agrega uno</p>
-              <div className="uploadComponent">
-                <h1> Componente Vis</h1>
-              </div>
-              <br />
-              <CustomButton>+ Agregar Productos</CustomButton>
+              <p>Elige el tipo de cosecha</p>
+              <CustomSelect />
+              <p>Nombre del producto:</p>
+              <Input placeholder="Ej: Limón" />
+              {/* <CustomButton>+ Agregar Producto</CustomButton> */}
               <p>Describe tu cosecha:</p>
               <TextArea rows={6} />
               <p>Precio por kilogramo</p>
-              <div style={{ marginBottom: 16, width: "70%" }}>
+              <div
+                style={{
+                  marginBottom: 16,
+                  width: "70%",
+                }}
+              >
                 <Input
                   className="kilogramos"
                   addonBefore="$"
@@ -47,11 +43,9 @@ export default function Create() {
                 />
               </div>
               <p>Kilogramos disponibles de la cosecha</p>
-              <div className="uploadComponent">
-                <h1> Componente Vis</h1>
-              </div>
+              <InputKilograms />
               <p>Fecha límite de venta de la cosecha</p>
-              <DatePicker style={{ width: "100%" }} />
+              <DatePicker style={{ background: "#dfdfe3", width: "100%" }} />
               <br />
               <br />
               <CustomButton>Publicar Cosecha</CustomButton>
