@@ -1,33 +1,33 @@
-import { Row, Col, Card } from "antd";
-import Search from "../../Components/Search";
-import CustomButton from "../../Components/CustomButton";
-import Categories from "../../Components/Categories";
-import CardHarvest from "../../Components/CardHarvest";
-import { getHarvest } from "../../lib/services";
-import { useState, useEffect } from "react";
-import NavBar from "../../Components/Navbar";
+import { Row, Col, Card } from 'antd';
+import Search from '../../Components/Search';
+import CustomButton from '../../Components/CustomButton';
+import Categories from '../../Components/Categories';
+import CardHarvest from '../../Components/CardHarvest';
+import { getHarvest } from '../../lib/services';
+import { useState, useEffect } from 'react';
+import NavBar from '../../Components/Navbar';
 
-export default function Home() {
-  const { Meta } = Card;
+export default function Home () {
+  const { Meta } = Card
 
-  const [products, setProducts] = useState([]);
+  const [products, setProducts] = useState([])
 
   useEffect(async () => {
-    const response = await getHarvest();
+    const response = await getHarvest()
 
     if (response.data.harvest) {
-      setProducts(response.data.harvest);
+      setProducts(response.data.harvest)
     }
-  }, []);
-  console.log(products);
+  }, [])
+  console.log(products)
   const uiCardsPopular = products.map(
     (
       { _id, product: { name }, price, description, picture, tag, weight },
       index
     ) => {
-      if (tag == "populares") {
+      if (tag == 'populares') {
         return (
-          <li key={_id} className="item">
+          <li key={_id} className='item'>
             <CardHarvest
               product={name}
               price={price}
@@ -36,19 +36,19 @@ export default function Home() {
               weight={weight}
             />
           </li>
-        );
+        )
       }
     }
-  );
+  )
 
   const uiCardsTemporada = products.map(
     (
       { _id, product: { name }, price, description, picture, tag, weight },
       index
     ) => {
-      if (tag == "temporada") {
+      if (tag == 'temporada') {
         return (
-          <li key={_id} className="item">
+          <li key={_id} className='item'>
             <CardHarvest
               product={name}
               price={price}
@@ -57,19 +57,19 @@ export default function Home() {
               weight={weight}
             />
           </li>
-        );
+        )
       }
     }
-  );
+  )
 
   const uiCardsOferta = products.map(
     (
       { _id, product: { name }, price, description, picture, tag, weight },
       index
     ) => {
-      if (tag == "oferta") {
+      if (tag == 'oferta') {
         return (
-          <li key={_id} className="item">
+          <li key={_id} className='item'>
             <CardHarvest
               product={name}
               price={price}
@@ -78,41 +78,41 @@ export default function Home() {
               weight={weight}
             />
           </li>
-        );
+        )
       }
     }
-  );
+  )
 
   return (
     <>
-      <div className="home-wrapper">
+      <div className='home-wrapper'>
         <NavBar />
-        <Row className="home-categories-margin">
+        <Row className='home-categories-margin'>
           <Categories />
         </Row>
-        <div className="product-section-cardsHarvest">
-          <div className="container-cards-list">
-            <Row className="product-row-sections">
-              <p className="product-text-sections" id="populares">
+        <div className='product-section-cardsHarvest'>
+          <div className='container-cards-list'>
+            <Row className='product-row-sections'>
+              <p className='product-text-sections' id='populares'>
                 Mas populares
               </p>
-              <ul className="hs full">
+              <ul className='hs full'>
                 {Object.keys(uiCardsPopular) ? uiCardsPopular : null}
               </ul>
             </Row>
-            <Row className="product-row-sections">
-              <p className="product-text-sections" id="temporada">
+            <Row className='product-row-sections'>
+              <p className='product-text-sections' id='temporada'>
                 En temporada
               </p>
-              <ul className="hs full">
+              <ul className='hs full'>
                 {Object.keys(uiCardsTemporada) ? uiCardsTemporada : null}
               </ul>
             </Row>
-            <Row className="product-row-sections">
-              <p className="product-text-sections" id="oferta">
+            <Row className='product-row-sections'>
+              <p className='product-text-sections' id='oferta'>
                 En oferta
               </p>
-              <ul className="hs full">
+              <ul className='hs full'>
                 {Object.keys(uiCardsOferta) ? uiCardsOferta : null}
               </ul>
             </Row>
@@ -120,5 +120,5 @@ export default function Home() {
         </div>
       </div>
     </>
-  );
+  )
 }
