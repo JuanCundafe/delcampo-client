@@ -1,12 +1,89 @@
-import { Row, Col, Card, Typography, Space, Avatar } from 'antd';
+import { Row, Col, Card, Button } from 'antd';
 import Search from '../../Components/Search';
 import CustomButton from '../../Components/CustomButton';
 import Categories from '../../Components/Categories';
+import CardHarvest from '../../Components/CardHarvest';
+import { getHarvest } from '../../lib/services';
+import { useState, useEffect } from 'react';
+import Link from 'next/link';
 // import CustomButton from "../../Components/CustomButton";
 // import Categories from "../../Components/Categories";
 const { Meta } = Card
 
 export default function Product () {
+  const [products, setProducts] = useState([])
+
+  useEffect(async () => {
+    const response = await getHarvest()
+
+    if (response.data.harvest) {
+      setProducts(response.data.harvest)
+    }
+  }, [])
+  console.log(products)
+  const uiCardsPopular = products.map(
+    (
+      { _id, product: { name }, price, description, picture, tag, weight },
+      index
+    ) => {
+      if (tag == 'populares') {
+        return (
+          <li key={_id} className='item'>
+            <CardHarvest
+              product={name}
+              price={price}
+              description={description}
+              picture={picture}
+              weight={weight}
+            />
+          </li>
+        )
+      }
+    }
+  )
+
+  const uiCardsTemporada = products.map(
+    (
+      { _id, product: { name }, price, description, picture, tag, weight },
+      index
+    ) => {
+      if (tag == 'temporada') {
+        return (
+          <li key={_id} className='item'>
+            <CardHarvest
+              product={name}
+              price={price}
+              description={description}
+              picture={picture}
+              weight={weight}
+            />
+          </li>
+        )
+      }
+    }
+  )
+
+  const uiCardsOferta = products.map(
+    (
+      { _id, product: { name }, price, description, picture, tag, weight },
+      index
+    ) => {
+      if (tag == 'oferta') {
+        return (
+          <li key={_id} className='item'>
+            <CardHarvest
+              product={name}
+              price={price}
+              description={description}
+              picture={picture}
+              weight={weight}
+            />
+          </li>
+        )
+      }
+    }
+  )
+
   return (
     <>
       <div className='product-wrapper'>
@@ -52,24 +129,36 @@ export default function Product () {
               xs={{ span: 3, offset: 3 }}
               md={{ span: 2, offset: 4 }}
             >
-              <CustomButton btnStyle='btn-product-anchors-center'>
+              <a
+                href='#populares'
+                className='ant-btn btn-product-anchors-center ant-btn-primary'
+              >
                 Populares
-              </CustomButton>
+              </a>
             </Col>
             <Col xs={{ span: 3, offset: 3 }} md={{ span: 2, offset: 0 }}>
-              <CustomButton btnStyle='btn-product-anchors-center'>
+              <a
+                href='#temporada'
+                className='ant-btn btn-product-anchors-center ant-btn-primary'
+              >
                 Temporada
-              </CustomButton>
+              </a>
             </Col>
             <Col xs={{ span: 3, offset: 3 }} md={{ span: 2, offset: 0 }}>
-              <CustomButton btnStyle='btn-product-anchors-center'>
+              <a
+                href='#oferta'
+                className='ant-btn btn-product-anchors-center ant-btn-primary'
+              >
                 Ofertas
-              </CustomButton>
+              </a>
             </Col>
             <Col xs={{ span: 3, offset: 3 }} md={{ span: 2, offset: 6 }}>
-              <CustomButton btnStyle='btn-product-anchors-aboutus'>
+              <a
+                href='#about-us'
+                className='ant-btn btn-product-anchors-aboutus ant-btn-primary'
+              >
                 About us
-              </CustomButton>
+              </a>
             </Col>
           </Row>
         </div>
@@ -81,7 +170,7 @@ export default function Product () {
           >
             <div className='product-card'>
               <Row justify='space-around' align='middle'>
-                <Col span={10}>
+                <Col span={8}>
                   <img
                     className='image-product-card'
                     src='images/productor.png'
@@ -105,7 +194,7 @@ export default function Product () {
           >
             <div className='product-card'>
               <Row justify='space-around' align='middle'>
-                <Col span={10}>
+                <Col span={8}>
                   <img
                     className='image-product-card'
                     src='images/comprador.png'
@@ -123,6 +212,34 @@ export default function Product () {
             </div>
           </Col>
         </Row>
+        <div className='product-section-cardsHarvest'>
+          <div className='container-cards-list'>
+            <Row className='product-row-sections'>
+              <p className='product-text-sections' id='populares'>
+                Mas populares
+              </p>
+              <ul className='hs full'>
+                {Object.keys(uiCardsPopular) ? uiCardsPopular : null}
+              </ul>
+            </Row>
+            <Row className='product-row-sections'>
+              <p className='product-text-sections' id='temporada'>
+                En temporada
+              </p>
+              <ul className='hs full'>
+                {Object.keys(uiCardsTemporada) ? uiCardsTemporada : null}
+              </ul>
+            </Row>
+            <Row className='product-row-sections'>
+              <p className='product-text-sections' id='oferta'>
+                En oferta
+              </p>
+              <ul className='hs full'>
+                {Object.keys(uiCardsOferta) ? uiCardsOferta : null}
+              </ul>
+            </Row>
+          </div>
+        </div>
         <div className='product-footer'>
           <Row>
             <Col
@@ -130,7 +247,7 @@ export default function Product () {
               sm={{ span: 12 }}
               className='product-text-footer-container'
             >
-              <div>
+              <div id='about-us'>
                 <img
                   className='product-logo-footer'
                   src='images/logo-desktop-navbar.png'
