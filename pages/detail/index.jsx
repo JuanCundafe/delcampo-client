@@ -1,14 +1,32 @@
+import {useState} from 'react';
 import Layout from "../../Components/Layout"
 import InputKilograms from "../../Components/InputKilograms"
 
-import { Row, Col, Button } from 'antd';
+import { Row, Col, Alert } from 'antd';
+
 
 export default function Deatails(){
-    
-  const addToBag =  () =>{
 
+  const [alertMsg, showAlert] = useState(false);
+  const [totalCost, setTotalCost] = useState(100)
+
+  const handleTotal = (total) => {
+    setTotalCost(total * 10)
   }
-  
+
+  const onFinish = (e) => {
+    e.preventDefault();
+
+    let totalKilograms = parseInt(e.target.elements[1].value);
+
+    if(totalKilograms < 100){
+      showAlert(true)
+      
+    }else{
+      showAlert(false)
+    }
+  }
+
   return(
     <Layout>
       <div className="details-view">
@@ -50,13 +68,30 @@ export default function Deatails(){
           </Col>
         </Row>
         <Row className="add-bag">
-        <Col span={24}><hr/></Col>
-          <Col span={12}>
-            <InputKilograms/>
+          <Col span={24}>
+            <hr/>
+            {alertMsg && <Alert message="La compra mínima es de 100 Kg" type="error" showIcon />}
           </Col>
-          <Col span={12}>
-            <div><span>Total:</span> $10000</div>
-            <Button callback={addToBag}>Agregar a la bolsa</Button>
+          <Col span={24}>
+            <div >
+              <div>kg</div>
+              <div>{`$ ${totalCost}.00`}</div>
+            </div>
+            <form onSubmit={onFinish}>
+              <Row>
+                <Col span={14}>
+                {/* <div className="kilograms">Kg.</div> */}
+                  <div className="input-container">
+                    <InputKilograms callback={handleTotal}/>
+                  </div>
+                </Col>
+                <Col span={10}>
+                  <div className="btn-container">
+                    <button type="submit">Agregar a la bolsa</button>
+                  </div>
+                </Col> 
+              </Row>
+            </form>
           </Col>
         </Row>
       </div>

@@ -71,14 +71,66 @@
         }
     }
 
+    .add-bag{
+        margin-bottom: 100px;
+
+        .kilograms{
+            padding-left: 15px;
+        }
+
+        .input-container{
+            height: 100%;
+            display: flex;
+            justify-content: center;
+        }
+
+        .btn-container{
+            height: 100%;
+            display: flex;            
+            align-items: flex-end;
+
+            button{
+                border-radius: 5px;
+                border: none;
+                background-color: $color-orange;
+                padding: 5px;
+                color: $color-white;
+                outline:none;
+                &:hover{
+                    border: 1px solid $color-orange;
+                    opacity: 0.8;
+                }
+            }
+        }
+    }
+
 }
 
 @media (min-width: 576px) {
     .details-view{
         padding: 15px 100px;
 
-        .footer{
-            
+        .add-bag{
+            margin-bottom: 30px;
+
+            .btn-container{
+                display: flex;
+                justify-content: center;
+                // align-items: center;
+
+                // button{
+                //     border-radius: 5px;
+                //     border: none;
+                //     background-color: $color-orange;
+                //     padding: 5px;
+                //     color: $color-white;
+                //     outline:none;
+                //     &:hover{
+                //         border: 1px solid $color-orange;
+                //         opacity: 0.8;
+                //     }
+                // }
+            }
         }
     }       
 }

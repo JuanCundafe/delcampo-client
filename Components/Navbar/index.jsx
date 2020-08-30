@@ -8,7 +8,7 @@ import { Row, Col } from "antd";
 export default function NavBar() {
 
   const router = useRouter()
-  console.log(router.pathname)
+
   const [home, setHome] = useState("images/logo-navbar.png");
   const [home_on, sethome_on] = useState("home_on");
   const [shopping_on, setshopping_on] = useState("shopping_off");
