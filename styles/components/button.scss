@@ -202,3 +202,28 @@
     background-color: $color-green;
   }
 }
+
+.btn-orange-address-return {
+  display: block;
+  background-color: $color-orange;
+  border: none;
+  font-family: $font-family;
+  width: 28px;
+  height: 28px;
+  text-shadow: none;
+  margin-left: 12px;
+  margin-top: 12px;
+  border-radius: 50px;
+  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.1), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+  &:focus {
+    background-color: $color-orange;
+    opacity: 0.8;
+  }
+  &:hover {
+    background-color: $color-orange;
+    opacity: 0.8;
+  }
+  @media (min-width: 480px) {
+    margin: 20px;
+  }
+}
