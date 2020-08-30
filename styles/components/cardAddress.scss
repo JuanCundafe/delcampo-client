@@ -21,7 +21,39 @@
   .card-address-body {
     padding: 15px;
 
-    .contact-information {
+    .contact-information-phone {
+      display: flex;
+      align-items: center;
+
+      img {
+        margin: 5px 10px 5px 0;
+      }
+
+      p {
+        height: 100%;
+        margin: 0 0 0 5px;
+        display: flex;
+        align-items: center;
+      }
+    }
+
+    .contact-information-mail {
+      display: flex;
+      align-items: center;
+
+      img {
+        margin: 5px 10px 5px 0;
+      }
+
+      p {
+        height: 100%;
+        margin: 0 0 0 5px;
+        display: flex;
+        align-items: center;
+      }
+    }
+
+    .contact-information-address {
       display: flex;
       align-items: center;
 

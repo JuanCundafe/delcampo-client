@@ -35,49 +35,51 @@ export default function Shipping() {
 
   return (
     <>
-      <NavBar title="Carrito" />
-      <div className="container-shipping">
-        <Row>
-          <div>
-            <h2>2.Dirección de envio</h2>
-          </div>
-        </Row>
-        <Row>
-          <div className="container-card-shippin">
-            <Row>
-              <div id="cont-card" className="wrapper">
-                <ul className="li-shipping ">{cardShipping}</ul>
+      <div className="wrapper-shipping-screen">
+        <NavBar title="Carrito" />
+        <div className="container-shipping">
+          <Row>
+            <div>
+              <h2>2.Dirección de envio</h2>
+            </div>
+          </Row>
+          <Row>
+            <div className="container-card-shippin">
+              <Row>
+                <div id="cont-card" className="wrapper">
+                  <ul className="li-shipping ">{cardShipping}</ul>
+                </div>
+              </Row>
+              <div className="btn-uno">
+                <CustomButton
+                  btnStyle="btn-orange"
+                  className="btn-another-address"
+                >
+                  Agregar otra Dirección
+                </CustomButton>
               </div>
-            </Row>
-            <div className="btn-uno">
-              <CustomButton
-                btnStyle="btn-orange"
-                className="btn-another-address"
-              >
+            </div>
+          </Row>
+          <Row>
+            <div>
+              <h2>3. Metodo de pago</h2>
+            </div>
+          </Row>
+          <Row>
+            <div>
+              <button>PayPal</button>
+            </div>
+          </Row>
+          <Row>
+            <div className="btn-dos">
+              <CustomButton btnStyle="btn-orange" className="btn-shipping">
                 Agregar otra Dirección
               </CustomButton>
             </div>
-          </div>
-        </Row>
-        <Row>
-          <div>
-            <h2>3. Metodo de pago</h2>
-          </div>
-        </Row>
-        <Row>
-          <div>
-            <button>PayPal</button>
-          </div>
-        </Row>
-        <Row>
-          <div className="btn-dos">
-            <CustomButton btnStyle="btn-orange" className="btn-shipping">
-              Agregar otra Dirección
-            </CustomButton>
-          </div>
-        </Row>
+          </Row>
 
-        <MenuFooter />
+          <MenuFooter />
+        </div>
       </div>
     </>
   );
