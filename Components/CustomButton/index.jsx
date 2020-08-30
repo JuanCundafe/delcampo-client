@@ -1,18 +1,18 @@
-import { Button } from "antd";
+import { Button } from 'antd';
 
-export default function CustomButton({ callback, btnStyle, children, icon }) {
+export default function CustomButton ({ callback, btnStyle, children, icon }) {
   const handleCallback = () => {
-    callback();
+    callback()
   };
 
   return (
     <Button
       icon={icon}
-      type="primary"
+      type='primary'
       className={btnStyle}
       onClick={handleCallback}
     >
       {children}
     </Button>
-  );
+  )
 }
