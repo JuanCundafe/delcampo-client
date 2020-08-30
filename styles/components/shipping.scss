@@ -1,5 +1,5 @@
-body {
-  background: #f8f8fa;
+.container-shipping {
+  margin-left: 15px;
 }
 .ant-card-head {
   background: $color-green;
@@ -29,15 +29,141 @@ body {
   }
 }
 @media (max-width: 480px) {
+  body {
+    background: #f8f8fa;
+  }
+}
+@media (max-width: 480px) {
+  .ant-col {
+    margin-left: 8px;
+  }
+}
+@media (min-width: 480px) {
+  .ant-col {
+    margin-left: 30px;
+  }
+}
+@media (max-width: 480px) {
   .rol-perfil {
     display: none;
   }
 }
-.container-card-shipping {
+.container-card-shippin {
   display: flex;
-  flex-direction: row;
-  align-items: center;
+  flex-direction: column;
 }
+
+@media (min-width: 480px) {
+  .container-card-shippin {
+    margin-left: 80px;
+    flex-direction: column-reverse;
+    margin-bottom: 15px;
+  }
+}
+@media (max-width: 480px) {
+  .btn-dos {
+    margin-left: 56px;
+  }
+}
+@media (min-width: 480px) {
+  .btn-dos {
+    display: none;
+  }
+}
+@media (max-width: 480px) {
+  .card-address-container {
+    height: 180px;
+  }
+}
+
+// .container-card-shipping {
+//   display: flex;
+//   flex-direction: row;
+//   align-items: center;
+// }
 .card-address-container {
   background: $color-white;
+  width: 100%;
+  margin-right: 20px;
+}
+// .contact-information img {
+//   display: none;
+// }
+.btn-shipping {
+  align-items: flex-start;
+}
+// .col-content.shipping {
+//   margin-left: 5px;
+// }
+.ant-btn {
+  margin-top: 15px;
+  margin-bottom: 15px;
+}
+
+@media (min-width: 480px) {
+  .btn-uno {
+    margin-left: 116px;
+  }
+}
+
+.address-body {
+  margin-right: 10px;
+}
+
+.contact-information {
+  display: none;
+}
+
+.li-shipping {
+  display: flex;
+  margin-right: 3px;
+}
+.wrapper {
+  max-width: 250px;
+  overflow-x: auto;
+}
+.wrapper::-webkit-scrollbar {
+  width: 0px;
+}
+.wrapper {
+  min-width: 290px;
+  min-height: 260px;
+  line-height: -190px;
+}
+.card-address-body {
+  width: 250px;
+  padding: 0px;
+}
+
+.wrapper {
+  margin-bottom: -40px;
+}
+@media (min-width: 480px) {
+  .li-shipping {
+    display: flex;
+    margin-right: 3px;
+  }
+  .wrapper {
+    max-width: 400px;
+    overflow-x: auto;
+  }
+  .wrapper::-webkit-scrollbar {
+    width: 0px;
+  }
+  .wrapper {
+    min-width: 1030px;
+    // min-height: 260px;
+  }
+  .card-address-body {
+    width: 250px;
+    padding: 0px;
+  }
+
+  .wrapper {
+    margin-bottom: -40px;
+  }
+}
+
+.contact-information > img {
+  display: none;
 }

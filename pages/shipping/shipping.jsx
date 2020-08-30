@@ -1,82 +1,84 @@
-import React, { useState, useEffect } from 'react';
-import NavBar from '../../Components/NavBar';
-import MenuFooter from '../../Components/MenuFooter';
-import CardAddress from '../../Components/CardAddress';
-import CustomButton from '../../Components/CustomButton';
-import { Row, Col, Divider } from 'antd';
+import React, { useState, useEffect } from "react";
+import NavBar from "../../Components/NavBar";
+import MenuFooter from "../../Components/MenuFooter";
+import CardAddress from "../../Components/CardAddress";
+import CustomButton from "../../Components/CustomButton";
+import { GetShipping } from "../../lib/services";
+import { Row } from "antd";
 
-const data = {
-  address: 'tecaltitla',
-  phone: '7777',
-  email: 'viz@kodemia'
-}
+export default function Shipping() {
+  const [result, setResult] = useState([]);
 
-export default function Shipping () {
-  const [ejemplo, setEjemplo] = useState(data)
-  // const handleUsedate = setEjemplo
+  useEffect(() => {
+    async function fetchAddress() {
+      const viz =
+        "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjVmNGIwM2MxMmUwMWZhYmEwZmU5Y2EzNiIsImlhdCI6MTU5ODc1MTcwOCwiZXhwIjoxNTk4OTI0NTA4fQ.hZp8_DI26eaWIVPn8o6mW4phOUREB5fKvgxxaImFiEY";
+      try {
+        const response = await GetShipping(viz);
+        const { data } = response;
+        const { address } = data;
+        setResult([...address]);
+
+        console.log(cardShipping);
+      } catch (error) {
+        console.log(error);
+      }
+    }
+    fetchAddress();
+  }, []);
+  const cardShipping = result.map((data) => {
+    const { city, colonia, postal_code, state, street, name } = data;
+    const direccion =
+      city + "  " + colonia + "  " + state + "  " + street + "  " + postal_code;
+    return <CardAddress address={direccion} title={name} />;
+  });
 
   return (
     <>
-      <NavBar />
-      <Divider orientation='center'>
+      <NavBar title="Carrito" />
+      <div className="container-shipping">
         <Row>
-          <Col>
-            <Row>
-              <Col span={24} xl={24} sm={12}>
-                <h2>2.Dirección de envio</h2>
-              </Col>
-            </Row>
-            <Row justify='left'>
-              <Col span={24}>
-                <div className='container-card-shippin'>
-                  <CardAddress
-                    address={ejemplo.address}
-                    phone={ejemplo.phone}
-                    email={ejemplo.email}
-                  />
-                </div>
-                <br />
-              </Col>
-            </Row>
-            <div>
-              <Row>
-                <Col span={24}>
-                  <div>
-                    <CustomButton btnStyle='btn-orange'>
-                      Agregar otra Dirección
-                    </CustomButton>
-                  </div>
-                  <br />
-                </Col>
-              </Row>
-            </div>
-            <Row>
-              <Col span={24}>
-                <div>
-                  <h2>3. Metodo de pago</h2>
-                </div>
-              </Col>
-            </Row>
-            <Row>
-              <Col span={24}>
-                <div>
-                  <button>PayPal</button>
-                </div>
-              </Col>
-            </Row>
-            <Row>
-              <Col span={24}>
-                <div>
-                  <CustomButton btnStyle='btn-orange'>
-                    Agregar otra Dirección
-                  </CustomButton>
-                </div>
-              </Col>
-            </Row>
-          </Col>
+          <div>
+            <h2>2.Dirección de envio</h2>
+          </div>
         </Row>
-      </Divider>
-      <MenuFooter />
+        <Row>
+          <div className="container-card-shippin">
+            <Row>
+              <div id="cont-card" className="wrapper">
+                <ul className="li-shipping ">{cardShipping}</ul>
+              </div>
+            </Row>
+            <div className="btn-uno">
+              <CustomButton
+                btnStyle="btn-orange"
+                className="btn-another-address"
+              >
+                Agregar otra Dirección
+              </CustomButton>
+            </div>
+          </div>
+        </Row>
+        <Row>
+          <div>
+            <h2>3. Metodo de pago</h2>
+          </div>
+        </Row>
+        <Row>
+          <div>
+            <button>PayPal</button>
+          </div>
+        </Row>
+        <Row>
+          <div className="btn-dos">
+            <CustomButton btnStyle="btn-orange" className="btn-shipping">
+              Agregar otra Dirección
+            </CustomButton>
+          </div>
+        </Row>
+
+        <MenuFooter />
+      </div>
     </>
-  )
+  );
 }
