@@ -4,6 +4,7 @@ import CardHarvest from "../../Components/CardHarvest";
 import { getHarvest } from "../../lib/services";
 import { useState, useEffect } from "react";
 import NavBar from "../../Components/Navbar";
+import MenuFooter from "../../Components/MenuFooter";
 
 export default function Home() {
   const [products, setProducts] = useState([]);
@@ -121,6 +122,8 @@ export default function Home() {
             </Row>
           </div>
         </div>
+        <MenuFooter />
+        <div className="base" />
       </div>
     </>
   );
