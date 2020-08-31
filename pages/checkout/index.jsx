@@ -8,6 +8,34 @@ import CustomButton from "../../Components/CustomButton";
 const { Content } = Layout;
 
 export default function Checkout() {
+  const [bag, setbag] = useState([]);
+
+  useEffect(async () => {
+    const stringBag = await localStorage.getItem("bag");
+
+    if (stringbag) {
+      let parsedBag = JSON.parse(stringBag);
+      setbag(parsedBag);
+    }
+  }, []);
+  console.log(bag);
+
+  const uiItemBag = bag.map(
+    ({ _id, item, precioItem, pesoItem, totalItem, img }) => {
+      return (
+        <li key={_id} className="bag">
+          <CardShoppingCar
+            producto={item}
+            precio={precioItem}
+            peso={pesoItem}
+            total={totalItem}
+            imagen={img}
+          />
+        </li>
+      );
+    }
+  );
+
   return (
     <div>
       <Layout>
@@ -17,12 +45,9 @@ export default function Checkout() {
             <Col xs={{ span: 20, offset: 2 }} lg={{ span: 24 }}>
               <div className="container-cardShoppingCard">
                 <h1>1. Carrito de Compras</h1>
-                <CardShoppingCar />
-                <br />
-                <CardShoppingCar />
-                <br />
-                <CardShoppingCar />
-                <br />
+                <Row>
+                  <Col>{uiItemBag}</Col>
+                </Row>
                 <h3 className="total-cardShoppingCar">Total: $ 3000.00</h3>
               </div>
               <div className="btn_aceptar">
