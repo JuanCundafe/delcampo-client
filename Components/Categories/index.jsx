@@ -8,12 +8,12 @@ export default function Categories() {
   const [menu, showMenu] = useState(false);
   const [size, getSize] = useState(0);
 
-  const arrowLeft = "images/flecha-izquierda.png";
-  const fruits = "images/frutas.png";
-  const vegetables = "images/verduras.png";
-  const pods = "images/vainas.png";
-  const flowers = "images/flores.png";
-  const roots = "images/raices.png";
+  const arrowLeft = "/images/flecha-izquierda.png";
+  const fruits = "/images/frutas.png";
+  const vegetables = "/images/verduras.png";
+  const pods = "/images/vainas.png";
+  const flowers = "/images/flores.png";
+  const roots = "/images/raices.png";
 
   useEffect(() => {
     getSize(window.innerWidth);
