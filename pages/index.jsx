@@ -1,11 +1,11 @@
 // import MenuFooter from "../Components/MenuFooter";
 
-import Shipping from "./shipping/shipping";
+import Shipping from './shipping/shipping';
 
-export default function Home() {
+export default function Home () {
   return (
     <>
-      <Product />
+      <Shipping />
     </>
-  );
+  )
 }

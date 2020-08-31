@@ -5,6 +5,7 @@ import CardAddress from "../../Components/CardAddress";
 import CustomButton from "../../Components/CustomButton";
 import { GetShipping } from "../../lib/services";
 import { Row } from "antd";
+import { PlusOutlined } from "@ant-design/icons";
 
 export default function Shipping() {
   const [result, setResult] = useState([]);
@@ -29,7 +30,17 @@ export default function Shipping() {
   const cardShipping = result.map((data) => {
     const { city, colonia, postal_code, state, street, name } = data;
     const direccion =
-      city + "  " + colonia + "  " + state + "  " + street + "  " + postal_code;
+      city +
+      " " +
+      ",  " +
+      state +
+      "\nCalle " +
+      street +
+      "\n" +
+      "  Col. " +
+      colonia +
+      "  CP " +
+      postal_code;
     return <CardAddress address={direccion} title={name} />;
   });
 
@@ -43,23 +54,24 @@ export default function Shipping() {
               <h2>2.Dirección de envio</h2>
             </div>
           </Row>
-          <Row>
-            <div className="container-card-shippin">
-              <Row>
-                <div id="cont-card" className="wrapper">
-                  <ul className="li-shipping ">{cardShipping}</ul>
-                </div>
+          <div className="product-section-cardsHarvest">
+            <div className="container-cards-list">
+              <Row className="product-row-sections">
+                <ul className="hs full">
+                  {Object.keys(cardShipping) ? cardShipping : null}
+                </ul>
               </Row>
-              <div className="btn-uno">
-                <CustomButton
-                  btnStyle="btn-orange"
-                  className="btn-another-address"
-                >
-                  Agregar otra Dirección
-                </CustomButton>
-              </div>
             </div>
-          </Row>
+          </div>
+          <div className="btn-uno">
+            <CustomButton
+              icon={<PlusOutlined />}
+              btnStyle="btn-orange"
+              className="btn-another-address"
+            >
+              Agregar otra Dirección
+            </CustomButton>
+          </div>
           <Row>
             <div>
               <h2>3. Metodo de pago</h2>
