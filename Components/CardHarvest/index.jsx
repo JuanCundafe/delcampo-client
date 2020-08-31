@@ -1,3 +1,5 @@
+import { useRouter } from 'next/router'
+
 import { Card, Avatar, Row, Col } from 'antd';
 
 export default function CardHarvest ({
@@ -5,9 +7,12 @@ export default function CardHarvest ({
   price,
   description,
   picture,
-  weight
+  weight,
+  _id
 }) {
+  const router = useRouter()
   const { Meta } = Card
+
   return (
     <>
       <div className='wrapper-cardHarvest'>
@@ -15,7 +20,7 @@ export default function CardHarvest ({
           hoverable
           className='card-harvest'
           cover={
-            <img className='cardHarvest-img' alt='example' src={picture} />
+            <img className='cardHarvest-img' alt='example' src={picture} onClick={() => {router.push(`/home/${_id}`)}}/>
           }
         >
           <Meta

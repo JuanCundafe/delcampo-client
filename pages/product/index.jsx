@@ -12,14 +12,18 @@ const { Meta } = Card;
 export default function Product() {
   const [products, setProducts] = useState([]);
 
-  useEffect(async () => {
-    const response = await getHarvest();
+  useEffect(() => {
+    async function fetchHasrvest(){
+      const response = await getHarvest();
 
-    if (response.data.harvest) {
-      setProducts(response.data.harvest);
+      if (response.data.harvest) {
+        setProducts(response.data.harvest);
+      }
     }
+    
+    fetchHasrvest()
   }, []);
-  console.log(products);
+  
   const uiCardsPopular = products.map(
     (
       { _id, product: { name }, price, description, picture, tag, weight },
@@ -34,6 +38,7 @@ export default function Product() {
               description={description}
               picture={picture}
               weight={weight}
+              _id={_id}
             />
           </li>
         );
@@ -55,6 +60,7 @@ export default function Product() {
               description={description}
               picture={picture}
               weight={weight}
+              _id={_id}
             />
           </li>
         );
@@ -76,6 +82,7 @@ export default function Product() {
               description={description}
               picture={picture}
               weight={weight}
+              _id={_id}
             />
           </li>
         );
