@@ -1,9 +1,10 @@
-import Create from "./create";
+import Create from './create';
+import Product from './product';
 
-export default function Home() {
+export default function Home () {
   return (
     <>
-      <Create />
+      <Product />
     </>
-  );
+  )
 }
