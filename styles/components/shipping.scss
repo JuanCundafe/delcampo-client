@@ -1,0 +1,250 @@
+.wrapper-shipping-screen {
+  .product-row-sections {
+    margin-bottom: 0px;
+  }
+  .ant-btn .anticon {
+    color: $color-orange;
+    font-size: 20px;
+    height: 20px;
+    width: 20px;
+    border-radius: 83px;
+    background: white;
+    float: left;
+  }
+  .container-shipping {
+    margin-left: 15px;
+  }
+  .ant-card-head {
+    background: $color-green;
+    border-radius: 10px 10px 0px 0px;
+    font-size: 40px;
+    color: $color-white;
+    text-align: center;
+  }
+  .Cardaddres-text-info {
+    font-size: 15px;
+    font-weight: 300;
+    color: #606060;
+  }
+  // .ant-card-body {
+  //   border: silver;
+  //   border-bottom-left-radius: 10px;
+  //   box-shadow: purple;
+  // }
+  @media (max-width: 480px) {
+    .navbar-search-col {
+      display: none;
+    }
+  }
+  @media (max-width: 480px) {
+    .ant-dropdown-link {
+      display: none;
+    }
+  }
+  @media (max-width: 480px) {
+    .nombre-perfil {
+      display: none;
+    }
+  }
+  @media (max-width: 480px) {
+    body {
+      background: #f8f8fa;
+    }
+  }
+
+  @media (min-width: 480px) {
+    .ant-col {
+      margin-left: 30px;
+    }
+  }
+  @media (max-width: 480px) {
+    .rol-perfil {
+      display: none;
+    }
+  }
+  .container-card-shippin {
+    display: flex;
+    flex-direction: column;
+  }
+
+  @media (min-width: 480px) {
+    .container-card-shippin {
+      margin-left: 80px;
+      flex-direction: column-reverse;
+      margin-bottom: 15px;
+    }
+  }
+  @media (max-width: 480px) {
+    .btn-dos {
+      margin-left: 56px;
+    }
+  }
+  @media (min-width: 480px) {
+    .btn-dos {
+      display: none;
+    }
+  }
+  @media (max-width: 480px) {
+    .card-address-container {
+      height: 180px;
+    }
+  }
+
+  // .container-card-shipping {
+  //   display: flex;
+  //   flex-direction: row;
+  //   align-items: center;
+  // }
+  .card-address-container {
+    background: $color-white;
+    width: 100%;
+    margin-right: 20px;
+  }
+  // .contact-information img {
+  //   display: none;
+  // }
+  .btn-shipping {
+    align-items: flex-start;
+  }
+  // .col-content.shipping {
+  //   margin-left: 5px;
+  // }
+  .ant-btn {
+    margin-top: 15px;
+    margin-bottom: 15px;
+  }
+
+  @media (min-width: 480px) {
+    .btn-uno {
+      margin-left: 116px;
+    }
+  }
+
+  .address-body {
+    margin-right: 10px;
+  }
+
+  .li-shipping {
+    display: flex;
+    margin-right: 3px;
+  }
+  .wrapper {
+    max-width: 250px;
+    overflow-x: auto;
+  }
+  .wrapper::-webkit-scrollbar {
+    width: 0px;
+  }
+  .wrapper {
+    min-width: 290px;
+    min-height: 260px;
+    line-height: -190px;
+  }
+  .card-address-body {
+    width: 250px;
+    .contact-information-phone {
+      display: none;
+    }
+    .contact-information-mail {
+      display: none;
+    }
+    .contact-information-address {
+      align-items: unset;
+    }
+  }
+
+  .wrapper {
+    margin-bottom: -40px;
+  }
+  .card-address-container .card-address-body .card-button-container {
+    justify-content: flex-end;
+    margin: 0 23px 5px 0;
+  }
+
+  @media (min-width: 480px) {
+    .li-shipping {
+      display: flex;
+      margin-right: 3px;
+    }
+    .wrapper {
+      max-width: 400px;
+      overflow-x: auto;
+    }
+    .wrapper::-webkit-scrollbar {
+      width: 0px;
+    }
+    .wrapper {
+      min-width: 1030px;
+      // min-height: 260px;
+    }
+    .card-address-body {
+      width: 250px;
+      padding-top: 22px;
+    }
+
+    .wrapper {
+      margin-bottom: -40px;
+    }
+  }
+  :root {
+    --gutter: 20px;
+  }
+
+  // .container-card-shippin {
+  //   .container-card-shippin {
+  //     padding: var(--gutter) 0;
+  //     display: grid;
+  //     grid-gap: var(--gutter) 0;
+  //     grid-template-columns: var(--gutter) 1fr var(--gutter);
+  //     align-content: start;
+  //   }
+
+  //   .container-card-shippin > * {
+  //     grid-column: 2 / -2;
+  //   }
+
+  //   .container-card-shippin > .full {
+  //     grid-column: 1 / -1;
+  //   }
+
+  //   .hs {
+  //     list-style-type: none;
+  //     display: grid;
+  //     grid-gap: calc(var(--gutter) / 2);
+  //     grid-template-columns: 14px;
+  //     grid-template-rows: minmax(250px, 1fr);
+  //     grid-auto-flow: column;
+
+  //     overflow-x: scroll;
+  //     scroll-snap-type: x proximity;
+  //     padding-left: unset;
+  //     padding-bottom: calc(0.75 * var(--gutter));
+  //     margin-bottom: calc(-0.25 * var(--gutter));
+  //   }
+
+  //   .hs:before,
+  //   .hs:after {
+  //     content: "";
+  //     width: 1px;
+  //   }
+
+  //   .no-scrollbar {
+  //     scrollbar-width: none;
+  //     margin-bottom: 0;
+  //     padding-bottom: 0;
+  //   }
+  //   .no-scrollbar::-webkit-scrollbar {
+  //     display: none;
+  //   }
+  // }
+
+  // @media (min-width: 480px) {
+  //   .container-card-shippin .hs {
+  //     grid-template-columns: 44px;
+  //   }
+  // }
+
+  a {
+    scroll-behavior: smooth;
+  }
+}
