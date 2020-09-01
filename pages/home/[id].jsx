@@ -7,13 +7,12 @@ import InputKilograms from "../../Components/InputKilograms";
 
 import { Row, Col, Alert } from "antd";
 
-export default function Deatails() {
+export default function Details() {
   const router = useRouter();
   const harvestId = router.query.id;
 
   const [alertMsg, showAlert] = useState(false);
   const [harvest, setHarvest] = useState({});
-  const [bag, setBag] = useState([]);
   const [totalCost, setTotalCost] = useState(100);
 
   const handleTotal = (total) => {
@@ -83,7 +82,7 @@ export default function Deatails() {
 
     getHarvest();
   }, [harvestId]);
-
+  console.log(harvest);
   return (
     <Layout>
       {Object.keys(harvest).length ? (
@@ -106,7 +105,7 @@ export default function Deatails() {
           </Row>
           <Row className="header">
             <Col xs={24} sm={12}>
-              <img src="/images/oranges.jpg" alt="img detail" />
+              <img src={harvest.picture} alt="img detail" />
               <div className="price-per-kilogram">
                 <span className="kilogram">1 Kg.</span>
                 <span className="price-kg">{`$ ${harvest.price}`}</span>

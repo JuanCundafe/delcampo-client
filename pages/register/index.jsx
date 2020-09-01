@@ -1,11 +1,13 @@
-import React, { useState, useEffect } from "react";
+import React, { useState } from "react";
 import Link from "next/link";
-import Router from "next/router";
+// import Router from "next/router";
 
 import CustomInput from "../../Components/CustomInput";
 
 // Services
-import { signUp } from "../../lib/services.js";
+import { signUp } from "../../lib/auth.js";
+import redirect from "../../lib/redirect.js";
+import { setCookie } from "../../lib/session.js";
 
 import {
   Layout,
@@ -15,38 +17,42 @@ import {
   Input,
   Button,
   Radio,
-  Checkbox,
   InputNumber,
 } from "antd";
 const { Header, Content } = Layout;
 import { UserOutlined, LockOutlined, MailOutlined } from "@ant-design/icons";
+import { ToastContainer, toast } from "react-toastify";
 
 export default function Register() {
   const [form] = Form.useForm();
-  // const [checkNick, setCheckNick] = useState(false);
-
-  // useEffect(() => {
-  //   form.validateFields(["privacy"]);
-  // }, [checkNick]);
-
-  // const onCheckboxChange = (e) => {
-  //   setCheckNick(e.target.checked);
-  // };
+  const [loadings, setLoadings] = useState(false);
 
   const onFinish = async (values) => {
-    try {
-      const response = await signUp(values);
+    setLoadings(true);
+    let result = await signUp(values);
+    // console.log(result);
+    // if (result == "users validation failed: email: El usuario ya existe") {
+    //   toast.error("¡El usuario ya existe!", {
+    //     position: toast.POSITION.TOP_RIGHT,
+    //   });
+    // }
 
-      if (!response.success) {
-        console.log("Error: ", response.error);
-        return;
-      }
+    if (!result.success) {
+      setLoadings(false);
 
-      console.log("response", response.data);
-      form.resetFields();
-      Router.push("/home");
-    } catch (error) {
-      console.log("error", error);
+      toast.error(result.error, {
+        position: toast.POSITION.TOP_RIGHT,
+      });
+    } else {
+      setLoadings(false);
+
+      toast.success("¡¡Usuario creado con éxito!!", {
+        position: toast.POSITION.TOP_RIGHT,
+      });
+
+      setCookie("userinfo", result.data);
+      redirect("/login");
+      return null;
     }
   };
 
@@ -69,6 +75,7 @@ export default function Register() {
             </Link>
           </Header>
           <Content>
+            <ToastContainer />
             <Row className="login-section">
               <Col className="register-form">
                 <h1>Regístrate</h1>
@@ -175,21 +182,12 @@ export default function Register() {
                     </Radio.Group>
                   </Form.Item>
 
-                  {/* <Form.Item>
-                    <Checkbox
-                      name="privacy"
-                      checked={checkNick}
-                      onChange={onCheckboxChange}
-                    >
-                      Términos y Condiciones
-                    </Checkbox>
-                  </Form.Item> */}
-
                   <Form.Item>
                     <Button
                       type="primary"
                       htmlType="submit"
                       className="login-form-button"
+                      loading={loadings}
                     >
                       Aceptar
                     </Button>
