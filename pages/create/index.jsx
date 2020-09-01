@@ -24,8 +24,8 @@ export default function Create() {
           <Row>
             <Col xs={{ span: 20, offset: 2 }} md={{ span: 16, offset: 4 }}>
               <p>Agrega una foto interesante de tu cosecha</p>
-              <div className="uploadImage">
-                <h1>Upload image</h1>
+              <div>
+                <input type="file" />
               </div>
               <CustomButton callback={handelFormProduct}>
                 + Agregar Producto

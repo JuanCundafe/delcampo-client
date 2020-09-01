@@ -154,8 +154,7 @@ export default function Deatails() {
             </Col>
             <Col span={24}>
               <div>
-                <div>kg</div>
-                <div>{`$ ${totalCost}.00`}</div>
+                <div className="div-total">{`Total: $ ${totalCost}.00`}</div>
               </div>
               <form onSubmit={onFinish}>
                 <Row>
