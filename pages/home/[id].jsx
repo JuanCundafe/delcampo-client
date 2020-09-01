@@ -30,6 +30,7 @@ export default function Deatails() {
       product: { name },
       price,
       picture,
+      _id,
     } = harvest;
 
     if (totalKilograms < 100) {
@@ -39,6 +40,7 @@ export default function Deatails() {
       if (!bag) {
         bag = [
           {
+            _id: _id,
             item: name,
             precioItem: price,
             pesoItem: totalKilograms,
