@@ -53,7 +53,7 @@ export default function UploadProduct() {
           },
         ]}
       />
-      <p>Elige el tipo de cosecha</p>
+      <p>Elige la categoría</p>
       <CustomSelect callback={handleCustomSelect} />
       <Form.Item>
         <Button type="primary" htmlType="submit">

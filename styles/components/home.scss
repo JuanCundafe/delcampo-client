@@ -1,8 +1,11 @@
 .home-wrapper {
   a.ant-btn {
-    display: flex;
+    display: grid;
     align-items: center;
     justify-content: center;
+  }
+  .base {
+    height: 60px;
   }
 }
 

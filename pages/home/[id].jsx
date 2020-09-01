@@ -5,7 +5,8 @@ import { getHarvestById } from "../../lib/services";
 import Layout from "../../Components/Layout";
 import InputKilograms from "../../Components/InputKilograms";
 
-import { Row, Col, Alert } from "antd";
+import { Row, Col } from "antd";
+import { ToastContainer, toast } from "react-toastify";
 
 export default function Details() {
   const router = useRouter();
@@ -14,6 +15,7 @@ export default function Details() {
   const [alertMsg, showAlert] = useState(false);
   const [harvest, setHarvest] = useState({});
   const [totalCost, setTotalCost] = useState(100);
+  const [loadings, setLoadings] = useState(false);
 
   const handleTotal = (total) => {
     setTotalCost(total * harvest.price);
@@ -21,6 +23,7 @@ export default function Details() {
 
   const onFinish = (e) => {
     e.preventDefault();
+    setLoadings(true);
 
     let totalKilograms = parseInt(e.target.elements[1].value);
     let bag = localStorage.getItem("bag");
@@ -29,15 +32,25 @@ export default function Details() {
       product: { name },
       price,
       picture,
+      _id,
     } = harvest;
 
     if (totalKilograms < 100) {
-      showAlert(true);
+      setLoadings(false);
+      toast.error("La compra mínima es de 100 Kg", {
+        position: toast.POSITION.TOP_RIGHT,
+        autoClose: 2000,
+      });
     } else {
-      showAlert(false);
+      setLoadings(false);
+      toast.success("El producto se agregó exitosamente!!", {
+        position: toast.POSITION.TOP_RIGHT,
+        autoClose: 2000,
+      });
       if (!bag) {
         bag = [
           {
+            _id: _id,
             item: name,
             precioItem: price,
             pesoItem: totalKilograms,
@@ -82,11 +95,12 @@ export default function Details() {
 
     getHarvest();
   }, [harvestId]);
-  console.log(harvest);
+
   return (
     <Layout>
       {Object.keys(harvest).length ? (
         <div className="details-view">
+          <ToastContainer />
           <Row>
             <Col span={9}>
               <div className="btn-return">
@@ -151,8 +165,7 @@ export default function Details() {
             </Col>
             <Col span={24}>
               <div>
-                <div>kg</div>
-                <div>{`$ ${totalCost}.00`}</div>
+                <div className="div-total">{`Total: $ ${totalCost}.00`}</div>
               </div>
               <form onSubmit={onFinish}>
                 <Row>

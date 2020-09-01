@@ -6,14 +6,16 @@ import CustomButton from "../../Components/CustomButton";
 import { GetShipping } from "../../lib/services";
 import { Row } from "antd";
 import { PlusOutlined } from "@ant-design/icons";
+import { useRouter } from "next/router";
 
 export default function Shipping() {
   const [result, setResult] = useState([]);
+  const router = useRouter();
 
   useEffect(() => {
     async function fetchAddress() {
       const viz =
-        "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjVmNGIwM2MxMmUwMWZhYmEwZmU5Y2EzNiIsImlhdCI6MTU5ODc1MTcwOCwiZXhwIjoxNTk4OTI0NTA4fQ.hZp8_DI26eaWIVPn8o6mW4phOUREB5fKvgxxaImFiEY";
+        "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjVmNDliN2Y3YjE1MjI3MDA3ZTA5NTA4NyIsImlhdCI6MTU5ODg5ODMxMCwiZXhwIjoxNTk5MDcxMTEwfQ.dTgbhZJTyDMPHkhd4E65FpNHoDkt552CoZBIiYS0LLc";
       try {
         const response = await GetShipping(viz);
         const { data } = response;
@@ -27,6 +29,7 @@ export default function Shipping() {
     }
     fetchAddress();
   }, []);
+
   const cardShipping = result.map((data) => {
     const { city, colonia, postal_code, state, street, name } = data;
     const direccion =
@@ -43,6 +46,10 @@ export default function Shipping() {
       postal_code;
     return <CardAddress address={direccion} title={name} />;
   });
+
+  const handleClick = () => {
+    router.push("/address/5f49b7f7b15227007e095087");
+  };
 
   return (
     <>
@@ -68,6 +75,7 @@ export default function Shipping() {
               icon={<PlusOutlined />}
               btnStyle="btn-orange"
               className="btn-another-address"
+              callback={handleClick}
             >
               Agregar otra Dirección
             </CustomButton>
@@ -84,7 +92,11 @@ export default function Shipping() {
           </Row>
           <Row>
             <div className="btn-dos">
-              <CustomButton btnStyle="btn-orange" className="btn-shipping">
+              <CustomButton
+                btnStyle="btn-orange"
+                className="btn-shipping"
+                callback={handleClick}
+              >
                 Agregar otra Dirección
               </CustomButton>
             </div>
