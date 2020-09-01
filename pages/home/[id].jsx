@@ -5,16 +5,17 @@ import { getHarvestById } from "../../lib/services";
 import Layout from "../../Components/Layout";
 import InputKilograms from "../../Components/InputKilograms";
 
-import { Row, Col, Alert } from "antd";
+import { Row, Col } from "antd";
+import { ToastContainer, toast } from "react-toastify";
 
-export default function Deatails() {
+export default function Details() {
   const router = useRouter();
   const harvestId = router.query.id;
 
   const [alertMsg, showAlert] = useState(false);
   const [harvest, setHarvest] = useState({});
-  const [bag, setBag] = useState([]);
   const [totalCost, setTotalCost] = useState(100);
+  const [loadings, setLoadings] = useState(false);
 
   const handleTotal = (total) => {
     setTotalCost(total * harvest.price);
@@ -22,6 +23,7 @@ export default function Deatails() {
 
   const onFinish = (e) => {
     e.preventDefault();
+    setLoadings(true);
 
     let totalKilograms = parseInt(e.target.elements[1].value);
     let bag = localStorage.getItem("bag");
@@ -34,9 +36,17 @@ export default function Deatails() {
     } = harvest;
 
     if (totalKilograms < 100) {
-      showAlert(true);
+      setLoadings(false);
+      toast.error("La compra mínima es de 100 Kg", {
+        position: toast.POSITION.TOP_RIGHT,
+        autoClose: 2000,
+      });
     } else {
-      showAlert(false);
+      setLoadings(false);
+      toast.success("El producto se agregó exitosamente!!", {
+        position: toast.POSITION.TOP_RIGHT,
+        autoClose: 2000,
+      });
       if (!bag) {
         bag = [
           {
@@ -90,6 +100,7 @@ export default function Deatails() {
     <Layout>
       {Object.keys(harvest).length ? (
         <div className="details-view">
+          <ToastContainer />
           <Row>
             <Col span={9}>
               <div className="btn-return">
@@ -108,7 +119,7 @@ export default function Deatails() {
           </Row>
           <Row className="header">
             <Col xs={24} sm={12}>
-              <img src="/images/oranges.jpg" alt="img detail" />
+              <img src={harvest.picture} alt="img detail" />
               <div className="price-per-kilogram">
                 <span className="kilogram">1 Kg.</span>
                 <span className="price-kg">{`$ ${harvest.price}`}</span>
