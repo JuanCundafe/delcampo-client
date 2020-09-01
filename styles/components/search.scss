@@ -1,6 +1,6 @@
 .buscador {
   border-radius: 30px;
-  width: 300px;
+  width: 290px;
   height: 30px;
 }
 
@@ -13,10 +13,19 @@
     }
   }
 }
-@media (max-width: 480px) {
+@media only screen and (min-width: 360px) {
   .buscador {
     border-radius: 30px;
-    width: 290px;
+    width: 330px;
+    height: 30px;
+    justify-content: space-evenly;
+  }
+}
+
+@media only screen and (min-width: 410px) {
+  .buscador {
+    border-radius: 30px;
+    width: 370px;
     height: 30px;
     justify-content: space-evenly;
   }

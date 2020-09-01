@@ -128,6 +128,10 @@ export default function Details() {
             <Col xs={24} sm={12} className="description">
               <h2>{harvest.product.name}</h2>
               <p>{harvest.description}</p>
+              <div className="price-per-kilogram2">
+                <span className="kilogram2">1 Kg.</span>
+                <span className="price-kg2">{`$ ${harvest.price}`}</span>
+              </div>
             </Col>
           </Row>
           <Row className="footer">
@@ -165,8 +169,9 @@ export default function Details() {
             </Col>
             <Col span={24}>
               <div>
-                <div className="div-total">{`Total: $ ${totalCost}.00`}</div>
+                <h3 className="div-total">{`Total: $ ${totalCost}.00`}</h3>
               </div>
+              <hr />
               <form onSubmit={onFinish}>
                 <Row>
                   <Col span={14}>
