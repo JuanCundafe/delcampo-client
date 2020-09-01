@@ -2,7 +2,7 @@ import FormAddress from "../../Components/FormAddress";
 import CustomButton from "../../Components/CustomButton";
 import { LeftOutlined } from "@ant-design/icons";
 import { Row, Col } from "antd";
-import Navbar from "../../Components/NavBar";
+import NavBar from "../../Components/Navbar";
 import MenuFooter from "../../Components/MenuFooter";
 
 const handler = null;
@@ -11,7 +11,7 @@ export default function Address() {
   return (
     <div className="Container-Address-page">
       <div className="address-navbar">
-        <Navbar />
+        <NavBar />
       </div>
       <div className="address-form-address-header">
         <h3>Dirección</h3>

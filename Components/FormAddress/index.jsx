@@ -1,37 +1,75 @@
-import { Input, Row, Col } from "antd";
+import { Input, Row, Col, Form, Button } from "antd";
 import CustomButton from "../CustomButton";
 
-function FormAddress() {
+function FormAddress({ callback }) {
+  const onFinish = (values) => {
+    console.log("prueba1");
+    console.log(values);
+    callback(values);
+  };
+
   return (
     <div className="form-address-container">
       <div className="form-address-header">
         <h3>Dirección</h3>
       </div>
-      <div className="form-address-body">
-        <p>Estado:</p>
-        <Input gray-5 placeholder="Oaxaca" />
-        <p>Municipio / Delegación:</p>
-        <Input placeholder="Tlaxiaco" />
-        <p>Colonia:</p>
-        <Input placeholder="Cuatro Caminos" />
-        <p>Calle:</p>
-        <Input placeholder="Camino real" />
-        <Row className="spaceRow">
-          <Col span={11}>
-            <p>Número:</p>
-            <Input placeholder="235" />
-          </Col>
-          <Col span={11} offset={2}>
-            <p>CP:</p>
-            <Input placeholder="68000" />
-          </Col>
-        </Row>
-        <p>Calles de referencia:</p>
-        <Input placeholder="Entre camino viejo y empedrado" />
-        <div className="form-container-button">
-          <CustomButton btnStyle="btn-green">Guardar</CustomButton>
+      <Form onFinish={onFinish}>
+        <div className="form-address-body">
+          <p>Nombre</p>
+          <Form.Item name="name">
+            <Input gray-5 placeholder="Casa" />
+          </Form.Item>
+          <p>Estado:</p>
+          <Form.Item name="state">
+            <Input gray-5 placeholder="Oaxaca" />
+          </Form.Item>
+          <p>Municipio / Delegación:</p>
+          <Form.Item name="city">
+            <Input placeholder="Tlaxiaco" />
+          </Form.Item>
+          <p>Colonia:</p>
+          <Form.Item name="colonia">
+            <Input placeholder="Cuatro Caminos" />
+          </Form.Item>
+          <p>Calle:</p>
+          <Form.Item name="street">
+            <Input placeholder="Camino real" />
+          </Form.Item>
+          <Row className="spaceRow">
+            <Col span={11}>
+              <p>CP:</p>
+              <Form.Item name="postal_code">
+                <Input placeholder="68000" />
+              </Form.Item>
+            </Col>
+            <Col span={11} offset={2}>
+              <p>Teléfono:</p>
+              <Form.Item name="phone">
+                <Input name="phone" placeholder="55 0000 0000" />
+              </Form.Item>
+            </Col>
+          </Row>
+          <Row className="spaceRow">
+            <Col span={11}>
+              <p>Entre calle:</p>
+              <Form.Item name="between_street_1">
+                <Input placeholder="Entre camino viejo" />
+              </Form.Item>
+            </Col>
+            <Col span={11} offset={2}>
+              <p>y calle:</p>
+              <Form.Item name="between_street_2">
+                <Input placeholder="y empedrado" />
+              </Form.Item>
+            </Col>
+          </Row>
+          <Form.Item>
+            <Button type="primary" htmlType="submit">
+              Guardar
+            </Button>
+          </Form.Item>
         </div>
-      </div>
+      </Form>
     </div>
   );
 }

@@ -3,21 +3,18 @@ import { CloseCircleOutlined } from '@ant-design/icons';
 
 const { Text } = Typography
 
-function CardShoppingCar () {
+function CardShoppingCar ({ producto, precio, peso, imagen, total }) {
   return (
     <div>
       <div>
         <div className='card'>
           <Row>
             <Col span={12}>
-              <img
-                className='imageCardCar'
-                src='https://camposdeazahar.es/wp-content/uploads/2019/02/puedo-comer-naranja-si-soy-diabetico-campos-de-azahar.jpg'
-              />
+              <img className='imageCardCar' src={imagen} />
             </Col>
             <Col span={10}>
               <br />
-              <Text className='titleCard'>Naranjas Navalentes</Text>
+              <Text className='titleCard'>{producto}</Text>
               <br />
               <div>
                 <Avatar
@@ -38,13 +35,13 @@ function CardShoppingCar () {
               <Space align='center'>
                 <br />
                 <Text className='texto3' strong>
-                  $10.00 / Kg x 100Kg
+                  ${precio} / Kg x {peso}Kg
                 </Text>
               </Space>
             </Col>
             <Col span={11}>
               <Text className='texto4' strong>
-                Total: $1000.00
+                Total: ${total}.00
               </Text>
             </Col>
           </Row>
