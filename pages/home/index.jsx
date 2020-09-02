@@ -1,31 +1,19 @@
-import { Row, Col, Card } from "antd";
 import Categories from "../../Components/Categories";
 import CardHarvest from "../../Components/CardHarvest";
-import { getHarvest } from "../../lib/services";
-import { useState, useEffect } from "react";
 import NavBar from "../../Components/Navbar";
 import MenuFooter from "../../Components/MenuFooter";
 
-export default function Home() {
-  const [products, setProducts] = useState([]);
+import { Row } from "antd";
 
-  useEffect(() => {
-    async function fetchHasrvest() {
-      const response = await getHarvest();
+import { getCookie } from "../../lib/session";
+import { getHarvest } from "../../lib/services";
+import { session } from "../../lib/auth";
 
-      if (response.data.harvest) {
-        setProducts(response.data.harvest);
-      }
-    }
+function Home({ userInfo, harvest }) {
+  console.log(userInfo);
 
-    fetchHasrvest();
-  }, []);
-
-  const uiCardsPopular = products.map(
-    (
-      { _id, product: { name }, price, description, picture, tag, weight },
-      index
-    ) => {
+  const uiCardsPopular = harvest.map(
+    ({ _id, product: { name }, price, description, picture, tag, weight }) => {
       if (tag == "populares") {
         return (
           <li key={_id} className="item">
@@ -43,7 +31,7 @@ export default function Home() {
     }
   );
 
-  const uiCardsTemporada = products.map(
+  const uiCardsTemporada = harvest.map(
     (
       { _id, product: { name }, price, description, picture, tag, weight },
       index
@@ -65,7 +53,7 @@ export default function Home() {
     }
   );
 
-  const uiCardsOferta = products.map(
+  const uiCardsOferta = harvest.map(
     (
       { _id, product: { name }, price, description, picture, tag, weight },
       index
@@ -90,7 +78,7 @@ export default function Home() {
   return (
     <>
       <div className="home-wrapper">
-        <NavBar />
+        <NavBar userInfo={userInfo} />
         <Row className="home-categories-margin">
           <Categories />
         </Row>
@@ -128,3 +116,25 @@ export default function Home() {
     </>
   );
 }
+
+Home.getInitialProps = async (ctx) => {
+  const userInfo = getCookie("userinfo", ctx.req);
+  const jwt = getCookie("jwt", ctx.req);
+
+  const response = await getHarvest();
+  const responseUserInfo = await session(jwt);
+
+  console.log("responseUserInfo", responseUserInfo);
+
+  let harvest = [];
+  if (response.data.harvest) {
+    harvest = response.data.harvest;
+  }
+
+  return {
+    userInfo,
+    harvest,
+  };
+};
+
+export default Home;

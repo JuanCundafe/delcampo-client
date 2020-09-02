@@ -1,6 +1,6 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import Link from "next/link";
-// import Router from "next/router";
+import { useRouter } from "next/router";
 
 // Components
 import CustomInput from "../../Components/CustomInput";
@@ -19,6 +19,7 @@ import { ToastContainer, toast } from "react-toastify";
 export default function Login() {
   const [form] = Form.useForm();
   const [loadings, setLoadings] = useState(false);
+  const router = useRouter();
 
   const onFinish = async (values) => {
     setLoadings(true);
@@ -31,16 +32,15 @@ export default function Login() {
       });
     } else {
       setLoadings(false);
-
-      // toast.success("¡¡Usuario creado con éxito!!", {
-      //   position: toast.POSITION.TOP_RIGHT,
-      // });
-
       setCookie("jwt", result.data.token);
       redirect("/home");
       return null;
     }
   };
+
+  useEffect(() => {
+    router.prefetch("/home");
+  }, []);
 
   return (
     <>

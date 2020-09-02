@@ -3,12 +3,12 @@ import { useRouter } from "next/router";
 import Link from "next/link";
 
 import Search from "../Search";
-import UserAvatar from "./user-avatar";
+import UserAvatar from "./UserAvatar";
 import { Row, Col } from "antd";
 
-export default function NavBar() {
+export default function NavBar({ userInfo }) {
   const router = useRouter();
-
+  console.log(userInfo);
   const [home, setHome] = useState("/images/logo-navbar.png");
   const [home_on, sethome_on] = useState("home_on");
   const [shopping_on, setshopping_on] = useState("shopping_off");
@@ -86,7 +86,7 @@ export default function NavBar() {
           </Link>
         </Col>
 
-        {searchIsActive ? (
+        {searchIsActive && (
           <Col
             className="navbar-search-col"
             xs={{ order: 3 }}
@@ -94,7 +94,7 @@ export default function NavBar() {
           >
             <Search />
           </Col>
-        ) : null}
+        )}
 
         <Col className="perfil" span={4} xs={{ order: 2 }} sm={{ order: 3 }}>
           <div>
@@ -103,9 +103,11 @@ export default function NavBar() {
             </a>
           </div>
           <div>
-            <a className={shopping_on} onClick={handleActiveShopping}>
-              <img className="icons2" src={shopping} width="26" height="26" />
-            </a>
+            <Link href="/checkout">
+              <a className={shopping_on} onClick={handleActiveShopping}>
+                <img className="icons2" src={shopping} width="26" height="26" />
+              </a>
+            </Link>
           </div>
           <div>
             <p className="nombre-perfil">Ernestino</p>
