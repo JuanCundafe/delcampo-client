@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
 import { useRouter } from "next/router";
-
+import Link from "next/link";
 import Search from "../Search";
 import UserAvatar from "./user-avatar";
 import { Row, Col } from "antd";
@@ -27,6 +27,8 @@ export default function NavBar() {
   let searchIsActive;
   switch (router.pathname) {
     case "/detail":
+    case "/checkout":
+    case "/shipping":
       searchIsActive = false;
       break;
     default:
@@ -76,9 +78,11 @@ export default function NavBar() {
     <>
       <Row className="navbar">
         <Col span={4}>
-          <a onClick={handleActiveHome}>
-            <img src={home} width="35" height="35" />
-          </a>
+          <Link href="/home">
+            <a onClick={handleActiveHome}>
+              <img src={home} width="35" height="35" />
+            </a>
+          </Link>
         </Col>
 
         {searchIsActive ? (

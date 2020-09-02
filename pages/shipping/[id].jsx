@@ -72,7 +72,7 @@ export default function Shipping() {
         <div className="container-shipping">
           <Row>
             <div>
-              <h2>2.Dirección de envio</h2>
+              <h1>2. Dirección de envio</h1>
             </div>
           </Row>
           <div className="product-section-cardsHarvest">
@@ -96,7 +96,7 @@ export default function Shipping() {
           </div>
           <Row>
             <div>
-              <h2>3. Realiza tu pago</h2>
+              <h1>3. Realiza tu pago</h1>
             </div>
           </Row>
           <Row>
@@ -115,7 +115,6 @@ export default function Shipping() {
               </CustomButton>
             </div>
           </Row>
-
           <MenuFooter />
         </div>
       </div>
