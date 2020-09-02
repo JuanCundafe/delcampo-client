@@ -60,7 +60,7 @@ export default function CardAddress({
             <Button btnStyle="btn-green" onClick={() => handlerClick(id)}>
               Seleccionar
             </Button>
-          ) : // <CustomButton btnStyle="btn-green" callback={handlerClick}>
+          )  // <CustomButton btnStyle="btn-green" callback={handlerClick}>
           //   Seleccionar
           // </CustomButton>
           null}

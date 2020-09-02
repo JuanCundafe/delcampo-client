@@ -1,36 +1,44 @@
+import { useState } from "react";
 import Link from "next/link";
-import Router from "next/router";
-// import React, { useForm } from "react";
+// import Router from "next/router";
 
 // Components
 import CustomInput from "../../Components/CustomInput";
 
 // Services
-import { signIn } from "../../lib/services.js";
+import { signIn } from "../../lib/auth.js";
+import redirect from "../../lib/redirect.js";
+import { setCookie } from "../../lib/session.js";
 
 // ANT Design
 import { Layout, Row, Col, Form, Button } from "antd";
 const { Header, Content } = Layout;
 import { UserOutlined, LockOutlined } from "@ant-design/icons";
+import { ToastContainer, toast } from "react-toastify";
 
 export default function Login() {
   const [form] = Form.useForm();
+  const [loadings, setLoadings] = useState(false);
 
   const onFinish = async (values) => {
-    try {
-      const response = await signIn(values);
+    setLoadings(true);
+    let result = await signIn(values);
 
-      if (!response.success) {
-        alert(response.error);
-        return;
-      }
+    if (!result.success) {
+      setLoadings(false);
+      toast.error(result.error, {
+        position: toast.POSITION.TOP_RIGHT,
+      });
+    } else {
+      setLoadings(false);
 
-      const accessToken = response.data.token;
-      localStorage.setItem("token", accessToken);
-      form.resetFields();
-      Router.push("/home");
-    } catch (error) {
-      console.log("error", error);
+      // toast.success("¡¡Usuario creado con éxito!!", {
+      //   position: toast.POSITION.TOP_RIGHT,
+      // });
+
+      setCookie("jwt", result.data.token);
+      redirect("/home");
+      return null;
     }
   };
 
@@ -53,13 +61,13 @@ export default function Login() {
             </Link>
           </Header>
           <Content>
+            <ToastContainer />
             <Row className="login-section">
               <Col>
                 <Form
                   form={form}
                   name="normal_login"
                   className="login-form"
-                  // initialValues={{ remember: true }}
                   onFinish={onFinish}
                 >
                   <h1>Inicia Sesión</h1>
@@ -101,6 +109,7 @@ export default function Login() {
                       type="primary"
                       htmlType="submit"
                       className="login-form-button"
+                      loading={loadings}
                     >
                       Ingresar
                     </Button>
