@@ -1,0 +1,31 @@
+.inputSelect {
+  background: $color-green;
+}
+.option {
+  background-color: white;
+}
+
+.ant-select-selector {
+  background: $color-green !important;
+  border-radius: 4px 4px;
+  border: blue !important;
+}
+.ant-select-arrow {
+  color: white !important;
+  font-weight: bold;
+}
+
+.custo-select {
+  width: 300px;
+  height: 28px;
+}
+.container-kilograms {
+  display: flex;
+  justify-content: center;
+}
+.label-selectKilograms {
+  width: 300px;
+  height: 28px;
+  margin: 0px;
+  border: 2px solid green;
+}

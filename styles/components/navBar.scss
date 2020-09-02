@@ -1,0 +1,142 @@
+.menu-dropdown {
+  .ant-dropdown-menu-item {
+    a {
+      color: #f29e00;
+      &:hover {
+        color: white;
+        background: #f29e00;
+      }
+    }
+  }
+  .ant-avatar {
+    width: 36px;
+    height: 36px;
+  }
+  .dropdown {
+    right: 500px;
+  }
+
+  .ant-menu-horizontal:not(.ant-menu-dark) > .ant-menu-item-selected {
+    color: white;
+  }
+
+  .ant-menu-horizontal:not(.ant-menu-dark) > .ant-menu-item,
+  .ant-menu-horizontal:not(.ant-menu-dark) > .ant-menu-submenu {
+    color: white;
+  }
+}
+
+.navbar {
+  position: sticky;
+  top: 0;
+  z-index: 1;
+  padding: 0 12px;
+  display: flex;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  margin-bottom: 12px;
+  height: 79px;
+  display: flex;
+  align-items: center;
+  background: $color-dark-green;
+  border-radius: 0px 0px 8px 8px;
+  box-shadow: 0px 0px 19px -9px rgba(0, 0, 0, 0.65);
+
+  .perfil {
+    display: flex;
+    align-items: center;
+    justify-content: flex-end;
+    div {
+      margin-right: 5px;
+      p {
+        margin: -2px;
+        margin-right: 7px;
+      }
+    }
+  }
+
+  .nombre-perfil {
+    color: white;
+    font-family: $font-family;
+    font-size: 11px;
+    font-weight: bold;
+  }
+
+  .rol-perfil {
+    color: white;
+    font-family: $font-family;
+    font-size: 9px;
+    font-weight: 300;
+    text-align: end;
+  }
+  .home_on {
+    display: none;
+  }
+  .home_off {
+    display: none;
+  }
+  .shopping_off {
+    display: none;
+  }
+  .shopping_on {
+    display: none;
+  }
+  .message_off {
+    display: none;
+  }
+  .message_on {
+    display: none;
+  }
+
+  .Wrapper-MenuFooter {
+    display: none;
+  }
+
+  @media (min-width: 480px) {
+    .nombre-perfil {
+      display: none;
+    }
+
+    .rol-perfil {
+      display: none;
+    }
+    .icons2 {
+      display: flex;
+      align-items: center;
+      margin: 4px;
+    }
+    .shopping_on {
+      background: white;
+      background-size: 50px;
+      border-radius: 50%;
+      width: 34px;
+      height: 34px;
+      z-index: 1;
+      display: flex;
+    }
+    .message_off {
+      display: flex;
+    }
+    .shopping_off {
+      display: flex;
+    }
+    .message_on {
+      background: white;
+      background-size: 200px;
+      border-radius: 50%;
+      width: 34px;
+      height: 34px;
+      z-index: 1;
+      display: flex;
+    }
+    .col-icon {
+      display: flex;
+      justify-content: center;
+      // border: 1px solid red;
+    }
+  }
+}
+
+.navbar-search-col {
+  margin-left: 4px;
+}

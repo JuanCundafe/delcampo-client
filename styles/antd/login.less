@@ -1,0 +1,107 @@
+#login-screen {
+  .ant-layout-header {
+    display: none;
+  }
+
+  .ant-layout-content {
+    background-color: @dark-green-color;
+    height: 100vh;
+    display: flex;
+    justify-content: center;
+    padding-top: 40px;
+
+    .ant-row {
+      &.login-section {
+        width: 100%;
+        display: flex;
+        justify-content: space-evenly;
+      }
+    }
+
+    h1 {
+      color: @white-color;
+      margin: 50px 0;
+      text-align: center;
+    }
+
+    .img-welcome {
+      display: none;
+    }
+  }
+
+  #normal_login {
+    // background-color: brown;
+    height: 500px;
+    // width: 90%;
+    // padding: 25px;
+    border-radius: 10px;
+
+    .ant-form-item-control-input-content {
+      display: flex;
+      justify-content: center;
+    }
+
+    .forgot-pass,
+    .ant-form-item-explain,
+    .login-form-forgot {
+      color: @white-color;
+
+      a {
+        color: @white-color;
+      }
+    }
+
+    .login-form-button {
+      background-color: @orange-color;
+    }
+  }
+
+  @media (min-width: 576px) {
+    .ant-layout {
+      background-color: blue;
+    }
+
+    .ant-layout-header {
+      display: flex;
+      justify-content: space-between;
+      background-color: @dark-green-color;
+
+      img {
+        height: 65%;
+      }
+
+      .register {
+        border: solid 2px @orange-color;
+      }
+    }
+
+    .ant-layout-content {
+      background-image: url("@{base-url}bg-oranges.jpg");
+      background-size: cover;
+
+      #normal_login {
+        background-color: @dark-green-color;
+        height: 600px;
+        width: 370px;
+        padding: 25px;
+        border-radius: 10px;
+        margin-top: 80px;
+
+        p {
+          text-align: center;
+        }
+      }
+
+      .img-welcome {
+        display: block;
+        width: 338px;
+        height: 308px;
+        margin-top: 200px;
+
+        img {
+          width: 100%;
+        }
+      }
+    }
+  }
+}

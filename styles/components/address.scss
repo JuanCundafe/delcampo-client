@@ -1,0 +1,70 @@
+.Container-Address-page {
+  .form-address-container {
+    margin-bottom: 30px;
+    width: auto;
+    height: 680px;
+    border: none;
+    box-shadow: none;
+  }
+  .form-address-container .form-address-header {
+    border-radius: none;
+  }
+  .form-address-container .form-address-header {
+    border-top-left-radius: 0px;
+    border-top-right-radius: 0px;
+  }
+
+  .address-form-address-header {
+    display: block;
+    border-bottom-right-radius: 10px;
+    border-bottom-left-radius: 10px;
+    background-color: #9cbf01;
+    padding: 10px 0;
+    text-align: center;
+  }
+  h3 {
+    color: #ffffff;
+  }
+  .form-address-header {
+    display: none;
+  }
+  .form-address-container .form-address-body {
+    padding-left: 30px;
+    padding-right: 30px;
+  }
+  .address-navbar {
+    display: none;
+  }
+}
+
+@media (min-width: 480px) {
+  .Container-Address-page {
+    .address-form-address-header {
+      display: none;
+    }
+    .form-address-container {
+      width: auto;
+      border-radius: 8px;
+      margin: 5px;
+      box-shadow: 0 2px 4px 0 rgba(0, 0, 0, 0.4),
+        0 2px 4px 0 rgba(0, 0, 0, 0.19);
+      .form-address-header {
+        display: block;
+        border-top-left-radius: 16px;
+        border-top-right-radius: 16px;
+      }
+    }
+    .address-navbar {
+      display: block;
+    }
+  }
+  .form-address-header {
+    display: block;
+  }
+  .address-row {
+    height: 70vh;
+  }
+  .form-container-button {
+    float: right;
+  }
+}

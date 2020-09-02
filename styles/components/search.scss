@@ -1,0 +1,40 @@
+.buscador {
+  border-radius: 30px;
+  width: 290px;
+  height: 30px;
+}
+
+.ant-btn {
+  &.btn-orange-categories2 {
+    &.ant-btn-primary {
+      &.ant-btn-icon-only {
+        margin-left: -12px;
+      }
+    }
+  }
+}
+@media only screen and (min-width: 360px) {
+  .buscador {
+    border-radius: 30px;
+    width: 330px;
+    height: 30px;
+    justify-content: space-evenly;
+  }
+}
+
+@media only screen and (min-width: 410px) {
+  .buscador {
+    border-radius: 30px;
+    width: 370px;
+    height: 30px;
+    justify-content: space-evenly;
+  }
+}
+
+@media only screen and (min-width: 800px) {
+  .buscador {
+    border-radius: 30px;
+    width: 600px;
+    height: 30px;
+  }
+}

@@ -1,0 +1,55 @@
+.container-checkout {
+  .bag {
+    list-style-type: none;
+    margin: 15px;
+  }
+
+  h1 {
+    margin-left: 20px;
+    display: grid;
+    justify-content: flex-start;
+    color: gray;
+  }
+
+  .container-cardShoppingCard {
+    display: grid;
+    justify-content: center;
+  }
+
+  .total-cardShoppingCar {
+    margin-right: 20px;
+    display: grid;
+    justify-content: flex-end;
+  }
+
+  .ant-btn-primary {
+    background-color: @orange-color;
+    border-color: @orange-color;
+    margin-top: 20px;
+    margin-bottom: 40px;
+  }
+  .btn_aceptar {
+    display: flex;
+    justify-content: center;
+    margin-bottom: 80px;
+  }
+
+  .container-image {
+    margin-top: 60px;
+    text-align: center;
+    height: 100vh;
+
+    h2 {
+      color: @dark-green-color;
+    }
+    .ant-btn-primary {
+      margin-bottom: 130px;
+    }
+  }
+}
+
+@media only screen and (min-width: 1024px) {
+  .container-checkout {
+    align-content: center;
+  }
+}
