@@ -1,51 +1,89 @@
 import { Input, Row, Col, Form, Button } from "antd";
-import CustomButton from "../CustomButton";
+import React, { useState, useEffect } from "react";
+// import CustomButton from "../CustomButton";
+import { getAddressById } from "../../lib/services";
 
-function FormAddress({ callback }) {
+function FormUpdate({ callback, id }) {
   const onFinish = (values) => {
-    console.log("prueba1");
-    console.log(values);
-    callback(values);
+    // callback(values);
   };
+  // console.log(id)
+  const [datosAddress, setDatosAddress] = useState([]);
+  const [form] = Form.useForm();
+  // const [Id] = useState(id);
 
+  useEffect(() => {
+    const token = localStorage.getItem("token");
+
+    async function obtenerAddress() {
+      const response = await getAddressById(id, token);
+      const { data } = response;
+      const { address } = data;
+      setDatosAddress(address);
+    }
+    obtenerAddress();
+  }, []);
+
+  console.log(datosAddress);
+
+  const {
+    name,
+    street,
+    colonia,
+    state,
+    city,
+    postal_code,
+    phone,
+    between_street_1,
+    between_street_2,
+  } = datosAddress;
+  form.setFieldsValue({ name: name });
+  form.setFieldsValue({ state: state });
+  form.setFieldsValue({ city: city });
+  form.setFieldsValue({ colonia: colonia });
+  form.setFieldsValue({ street: street });
+  form.setFieldsValue({ postal_code: postal_code });
+  form.setFieldsValue({ phone: phone });
+  form.setFieldsValue({ between_street_1: between_street_1 });
+  form.setFieldsValue({ between_street_2: between_street_2 });
   return (
     <div className="form-address-container">
       <div className="form-address-header">
         <h3>Dirección</h3>
       </div>
-      <Form onFinish={onFinish}>
+      <Form onFinish={onFinish} form={form}>
         <div className="form-address-body">
           <p>Nombre</p>
           <Form.Item name="name">
-            <Input gray-5 placeholder="Casa" />
+            <Input gray-5 />
           </Form.Item>
           <p>Estado:</p>
           <Form.Item name="state">
-            <Input gray-5 placeholder="Oaxaca" />
+            <Input gray-5 />
           </Form.Item>
           <p>Municipio / Delegación:</p>
           <Form.Item name="city">
-            <Input placeholder="Tlaxiaco" />
+            <Input />
           </Form.Item>
           <p>Colonia:</p>
           <Form.Item name="colonia">
-            <Input placeholder="Cuatro Caminos" />
+            <Input />
           </Form.Item>
           <p>Calle:</p>
           <Form.Item name="street">
-            <Input placeholder="Camino real" />
+            <Input />
           </Form.Item>
           <Row className="spaceRow">
             <Col span={11}>
               <p>CP:</p>
               <Form.Item name="postal_code">
-                <Input placeholder="68000" />
+                <Input />
               </Form.Item>
             </Col>
             <Col span={11} offset={2}>
               <p>Teléfono:</p>
               <Form.Item name="phone">
-                <Input name="phone" placeholder="55 0000 0000" />
+                <Input />
               </Form.Item>
             </Col>
           </Row>
@@ -53,13 +91,13 @@ function FormAddress({ callback }) {
             <Col span={11}>
               <p>Entre calle:</p>
               <Form.Item name="between_street_1">
-                <Input placeholder="Entre camino viejo" />
+                <Input />
               </Form.Item>
             </Col>
             <Col span={11} offset={2}>
               <p>y calle:</p>
               <Form.Item name="between_street_2">
-                <Input placeholder="y empedrado" />
+                <Input />
               </Form.Item>
             </Col>
           </Row>
@@ -74,4 +112,4 @@ function FormAddress({ callback }) {
   );
 }
 
-export default FormAddress;
+export default FormUpdate;

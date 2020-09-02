@@ -133,7 +133,6 @@ export default function Create() {
                   )}
                 </div>
               )}
-
               <CustomButton callback={handelFormProduct}>
                 + Agregar Producto
               </CustomButton>

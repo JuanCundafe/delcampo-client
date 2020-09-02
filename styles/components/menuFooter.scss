@@ -1,4 +1,6 @@
 .MenuFooter {
+  position: absolute;
+  z-index: 2;
   .home_on {
     position: fixed;
     bottom: 4.5vh;

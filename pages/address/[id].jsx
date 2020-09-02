@@ -1,18 +1,36 @@
-import FormAddress from "../../Components/FormAddress";
-import CustomButton from "../../Components/CustomButton";
-import { LeftOutlined } from "@ant-design/icons";
+import { useState, useEffect } from "react";
+import { useRouter } from "next/router";
+
 import { Row, Col } from "antd";
+import { LeftOutlined } from "@ant-design/icons";
+
+import FormUpdate from "../../Components/FormAddress/formUpdate";
+import CustomButton from "../../Components/CustomButton";
 import NavBar from "../../Components/Navbar";
 import MenuFooter from "../../Components/MenuFooter";
 import { updateAddress, saveAddress } from "../../lib/services";
 
-const handler = null;
-
 export default function Address() {
-  const saveAddress = async (data) => {
+  const [result, setResult] = useState([]);
+  const router = useRouter();
+  const [address, setaddress] = useState([]);
+  // const [token, setToken] = useState();
+  // console.log(router);
+
+  const handlerBackAddress = () => {
+    router.back();
+  };
+
+  // useEffect(() => {
+
+  //   setToken(tokencito);
+  // }, []);
+
+  const id = router.query.id;
+
+  const actualizarAddress = async (data) => {
     const token = localStorage.getItem("token");
-    data.user = id;
-    const response = await addAddress(data, token);
+    const response = await updateAddress(id, data, token);
     console.log("response", response);
     // async function fetchAddress(data, token) {
     //   console.log(response);
@@ -31,11 +49,11 @@ export default function Address() {
       <CustomButton
         icon={<LeftOutlined />}
         btnStyle="btn-orange-address-return"
-        callback={handler}
+        callback={handlerBackAddress}
       />
       <Row justify="space-around" align="middle" className="address-row">
         <Col xs={{ span: 24 }} md={{ span: 17 }}>
-          <FormAddress callback={saveAddress} />
+          <FormUpdate callback={actualizarAddress} id={id} />
         </Col>
       </Row>
       <MenuFooter />
