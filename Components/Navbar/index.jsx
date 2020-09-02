@@ -1,7 +1,6 @@
 import React, { useState, useEffect } from "react";
 import { useRouter } from "next/router";
 import Link from "next/link";
-
 import Search from "../Search";
 import UserAvatar from "./user-avatar";
 import { Row, Col } from "antd";

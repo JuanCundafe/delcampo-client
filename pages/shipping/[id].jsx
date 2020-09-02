@@ -3,6 +3,7 @@ import NavBar from "../../Components/NavBar";
 import MenuFooter from "../../Components/MenuFooter";
 import CardAddress from "../../Components/CardAddress";
 import CustomButton from "../../Components/CustomButton";
+import PaypalButton from "../../Components/PaypalButton";
 import { GetShipping } from "../../lib/services";
 import { Row } from "antd";
 import { PlusOutlined } from "@ant-design/icons";
@@ -14,8 +15,7 @@ export default function Shipping() {
 
   useEffect(() => {
     async function fetchAddress() {
-      const viz =
-        "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjVmNDliN2Y3YjE1MjI3MDA3ZTA5NTA4NyIsImlhdCI6MTU5ODg5ODMxMCwiZXhwIjoxNTk5MDcxMTEwfQ.dTgbhZJTyDMPHkhd4E65FpNHoDkt552CoZBIiYS0LLc";
+      const viz = localStorage.getItem("token");
       try {
         const response = await GetShipping(viz);
         const { data } = response;
@@ -30,8 +30,13 @@ export default function Shipping() {
     fetchAddress();
   }, []);
 
+  const printselect = (id) => {
+    const card = result.filter((card) => card._id == id);
+    setResult(card);
+  };
+
   const cardShipping = result.map((data) => {
-    const { city, colonia, postal_code, state, street, name } = data;
+    const { city, colonia, postal_code, state, street, name, _id } = data;
     const direccion =
       city +
       " " +
@@ -44,11 +49,20 @@ export default function Shipping() {
       colonia +
       "  CP " +
       postal_code;
-    return <CardAddress address={direccion} title={name} />;
+    return (
+      <CardAddress
+        address={direccion}
+        title={name}
+        btnSelect={true}
+        key={_id}
+        id={_id}
+        callback={printselect}
+      />
+    );
   });
 
   const handleClick = () => {
-    router.push("/address/5f49b7f7b15227007e095087");
+    router.push("/address");
   };
 
   return (
@@ -87,7 +101,7 @@ export default function Shipping() {
           </Row>
           <Row>
             <div>
-              <button>PayPal</button>
+              <PaypalButton />
             </div>
           </Row>
           <Row>
@@ -101,7 +115,6 @@ export default function Shipping() {
               </CustomButton>
             </div>
           </Row>
-
           <MenuFooter />
         </div>
       </div>
