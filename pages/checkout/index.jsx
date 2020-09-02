@@ -35,6 +35,12 @@ export default function Checkout() {
   let uiItemBag = (
     <div className="container-cardShoppingCard">
       <h1>Tu carrito está vacio</h1>
+      <img
+        style={{
+          width: "60%",
+        }}
+        src="/images/fruit_box_2.png"
+      />
     </div>
   );
 
@@ -58,14 +64,22 @@ export default function Checkout() {
 
     // setTotalPrice(tot);
     uiItemBag = (
-      <div className="container-cardShoppingCard">
-        <h1>Carrito de Compras</h1>
-        <Row>{listItems}</Row>
-        <h3 className="total-cardShoppingCar">Total: $ {totalPrice}.00</h3>
-        <div className="btn_aceptar">
-          <CustomButton callback={handlerShowImage}>Aceptar</CustomButton>
-        </div>
-      </div>
+      <Row>
+        <Col xs={{ span: 20, offset: 2 }} md={{ span: 16, offset: 4 }}>
+          <div className="container-cardShoppingCard">
+            <h1>1. Carrito de Compras</h1>
+            <div>
+              <div>{listItems}</div>
+              <h3 className="total-cardShoppingCar">
+                Total: $ {totalPrice}.00
+              </h3>
+              <div className="btn_aceptar">
+                <CustomButton callback={handlerShowImage}>Aceptar</CustomButton>
+              </div>
+            </div>
+          </div>
+        </Col>
+      </Row>
     );
   }
 
@@ -80,18 +94,18 @@ export default function Checkout() {
         <Content className="container-checkout">
           {!image ? (
             <Row>
-              <Col xs={{ span: 20, offset: 2 }} md={{ span: 24 }}>
+              <Col xs={{ span: 20, offset: 2 }} md={{ span: 16, offset: 4 }}>
                 {uiItemBag}
               </Col>
             </Row>
           ) : (
             <Row>
-              <Col xs={{ span: 20, offset: 2 }} lg={{ span: 16, offset: 2 }}>
+              <Col xs={{ span: 20, offset: 2 }} lg={{ span: 16, offset: 4 }}>
                 <div className="container-image">
                   <h2>¡Su pedido está listo!</h2>
                   <img
                     style={{
-                      width: "40%",
+                      width: "60%",
                     }}
                     src="/images/fruit_box_1.png"
                   />
