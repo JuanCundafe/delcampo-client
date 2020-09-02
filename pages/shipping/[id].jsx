@@ -30,8 +30,13 @@ export default function Shipping() {
     fetchAddress();
   }, []);
 
+  const printselect = (id) => {
+    const card = result.filter((card) => card._id == id);
+    setResult(card);
+  };
+
   const cardShipping = result.map((data) => {
-    const { city, colonia, postal_code, state, street, name } = data;
+    const { city, colonia, postal_code, state, street, name, _id } = data;
     const direccion =
       city +
       " " +
@@ -44,11 +49,20 @@ export default function Shipping() {
       colonia +
       "  CP " +
       postal_code;
-    return <CardAddress address={direccion} title={name} />;
+    return (
+      <CardAddress
+        address={direccion}
+        title={name}
+        btnSelect={true}
+        key={_id}
+        id={_id}
+        callback={printselect}
+      />
+    );
   });
 
   const handleClick = () => {
-    router.push("/address/5f49b7f7b15227007e095087");
+    router.push("/address");
   };
 
   return (

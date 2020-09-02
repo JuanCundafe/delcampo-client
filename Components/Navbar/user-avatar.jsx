@@ -25,7 +25,7 @@ const menu = (
   </Menu>
 );
 
-class NavBar extends React.Component {
+class UserAvatar extends React.Component {
   state = {
     current: "mail",
   };
@@ -54,4 +54,4 @@ class NavBar extends React.Component {
   }
 }
 
-export default NavBar;
+export default UserAvatar;
