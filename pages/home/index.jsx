@@ -1,31 +1,17 @@
-import { Row, Col, Card } from "antd";
 import Categories from "../../Components/Categories";
 import CardHarvest from "../../Components/CardHarvest";
-import { getHarvest } from "../../lib/services";
-import { useState, useEffect } from "react";
-import NavBar from "../../Components/Navbar";
+import Navbar from "../../Components/Navbar";
 import MenuFooter from "../../Components/MenuFooter";
 
-export default function Home() {
-  const [products, setProducts] = useState([]);
+import { Row } from "antd";
 
-  useEffect(() => {
-    async function fetchHasrvest() {
-      const response = await getHarvest();
+import { getCookie } from "../../lib/session";
+import { getHarvest } from "../../lib/services";
+import { session, redirectIfNotAuthenticated } from "../../lib/auth";
 
-      if (response.data.harvest) {
-        setProducts(response.data.harvest);
-      }
-    }
-
-    fetchHasrvest();
-  }, []);
-
-  const uiCardsPopular = products.map(
-    (
-      { _id, product: { name }, price, description, picture, tag, weight },
-      index
-    ) => {
+function Home({ jwt, userinfo, harvest }) {
+  const uiCardsPopular = harvest.map(
+    ({ _id, product: { name }, price, description, picture, tag, weight }) => {
       if (tag == "populares") {
         return (
           <li key={_id} className="item">
@@ -43,7 +29,7 @@ export default function Home() {
     }
   );
 
-  const uiCardsTemporada = products.map(
+  const uiCardsTemporada = harvest.map(
     (
       { _id, product: { name }, price, description, picture, tag, weight },
       index
@@ -65,7 +51,7 @@ export default function Home() {
     }
   );
 
-  const uiCardsOferta = products.map(
+  const uiCardsOferta = harvest.map(
     (
       { _id, product: { name }, price, description, picture, tag, weight },
       index
@@ -90,7 +76,7 @@ export default function Home() {
   return (
     <>
       <div className="home-wrapper">
-        <NavBar />
+        <Navbar userinfo={userinfo} />
         <Row className="home-categories-margin">
           <Categories />
         </Row>
@@ -101,7 +87,7 @@ export default function Home() {
                 Mas populares
               </p>
               <ul className="hs full">
-                {Object.keys(uiCardsPopular) ? uiCardsPopular : null}
+                {Object.keys(uiCardsPopular) && uiCardsPopular}
               </ul>
             </Row>
             <Row className="product-row-sections">
@@ -109,7 +95,7 @@ export default function Home() {
                 En temporada
               </p>
               <ul className="hs full">
-                {Object.keys(uiCardsTemporada) ? uiCardsTemporada : null}
+                {Object.keys(uiCardsTemporada) && uiCardsTemporada}
               </ul>
             </Row>
             <Row className="product-row-sections">
@@ -117,7 +103,7 @@ export default function Home() {
                 En oferta
               </p>
               <ul className="hs full">
-                {Object.keys(uiCardsOferta) ? uiCardsOferta : null}
+                {Object.keys(uiCardsOferta) && uiCardsOferta}
               </ul>
             </Row>
           </div>
@@ -128,3 +114,26 @@ export default function Home() {
     </>
   );
 }
+
+Home.getInitialProps = async (ctx) => {
+  if (redirectIfNotAuthenticated(ctx)) {
+    return {};
+  }
+
+  const jwt = getCookie("jwt", ctx.req);
+  const userinfo = await session(jwt);
+  const response = await getHarvest();
+
+  let harvest = [];
+  if (response.data.harvest) {
+    harvest = response.data.harvest;
+  }
+
+  return {
+    jwt,
+    userinfo,
+    harvest,
+  };
+};
+
+export default Home;

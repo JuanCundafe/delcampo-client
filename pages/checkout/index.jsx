@@ -1,15 +1,20 @@
 import React, { useState, useEffect } from "react";
 import { useRouter } from "next/router";
+import Link from "next/link";
 
-import NavBar from "../../Components/Navbar";
+import Navbar from "../../Components/Navbar";
 import MenuFooter from "../../Components/MenuFooter";
 import CardShoppingCar from "../../Components/CardShoppingCar";
 import CustomButton from "../../Components/CustomButton";
 
+import { getCookie } from "../../lib/session";
+import { session, redirectIfNotAuthenticated } from "../../lib/auth";
+
 import { Layout, Row, Col } from "antd";
 const { Content } = Layout;
 
-export default function Checkout() {
+function Checkout({ jwt, userinfo }) {
+  const { _id, name, email, role } = userinfo;
   const [bag, setbag] = useState([]);
   const [image, showImage] = useState(false);
   const [totalPrice, setTotalPrice] = useState(0);
@@ -62,7 +67,6 @@ export default function Checkout() {
       }
     );
 
-    // setTotalPrice(tot);
     uiItemBag = (
       <Row>
         <Col xs={{ span: 20, offset: 2 }} md={{ span: 16, offset: 4 }}>
@@ -83,14 +87,12 @@ export default function Checkout() {
     );
   }
 
-  const handleClick = () => {
-    router.push("/shipping/5f49b7f7b15227007e095087");
-  };
+  const handleClick = () => {};
 
   return (
     <div>
       <Layout>
-        <NavBar />
+        <Navbar userinfo={userinfo} />
         <Content className="container-checkout">
           {!image ? (
             <Row>
@@ -111,9 +113,13 @@ export default function Checkout() {
                   />
                   <p>Usted pagará:</p>
                   <h3>Total: $ {totalPrice}.00</h3>
-                  <CustomButton callback={handleClick}>
-                    Elegir dirección de Envio
-                  </CustomButton>
+                  <Link href="/shipping/[id]" as={`/shipping/${_id}`}>
+                    <a className="btn-orange">
+                      <CustomButton callback={handleClick}>
+                        Elegir dirección de Envio
+                      </CustomButton>
+                    </a>
+                  </Link>
                 </div>
               </Col>
             </Row>
@@ -124,3 +130,19 @@ export default function Checkout() {
     </div>
   );
 }
+
+Checkout.getInitialProps = async (ctx) => {
+  if (redirectIfNotAuthenticated(ctx)) {
+    return {};
+  }
+
+  const jwt = getCookie("jwt", ctx.req);
+  const userInfo = await session(jwt);
+
+  return {
+    jwt,
+    userinfo: userInfo.data.user,
+  };
+};
+
+export default Checkout;

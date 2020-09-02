@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import NavBar from "../../Components/NavBar";
+import Navbar from "../../Components/Navbar";
 import MenuFooter from "../../Components/MenuFooter";
 import CardAddress from "../../Components/CardAddress";
 import CustomButton from "../../Components/CustomButton";
@@ -8,24 +8,21 @@ import { Row } from "antd";
 import { PlusOutlined } from "@ant-design/icons";
 import { useRouter } from "next/router";
 
-export default function Shipping() {
+import { getCookie } from "../../lib/session";
+import { session, redirectIfNotAuthenticated } from "../../lib/auth";
+
+function Shipping(jwt, userinfo) {
   const [result, setResult] = useState([]);
   const router = useRouter();
 
   useEffect(() => {
     async function fetchAddress() {
-      const viz =
-        "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjVmNGIwM2MxMmUwMWZhYmEwZmU5Y2EzNiIsImlhdCI6MTU5ODc1MTcwOCwiZXhwIjoxNTk4OTI0NTA4fQ.hZp8_DI26eaWIVPn8o6mW4phOUREB5fKvgxxaImFiEY";
       try {
-        const response = await GetShipping(viz);
+        const response = await GetShipping(jwt);
         const { data } = response;
         const { address } = data;
         setResult([...address]);
-
-        console.log(cardShipping);
-      } catch (error) {
-        console.log(error);
-      }
+      } catch (error) {}
     }
     fetchAddress();
   }, []);
@@ -54,7 +51,7 @@ export default function Shipping() {
   return (
     <>
       <div className="wrapper-shipping-screen">
-        <NavBar title="Carrito" />
+        <Navbar userinfo={userinfo} />
         <div className="container-shipping">
           <Row>
             <div>
@@ -108,3 +105,19 @@ export default function Shipping() {
     </>
   );
 }
+
+Shipping.getInitialProps = async (ctx) => {
+  if (redirectIfNotAuthenticated(ctx)) {
+    return {};
+  }
+
+  const jwt = getCookie("jwt", ctx.req);
+  const userInfo = await session(jwt);
+
+  return {
+    jwt,
+    userinfo: userInfo.data.user,
+  };
+};
+
+export default Shipping;
