@@ -1,5 +1,7 @@
-import { Row, Col } from "antd";
 import React, { useState, useEffect } from "react";
+import Link from "next/link";
+
+import { Row, Col } from "antd";
 
 export default function MenuFooter() {
   const [home, setHome] = useState("/images/home-icon-naranja.png");
@@ -61,22 +63,25 @@ export default function MenuFooter() {
     <div className="MenuFooter">
       <Row className="row-menuFooter">
         <Col className="col-icon">
-          <a className={home_on} onClick={handleActiveHome}>
-            {" "}
-            <img className="icons" src={home} width="30" height="30" />{" "}
-          </a>
+          <Link href="/home">
+            <a className={home_on} onClick={handleActiveHome}>
+              <img className="icons" src={home} width="30" height="30" />
+            </a>
+          </Link>
         </Col>
         <Col>
-          <a className={message_on} onClick={handleActiveMessage}>
-            {" "}
-            <img className="icons" src={message} width="30" height="30" />{" "}
-          </a>
+          <Link href="/home">
+            <a className={message_on} onClick={handleActiveMessage}>
+              <img className="icons" src={message} width="30" height="30" />
+            </a>
+          </Link>
         </Col>
         <Col>
-          <a className={shopping_on} onClick={handleActiveShopping}>
-            {" "}
-            <img className="icons" src={shopping} width="30" height="30" />{" "}
-          </a>
+          <Link href="/checkout">
+            <a className={shopping_on} onClick={handleActiveShopping}>
+              <img className="icons" src={shopping} width="30" height="30" />
+            </a>
+          </Link>
         </Col>
       </Row>
       <div className="Wrapper-MenuFooter" />

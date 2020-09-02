@@ -1,4 +1,11 @@
 .wrapper-shipping-screen {
+  h1 {
+    margin-left: 20px;
+    display: grid;
+    justify-content: flex-start;
+    color: gray;
+  }
+
   .product-row-sections {
     margin-bottom: 0px;
   }
@@ -116,7 +123,7 @@
 
   @media (min-width: 480px) {
     .btn-uno {
-      margin-left: 116px;
+      margin-left: 20px;
     }
   }
 

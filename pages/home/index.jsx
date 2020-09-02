@@ -1,17 +1,15 @@
 import Categories from "../../Components/Categories";
 import CardHarvest from "../../Components/CardHarvest";
-import NavBar from "../../Components/Navbar";
+import Navbar from "../../Components/Navbar";
 import MenuFooter from "../../Components/MenuFooter";
 
 import { Row } from "antd";
 
 import { getCookie } from "../../lib/session";
 import { getHarvest } from "../../lib/services";
-import { session } from "../../lib/auth";
+import { session, redirectIfNotAuthenticated } from "../../lib/auth";
 
-function Home({ userInfo, harvest }) {
-  console.log(userInfo);
-
+function Home({ jwt, userinfo, harvest }) {
   const uiCardsPopular = harvest.map(
     ({ _id, product: { name }, price, description, picture, tag, weight }) => {
       if (tag == "populares") {
@@ -78,7 +76,7 @@ function Home({ userInfo, harvest }) {
   return (
     <>
       <div className="home-wrapper">
-        <NavBar userInfo={userInfo} />
+        <Navbar userinfo={userinfo} />
         <Row className="home-categories-margin">
           <Categories />
         </Row>
@@ -89,7 +87,7 @@ function Home({ userInfo, harvest }) {
                 Mas populares
               </p>
               <ul className="hs full">
-                {Object.keys(uiCardsPopular) ? uiCardsPopular : null}
+                {Object.keys(uiCardsPopular) && uiCardsPopular}
               </ul>
             </Row>
             <Row className="product-row-sections">
@@ -97,7 +95,7 @@ function Home({ userInfo, harvest }) {
                 En temporada
               </p>
               <ul className="hs full">
-                {Object.keys(uiCardsTemporada) ? uiCardsTemporada : null}
+                {Object.keys(uiCardsTemporada) && uiCardsTemporada}
               </ul>
             </Row>
             <Row className="product-row-sections">
@@ -105,7 +103,7 @@ function Home({ userInfo, harvest }) {
                 En oferta
               </p>
               <ul className="hs full">
-                {Object.keys(uiCardsOferta) ? uiCardsOferta : null}
+                {Object.keys(uiCardsOferta) && uiCardsOferta}
               </ul>
             </Row>
           </div>
@@ -118,13 +116,13 @@ function Home({ userInfo, harvest }) {
 }
 
 Home.getInitialProps = async (ctx) => {
-  const userInfo = getCookie("userinfo", ctx.req);
+  if (redirectIfNotAuthenticated(ctx)) {
+    return {};
+  }
+
   const jwt = getCookie("jwt", ctx.req);
-
+  const userinfo = await session(jwt);
   const response = await getHarvest();
-  const responseUserInfo = await session(jwt);
-
-  console.log("responseUserInfo", responseUserInfo);
 
   let harvest = [];
   if (response.data.harvest) {
@@ -132,7 +130,8 @@ Home.getInitialProps = async (ctx) => {
   }
 
   return {
-    userInfo,
+    jwt,
+    userinfo,
     harvest,
   };
 };
