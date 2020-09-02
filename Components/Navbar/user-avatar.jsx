@@ -25,7 +25,7 @@ const menu = (
   </Menu>
 );
 
-class NavBar extends React.Component {
+class UserAvatar extends React.Component {
   state = {
     current: "mail",
   };
@@ -46,7 +46,7 @@ class NavBar extends React.Component {
           arrow
         >
           <a className="ant-dropdown-link" onClick={(e) => e.preventDefault()}>
-            <Avatar className="avatar-navBar" src="images/avatar-test.png" />{" "}
+            <Avatar className="avatar-navBar" src="/images/avatar-test.png" />{" "}
           </a>
         </Dropdown>
       </div>
@@ -54,4 +54,4 @@ class NavBar extends React.Component {
   }
 }
 
-export default NavBar;
+export default UserAvatar;
