@@ -1,5 +1,6 @@
 import CustomButton from "../CustomButton";
-import { Row, Col, Space } from "antd";
+import { Row, Col, Space, Button } from "antd";
+import Link from "next/link";
 
 export default function CardAddress({
   phone,
@@ -7,10 +8,18 @@ export default function CardAddress({
   address,
   title,
   btnSelect,
+  id,
+  selectCard,
+  callback,
 }) {
-  const imgPhone = "images/phone.jpg";
-  const imgEmail = "images/email.jpg";
-  const imgAddress = "images/address.jpg";
+  const imgPhone = "/images/phone.jpg";
+  const imgEmail = "/images/email.jpg";
+  const imgAddress = "/images/address.jpg";
+  selectCard = false;
+
+  const handlerClick = (id) => {
+    callback(id);
+  };
 
   return (
     <div className="card-address-container">
@@ -48,9 +57,23 @@ export default function CardAddress({
         </div>
         <div className="card-button-container">
           {btnSelect ? (
-            <CustomButton btnStyle="btn-green">Seleccionar</CustomButton>
-          ) : null}
-          <CustomButton btnStyle="btn-green">Editar</CustomButton>
+            <Button btnStyle="btn-green" onClick={() => handlerClick(id)}>
+              Seleccionar
+            </Button>
+          )  // <CustomButton btnStyle="btn-green" callback={handlerClick}>
+          //   Seleccionar
+          // </CustomButton>
+          null}
+          {/* <CustomButton btnStyle="btn-green" callback={handlerClick}>
+            Editar
+          </CustomButton> */}
+          <Link href="/address/[id]" as={`/address/${id}`}>
+            <a>
+              <Button btnStyle="btn-green" onClick={handlerClick}>
+                Editar
+              </Button>
+            </a>
+          </Link>
         </div>
       </div>
     </div>

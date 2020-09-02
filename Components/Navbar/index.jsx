@@ -6,9 +6,10 @@ import Search from "../Search";
 import UserAvatar from "./UserAvatar";
 import { Row, Col } from "antd";
 
-export default function NavBar({ userInfo }) {
+export default function Navbar({ userInfo }) {
   const router = useRouter();
   console.log(userInfo);
+
   const [home, setHome] = useState("/images/logo-navbar.png");
   const [home_on, sethome_on] = useState("home_on");
   const [shopping_on, setshopping_on] = useState("shopping_off");
@@ -85,7 +86,6 @@ export default function NavBar({ userInfo }) {
             </a>
           </Link>
         </Col>
-
         {searchIsActive && (
           <Col
             className="navbar-search-col"
@@ -95,7 +95,6 @@ export default function NavBar({ userInfo }) {
             <Search />
           </Col>
         )}
-
         <Col className="perfil" span={4} xs={{ order: 2 }} sm={{ order: 3 }}>
           <div>
             <a className={message_on} onClick={handleActiveMessage}>
