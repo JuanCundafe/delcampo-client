@@ -1,30 +1,40 @@
-import { Input, Row, Col, Form, Button } from "antd";
 import React, { useState, useEffect } from "react";
-// import CustomButton from "../CustomButton";
-import { getAddressById } from "../../lib/services";
+import { useRouter } from "next/router";
 
-function FormUpdate({ callback, id }) {
-  const onFinish = (values) => {
-    // callback(values);
-  };
-  // console.log(id)
+import { Input, Row, Col, Form, Button } from "antd";
+import { ToastContainer, toast } from "react-toastify";
+
+import { getAddressById, updateAddress } from "../../lib/services";
+
+function FormUpdate({ callback, id, jwt }) {
   const [datosAddress, setDatosAddress] = useState([]);
   const [form] = Form.useForm();
-  // const [Id] = useState(id);
+  const router = useRouter();
+  const addressId = router.query.id;
+
+  const onFinish = async (values) => {
+    const reponse = await updateAddress(addressId, values, jwt);
+
+    if (reponse.success === true) {
+      toast.success("¡¡Datos actualizados!!", {
+        position: toast.POSITION.TOP_RIGHT,
+      });
+    } else {
+      toast.error(result.error, {
+        position: toast.POSITION.TOP_RIGHT,
+      });
+    }
+  };
 
   useEffect(() => {
-    const token = localStorage.getItem("token");
-
-    async function obtenerAddress() {
-      const response = await getAddressById(id, token);
+    async function obtenerAddress(id, jwt) {
+      const response = await getAddressById(id, jwt);
       const { data } = response;
       const { address } = data;
       setDatosAddress(address);
     }
-    obtenerAddress();
-  }, []);
-
-  console.log(datosAddress);
+    obtenerAddress(id, jwt);
+  }, [id, jwt]);
 
   const {
     name,
@@ -48,6 +58,7 @@ function FormUpdate({ callback, id }) {
   form.setFieldsValue({ between_street_2: between_street_2 });
   return (
     <div className="form-address-container">
+      <ToastContainer />
       <div className="form-address-header">
         <h3>Dirección</h3>
       </div>
@@ -55,11 +66,11 @@ function FormUpdate({ callback, id }) {
         <div className="form-address-body">
           <p>Nombre</p>
           <Form.Item name="name">
-            <Input gray-5 />
+            <Input />
           </Form.Item>
           <p>Estado:</p>
           <Form.Item name="state">
-            <Input gray-5 />
+            <Input />
           </Form.Item>
           <p>Municipio / Delegación:</p>
           <Form.Item name="city">
