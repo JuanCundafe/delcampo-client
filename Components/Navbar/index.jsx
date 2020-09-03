@@ -8,6 +8,7 @@ import { Row, Col } from "antd";
 
 export default function Navbar({ userinfo }) {
   const router = useRouter();
+
   const [home, setHome] = useState("/images/logo-navbar.png");
   const [home_on, sethome_on] = useState("home_on");
   const [shopping_on, setshopping_on] = useState("shopping_off");
@@ -29,6 +30,7 @@ export default function Navbar({ userinfo }) {
     case "/detail":
     case "/checkout":
     case "/shipping":
+    case "/home/[id]":
       searchIsActive = false;
       break;
     default:
@@ -109,8 +111,8 @@ export default function Navbar({ userinfo }) {
           <div>
             <p className="nombre-perfil">Venustiano Carranza</p>
             <p className="rol-perfil">Productor</p>
-            {/* <p className="nombre-perfil">{userinfo.name}</p>
-            <p className="rol-perfil">{userinfo.role}</p> */}
+            {/* <p className="nombre-perfil">{userinfo.name}</p> */}
+            {/* <p className="rol-perfil">{userinfo.role}</p> */}
           </div>
           <UserAvatar />
         </Col>
