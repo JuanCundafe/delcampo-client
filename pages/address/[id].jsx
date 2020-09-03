@@ -30,7 +30,11 @@ export default function Address() {
 
   const actualizarAddress = async (data) => {
     const token = localStorage.getItem("token");
-    const response = await updateAddress(id, data, token);
+    const response = await updateAddress(
+      id,
+      data,
+      "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjVmNTAzNjU5ZGM3MzUwMzBiZDAzYzMwOSIsImlhdCI6MTU5OTA5Mjc2OSwiZXhwIjoxNTk5MTc5MTY5fQ.OAFO4o8EPzG8zf7-9aG9yl-tKmswalGBoxYZgYQw6iY"
+    );
     console.log("response", response);
     // async function fetchAddress(data, token) {
     //   console.log(response);
