@@ -118,8 +118,8 @@ export default function Create () {
           <Row>
             <Col xs={{ span: 20, offset: 2 }} md={{ span: 16, offset: 4 }}>
               <p>Agrega una foto interesante de tu cosecha</p>
-              <div className='uploadImage'>
-                <h1>Upload image</h1>
+              <div>
+                {/* <h1>Upload image</h1> */}
 
                 <div className='App'>
                   <ImageUploading
@@ -130,19 +130,22 @@ export default function Create () {
                   >
                     {({ imageList, onImageUpload, onImageRemoveAll }) => (
                       <div className='upload__image-wrapper'>
-                        <CustomButton callback={onImageUpload}>
-                          Click
+                        <CustomButton
+                          callback={onImageUpload}
+                          className='btn-image-upload'
+                        >
+                          Upload image
                         </CustomButton>
                         &nbsp;
-                        <button onClick={onImageRemoveAll}>
-                          Remove all images
-                        </button>
+                        <CustomButton callback={onImageRemoveAll}>
+                          Remove
+                        </CustomButton>
                         {imageList.map((image, index) => (
                           <div key={index} className='image-item'>
                             <img
                               src={image.data_url}
                               alt=''
-                              width='300'
+                              width='265'
                               height='200'
                             />
                           </div>
@@ -156,9 +159,9 @@ export default function Create () {
               {product && <UploadProduct />}
 
               <Form onFinish={onFinish}>
-                <CustomButton callback={handelFormProduct}>
+                {/* <CustomButton callback={handelFormProduct}>
                   + Agregar Producto
-                </CustomButton>
+                </CustomButton> */}
 
                 {/* <Select defaultValue='Uvas' onChange={handleChangeProduct}>
                 {result.map((product) => (
