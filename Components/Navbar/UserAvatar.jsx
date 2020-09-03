@@ -9,17 +9,17 @@ const menu = (
       </Link>
     </Menu.Item>
     <Menu.Item>
-      <Link href="/">
+      <Link href="/history">
         <a>Historial</a>
       </Link>
     </Menu.Item>
     <Menu.Item>
-      <Link href="/">
+      <Link href="/posts">
         <a>Publicaciones</a>
       </Link>
     </Menu.Item>
     <Menu.Item>
-      <Link href="/">
+      <Link href="/profile">
         <a>Editar perfil</a>
       </Link>
     </Menu.Item>
