@@ -179,7 +179,7 @@
     display: grid;
     grid-gap: calc(var(--gutter) / 2);
     grid-template-columns: 14px;
-    grid-template-rows: minmax(250px, 1fr);
+    // grid-template-rows: minmax(250px, 1fr);
     grid-auto-flow: column;
 
     overflow-x: scroll;

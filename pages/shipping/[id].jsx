@@ -5,7 +5,7 @@ import CardAddress from "../../Components/CardAddress";
 import CustomButton from "../../Components/CustomButton";
 import PaypalBtn from "../../Components/PaypalButton";
 import { GetShipping } from "../../lib/services";
-import { Row } from "antd";
+import { Row, Col } from "antd";
 import { PlusOutlined } from "@ant-design/icons";
 import { useRouter } from "next/router";
 
@@ -91,37 +91,34 @@ function Shipping({ jwt, userinfo }) {
               </Row>
             </div>
           </div>
-          <div className="btn-uno">
-            <CustomButton
-              icon={<PlusOutlined />}
-              btnStyle="btn-orange"
-              className="btn-another-address"
-              callback={handleClick}
-            >
-              Agregar otra Dirección
-            </CustomButton>
-          </div>
+
+          <Row className="shipping-row-address-btn">
+            <Col className="shipping-col-address-btn">
+              <div className="btn-uno">
+                <CustomButton
+                  icon={<PlusOutlined />}
+                  btnStyle="btn-orange"
+                  className="btn-another-address"
+                  callback={handleClick}
+                >
+                  Agregar otra Dirección
+                </CustomButton>
+              </div>
+            </Col>
+          </Row>
           <Row>
             <div>
               <h1>3. Realiza tu pago</h1>
             </div>
           </Row>
-          <Row>
-            <div>
-              <PaypalBtn onClick={handleTest} />
-            </div>
+          <Row className="shipping-row-paypal-btn">
+            <Col className="shipping-col-paypal-btn">
+              <div className="shipping-paypal-btn">
+                <PaypalBtn onClick={handleTest} />
+              </div>
+            </Col>
           </Row>
-          <Row>
-            <div className="btn-dos">
-              <CustomButton
-                btnStyle="btn-orange"
-                className="btn-shipping"
-                callback={handleClick}
-              >
-                Agregar otra Dirección
-              </CustomButton>
-            </div>
-          </Row>
+
           <MenuFooter />
         </div>
       </div>

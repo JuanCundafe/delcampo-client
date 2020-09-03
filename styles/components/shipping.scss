@@ -98,7 +98,6 @@
   .card-address-container {
     background: $color-white;
     width: 100%;
-    margin-right: 20px;
   }
   // .contact-information img {
   //   display: none;
@@ -156,10 +155,6 @@
   .wrapper {
     margin-bottom: -40px;
   }
-  .card-address-container .card-address-body .card-button-container {
-    justify-content: flex-end;
-    margin: 0 23px 5px 0;
-  }
 
   @media (min-width: 480px) {
     .li-shipping {
@@ -188,6 +183,38 @@
   }
   :root {
     --gutter: 20px;
+  }
+
+  .shipping-row-paypal-btn {
+    z-index: -1;
+    margin-bottom: 100px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+  .shipping-col-paypal-btn {
+    z-index: -1;
+  }
+
+  @media (min-width: 480px) {
+    .shipping-row-paypal-btn {
+      display: flex;
+      justify-content: flex-start;
+    }
+  }
+
+  .shipping-row-address-btn {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+  @media (min-width: 480px) {
+    .shipping-row-address-btn {
+      display: flex;
+      justify-content: flex-start;
+    }
   }
 
   a {
