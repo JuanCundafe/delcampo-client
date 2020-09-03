@@ -10,13 +10,15 @@ import NavBar from "../../Components/Navbar";
 import MenuFooter from "../../Components/MenuFooter";
 import { updateAddress, saveAddress } from "../../lib/services";
 
-export default function Address() {
+import { getCookie } from "../../lib/session";
+import { session, redirectIfNotAuthenticated } from "../../lib/auth";
+
+function AddressUpdate({ jwt, userinfo }) {
   const [result, setResult] = useState([]);
   const router = useRouter();
   const [address, setaddress] = useState([]);
-  // const [token, setToken] = useState();
   // console.log(router);
-
+  const { _id, name } = userinfo;
   const handlerBackAddress = () => {
     router.back();
   };
@@ -29,12 +31,7 @@ export default function Address() {
   const id = router.query.id;
 
   const actualizarAddress = async (data) => {
-    const token = localStorage.getItem("token");
-    const response = await updateAddress(
-      id,
-      data,
-      "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjVmNTAzNjU5ZGM3MzUwMzBiZDAzYzMwOSIsImlhdCI6MTU5OTA5Mjc2OSwiZXhwIjoxNTk5MTc5MTY5fQ.OAFO4o8EPzG8zf7-9aG9yl-tKmswalGBoxYZgYQw6iY"
-    );
+    const response = await updateAddress(id, data);
     console.log("response", response);
     // async function fetchAddress(data, token) {
     //   console.log(response);
@@ -57,10 +54,25 @@ export default function Address() {
       />
       <Row justify="space-around" align="middle" className="address-row">
         <Col xs={{ span: 24 }} md={{ span: 17 }}>
-          <FormUpdate callback={actualizarAddress} id={id} />
+          <FormUpdate callback={actualizarAddress} jwt={jwt} id={id} />
         </Col>
       </Row>
       <MenuFooter />
     </div>
   );
 }
+
+AddressUpdate.getInitialProps = async (ctx) => {
+  if (redirectIfNotAuthenticated(ctx)) {
+    return {};
+  }
+
+  const jwt = getCookie("jwt", ctx.req);
+  const userinfo = await session(jwt);
+  return {
+    jwt,
+    userinfo: userinfo.data.user,
+  };
+};
+
+export default AddressUpdate;

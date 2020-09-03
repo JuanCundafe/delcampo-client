@@ -6,16 +6,16 @@ import NavBar from "../../Components/Navbar";
 import MenuFooter from "../../Components/MenuFooter";
 import { updateAddress, addAddress } from "../../lib/services";
 
+import { getCookie } from "../../lib/session";
+import { session, redirectIfNotAuthenticated } from "../../lib/auth";
+
 const handler = null;
 
-export default function Address() {
+function Address({ jwt, userinfo }) {
   const saveAddress = async (data) => {
-    const token = localStorage.getItem("token");
-    data.user = id;
-    const response = await addAddress(
-      data,
-      "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjVmNTAzNjU5ZGM3MzUwMzBiZDAzYzMwOSIsImlhdCI6MTU5OTA5Mjc2OSwiZXhwIjoxNTk5MTc5MTY5fQ.OAFO4o8EPzG8zf7-9aG9yl-tKmswalGBoxYZgYQw6iY"
-    );
+    data.user = userinfo._id;
+    console.log(data);
+    const response = await addAddress(data, jwt);
     console.log("response", response);
     // async function fetchAddress(data, token) {
     //   console.log(response);
@@ -45,3 +45,19 @@ export default function Address() {
     </div>
   );
 }
+
+Address.getInitialProps = async (ctx) => {
+  if (redirectIfNotAuthenticated(ctx)) {
+    return {};
+  }
+
+  const jwt = getCookie("jwt", ctx.req);
+  const userInfo = await session(jwt);
+
+  return {
+    jwt,
+    userinfo: userInfo.data.user,
+  };
+};
+
+export default Address;

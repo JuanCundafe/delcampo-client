@@ -3,9 +3,10 @@ import React, { useState, useEffect } from "react";
 // import CustomButton from "../CustomButton";
 import { getAddressById } from "../../lib/services";
 
-function FormUpdate({ callback, id }) {
+function FormUpdate({ callback, id, jwt }) {
+  console.log(jwt);
   const onFinish = (values) => {
-    // callback(values);
+    callback(values);
   };
   // console.log(id)
   const [datosAddress, setDatosAddress] = useState([]);
@@ -13,16 +14,14 @@ function FormUpdate({ callback, id }) {
   // const [Id] = useState(id);
 
   useEffect(() => {
-    const token = localStorage.getItem("token");
-
     async function obtenerAddress() {
-      const response = await getAddressById(id, token);
+      const response = await getAddressById(id, jwt);
       const { data } = response;
       const { address } = data;
       setDatosAddress(address);
     }
     obtenerAddress();
-  }, []);
+  }, [jwt]);
 
   console.log(datosAddress);
 
