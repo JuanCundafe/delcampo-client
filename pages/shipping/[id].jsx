@@ -1,23 +1,26 @@
 import React, { useState, useEffect } from "react";
-import NavBar from "../../Components/NavBar";
+import Navbar from "../../Components/Navbar";
 import MenuFooter from "../../Components/MenuFooter";
 import CardAddress from "../../Components/CardAddress";
 import CustomButton from "../../Components/CustomButton";
+import PaypalBtn from "../../Components/PaypalButton";
 import { GetShipping } from "../../lib/services";
 import { Row } from "antd";
 import { PlusOutlined } from "@ant-design/icons";
 import { useRouter } from "next/router";
 
-export default function Shipping() {
+import { getCookie } from "../../lib/session";
+import { session, redirectIfNotAuthenticated } from "../../lib/auth";
+
+function Shipping({ jwt, userinfo }) {
   const [result, setResult] = useState([]);
   const router = useRouter();
 
   useEffect(() => {
     async function fetchAddress() {
-      const viz =
-        "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjVmNDliN2Y3YjE1MjI3MDA3ZTA5NTA4NyIsImlhdCI6MTU5ODg5ODMxMCwiZXhwIjoxNTk5MDcxMTEwfQ.dTgbhZJTyDMPHkhd4E65FpNHoDkt552CoZBIiYS0LLc";
+      const viz = localStorage.getItem("token");
       try {
-        const response = await GetShipping(viz);
+        const response = await GetShipping(jwt);
         const { data } = response;
         const { address } = data;
         setResult([...address]);
@@ -65,14 +68,18 @@ export default function Shipping() {
     router.push("/address");
   };
 
+  const handleTest = () => {
+    console.log("prueba");
+  };
+
   return (
     <>
       <div className="wrapper-shipping-screen">
-        <NavBar title="Carrito" />
+        <Navbar userinfo={userinfo} />
         <div className="container-shipping">
           <Row>
             <div>
-              <h2>2.Dirección de envio</h2>
+              <h1>2. Dirección de envio</h1>
             </div>
           </Row>
           <div className="product-section-cardsHarvest">
@@ -96,12 +103,12 @@ export default function Shipping() {
           </div>
           <Row>
             <div>
-              <h2>3. Metodo de pago</h2>
+              <h1>3. Realiza tu pago</h1>
             </div>
           </Row>
           <Row>
             <div>
-              <button>PayPal</button>
+              <PaypalBtn onClick={handleTest} />
             </div>
           </Row>
           <Row>
@@ -115,10 +122,25 @@ export default function Shipping() {
               </CustomButton>
             </div>
           </Row>
-
           <MenuFooter />
         </div>
       </div>
     </>
   );
 }
+
+Shipping.getInitialProps = async (ctx) => {
+  if (redirectIfNotAuthenticated(ctx)) {
+    return {};
+  }
+
+  const jwt = getCookie("jwt", ctx.req);
+  const userInfo = await session(jwt);
+
+  return {
+    jwt,
+    userinfo: userInfo.data.user,
+  };
+};
+
+export default Shipping;

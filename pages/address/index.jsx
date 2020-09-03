@@ -4,7 +4,7 @@ import { LeftOutlined } from "@ant-design/icons";
 import { Row, Col } from "antd";
 import NavBar from "../../Components/Navbar";
 import MenuFooter from "../../Components/MenuFooter";
-import { updateAddress, saveAddress } from "../../lib/services";
+import { updateAddress, addAddress } from "../../lib/services";
 
 const handler = null;
 
@@ -12,7 +12,10 @@ export default function Address() {
   const saveAddress = async (data) => {
     const token = localStorage.getItem("token");
     data.user = id;
-    const response = await addAddress(data, token);
+    const response = await addAddress(
+      data,
+      "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjVmNTAzNjU5ZGM3MzUwMzBiZDAzYzMwOSIsImlhdCI6MTU5OTA5Mjc2OSwiZXhwIjoxNTk5MTc5MTY5fQ.OAFO4o8EPzG8zf7-9aG9yl-tKmswalGBoxYZgYQw6iY"
+    );
     console.log("response", response);
     // async function fetchAddress(data, token) {
     //   console.log(response);
