@@ -138,7 +138,7 @@ export default function Product() {
             <Col
               className="product-btns-center-populares"
               xs={{ span: 3, offset: 3 }}
-              md={{ span: 2, offset: 4 }}
+              md={{ span: 3, offset: 0 }}
             >
               <a
                 href="#populares"
@@ -147,7 +147,7 @@ export default function Product() {
                 Populares
               </a>
             </Col>
-            <Col xs={{ span: 3, offset: 3 }} md={{ span: 2, offset: 0 }}>
+            <Col xs={{ span: 3, offset: 3 }} md={{ span: 3, offset: 0 }}>
               <a
                 href="#temporada"
                 className="ant-btn btn-product-anchors-center ant-btn-primary"
@@ -155,7 +155,7 @@ export default function Product() {
                 Temporada
               </a>
             </Col>
-            <Col xs={{ span: 3, offset: 3 }} md={{ span: 2, offset: 0 }}>
+            <Col xs={{ span: 3, offset: 3 }} md={{ span: 3, offset: 0 }}>
               <a
                 href="#oferta"
                 className="ant-btn btn-product-anchors-center ant-btn-primary"
@@ -163,7 +163,7 @@ export default function Product() {
                 Ofertas
               </a>
             </Col>
-            <Col xs={{ span: 3, offset: 3 }} md={{ span: 2, offset: 6 }}>
+            <Col xs={{ span: 3, offset: 3 }} md={{ span: 3, offset: 3 }}>
               <a
                 href="#about-us"
                 className="ant-btn btn-product-anchors-aboutus ant-btn-primary"
@@ -177,12 +177,15 @@ export default function Product() {
           <Col
             className="product-col-infocards"
             xs={{ span: 22, offset: 2 }}
-            sm={{ span: 10, offset: 1 }}
+            sm={{ span: 11, offset: 1 }}
           >
             <div className="product-card">
               <Row justify="space-around" align="middle">
                 <Col span={8}>
                   <img
+                    style={{
+                      width: "120%",
+                    }}
                     className="image-product-card"
                     src="images/productor.png"
                   />
@@ -200,12 +203,15 @@ export default function Product() {
           <Col
             className="product-col-infocards"
             xs={{ span: 22, offset: 2 }}
-            sm={{ span: 10, offset: 0 }}
+            sm={{ span: 11, offset: 0 }}
           >
             <div className="product-card">
               <Row justify="space-around" align="middle">
                 <Col span={8}>
                   <img
+                    style={{
+                      width: "120%",
+                    }}
                     className="image-product-card"
                     src="images/comprador.png"
                   />
