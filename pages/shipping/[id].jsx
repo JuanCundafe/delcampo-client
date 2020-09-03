@@ -3,7 +3,7 @@ import Navbar from "../../Components/Navbar";
 import MenuFooter from "../../Components/MenuFooter";
 import CardAddress from "../../Components/CardAddress";
 import CustomButton from "../../Components/CustomButton";
-import PaypalButton from "../../Components/PaypalButton";
+import PaypalBtn from "../../Components/PaypalButton";
 import { GetShipping } from "../../lib/services";
 import { Row } from "antd";
 import { PlusOutlined } from "@ant-design/icons";
@@ -68,6 +68,10 @@ function Shipping({ jwt, userinfo }) {
     router.push("/address");
   };
 
+  const handleTest = () => {
+    console.log("prueba");
+  };
+
   return (
     <>
       <div className="wrapper-shipping-screen">
@@ -104,7 +108,7 @@ function Shipping({ jwt, userinfo }) {
           </Row>
           <Row>
             <div>
-              <PaypalButton />
+              <PaypalBtn onClick={handleTest} />
             </div>
           </Row>
           <Row>
