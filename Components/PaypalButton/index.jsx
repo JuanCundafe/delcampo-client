@@ -1,60 +1,17 @@
-import React from "react";
+import { PayPalButton } from "react-paypal-button-v2";
 
-class PaypalButton extends React.Component {
-  constructor(props) {
-    super(props);
-    this.state = {
-      isEnabled: false,
-    };
-  }
+export default function PaypalBtn() {
+  return (
+    <PayPalButton
+      amount="0.01"
+      // shippingPreference="NO_SHIPPING" // default is "GET_FROM_FILE"
+      onSuccess={(details, data) => {
+        alert("Transaction completed by " + details.payer.name.given_name);
 
-  componentDidMount() {
-    this.setState({ isEnabled: true });
-    paypal.Button.render(
-      {
-        env: "sandbox",
-        client: {
-          sandbox:
-            "AcuKT0Vux-tYeqVZ_iW1W2hx7hBcPlN-30kGXjAZJavAHpAByRGUdLrLm556pI_Z0za5SHdLGcmR5IsQ",
-          production:
-            "AT-znpkyOTEJkac9PPygohTAIGFwRtsl6Cupf1Y-2ROLwzumGzdCLGtmKZMJVw3BA5sn7TuDKqS1VzKC",
-        },
+        console.log("estoy aqui:", detail);
 
-        payment: function (data, actions) {
-          return actions.payment.create({
-            transactions: [
-              {
-                amount: {
-                  total: "1.00",
-                  currency: "USD",
-                },
-              },
-            ],
-          });
-        },
-        commit: true,
-
-        onAuthorize: function (data, actions) {
-          return actions.payment.execute().then(function (response) {
-            console.log("The payment was completed!");
-          });
-        },
-
-        onCancel: function (data) {
-          console.log("The payment was cancelled!");
-        },
-      },
-      "#paypal-express-btn"
-    );
-  }
-
-  render() {
-    return (
-      <div>
-        {this.state.isEnabled ? <div id="paypal-express-btn" /> : "Loading..."}
-      </div>
-    );
-  }
+        // OPTIONAL: Call your server to save the transaction
+      }}
+    />
+  );
 }
-
-export default PaypalButton;
