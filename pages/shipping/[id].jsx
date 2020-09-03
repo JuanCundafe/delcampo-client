@@ -20,7 +20,7 @@ function Shipping({ jwt, userinfo }) {
     async function fetchAddress() {
       const viz = localStorage.getItem("token");
       try {
-        const response = await GetShipping(viz);
+        const response = await GetShipping(jwt);
         const { data } = response;
         const { address } = data;
         setResult([...address]);
