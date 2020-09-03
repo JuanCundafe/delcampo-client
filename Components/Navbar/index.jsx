@@ -107,8 +107,10 @@ export default function Navbar({ userinfo }) {
             </Link>
           </div>
           <div>
-            <p className="nombre-perfil">{userinfo.name}</p>
-            <p className="rol-perfil">{userinfo.role}</p>
+            <p className="nombre-perfil">Venustiano Carranza</p>
+            <p className="rol-perfil">Productor</p>
+            {/* <p className="nombre-perfil">{userinfo.name}</p>
+            <p className="rol-perfil">{userinfo.role}</p> */}
           </div>
           <UserAvatar />
         </Col>

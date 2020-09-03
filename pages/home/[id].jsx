@@ -14,7 +14,7 @@ import { ToastContainer, toast } from "react-toastify";
 
 function Details({ jwt, userinfo, harvest }) {
   const router = useRouter();
-
+  console.log(userinfo);
   const {
     _id,
     tag,
@@ -193,7 +193,7 @@ Details.getInitialProps = async (ctx) => {
 
   const jwt = getCookie("jwt", ctx.req);
   const userinfo = await session(jwt);
-  const response = await getHarvestById(ctx.query.id);
+  const response = await getHarvestById(jwt, ctx.query.id);
 
   if (response.success === true) {
     response.data.harvest["createdDecode"] = new Date(
