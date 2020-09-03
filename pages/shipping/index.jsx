@@ -1,80 +1,77 @@
-import React, { useState, useEffect } from 'react';
-import NavBar from '../../Components/NavBar';
-import MenuFooter from '../../Components/MenuFooter';
-import CardAddress from '../../Components/CardAddress';
-import CustomButton from '../../Components/CustomButton';
-import { GetShipping } from '../../lib/services';
-import { Row } from 'antd';
-import { PlusOutlined } from '@ant-design/icons';
-import { useRouter } from 'next/router';
+import React, { useState, useEffect } from "react";
+import Navbar from "../../Components/Navbar";
+import MenuFooter from "../../Components/MenuFooter";
+import CardAddress from "../../Components/CardAddress";
+import CustomButton from "../../Components/CustomButton";
+import { GetShipping } from "../../lib/services";
+import { Row } from "antd";
+import { PlusOutlined } from "@ant-design/icons";
+import { useRouter } from "next/router";
 
-export default function Shipping () {
-  const [result, setResult] = useState([])
-  const router = useRouter()
+import { getCookie } from "../../lib/session";
+import { session, redirectIfNotAuthenticated } from "../../lib/auth";
+
+function Shipping(jwt, userinfo) {
+  const [result, setResult] = useState([]);
+  const router = useRouter();
 
   useEffect(() => {
-    async function fetchAddress () {
-      const viz =
-        'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjVmNGIwM2MxMmUwMWZhYmEwZmU5Y2EzNiIsImlhdCI6MTU5ODc1MTcwOCwiZXhwIjoxNTk4OTI0NTA4fQ.hZp8_DI26eaWIVPn8o6mW4phOUREB5fKvgxxaImFiEY';
+    async function fetchAddress() {
       try {
-        const response = await GetShipping(viz)
-        const { data } = response
-        const { address } = data
-        setResult([...address])
-
-        console.log(cardShipping)
-      } catch (error) {
-        console.log(error)
-      }
+        const response = await GetShipping(jwt);
+        const { data } = response;
+        const { address } = data;
+        setResult([...address]);
+      } catch (error) {}
     }
-    fetchAddress()
-  }, [])
+    fetchAddress();
+  }, []);
 
   const cardShipping = result.map((data) => {
-    const { city, colonia, postal_code, state, street, name } = data
+    const { city, colonia, postal_code, state, street, name } = data;
     const direccion =
       city +
-      ' ' +
-      ',  ' +
+      " " +
+      ",  " +
       state +
-      '\nCalle ' +
+      "\nCalle " +
       street +
-      '\n' +
-      '  Col. ' +
+      "\n" +
+      "  Col. " +
       colonia +
-      '  CP ' +
-      postal_code
-    return <CardAddress address={direccion} title={name} />
-  })
+      "  CP " +
+      postal_code;
+    return <CardAddress address={direccion} title={name} />;
+  });
 
   const handleClick = () => {
-    router.push('/address/5f49b7f7b15227007e095087')
+    router.push("/address/5f49b7f7b15227007e095087");
   };
 
   return (
     <>
-      <div className='wrapper-shipping-screen'>
-        <NavBar title='Carrito' />
-        <div className='container-shipping'>
+      <div className="wrapper-shipping-screen">
+        <Navbar userinfo={userinfo} />
+        <div className="container-shipping">
           <Row>
             <div>
-              <h2>2.Dirección de envio</h2>
+              <h1>2. Dirección de envio</h1>
             </div>
           </Row>
-          <div className='product-section-cardsHarvest'>
-            <div className='container-cards-list'>
-              <Row className='product-row-sections'>
-                <ul className='hs full'>
+          <div className="product-section-cardsHarvest">
+            <div className="container-cards-list">
+              <Row className="product-row-sections">
+                <ul className="hs full">
                   {Object.keys(cardShipping) ? cardShipping : null}
                 </ul>
               </Row>
             </div>
           </div>
-          <div className='btn-uno'>
+          <div className="btn-uno">
             <CustomButton
               icon={<PlusOutlined />}
-              btnStyle='btn-orange'
-              className='btn-another-address'
+              btnStyle="btn-orange"
+              className="btn-another-address"
               callback={handleClick}
             >
               Agregar otra Dirección
@@ -82,7 +79,7 @@ export default function Shipping () {
           </div>
           <Row>
             <div>
-              <h2>3. Metodo de pago</h2>
+              <h1>3. Realiza tu pago</h1>
             </div>
           </Row>
           <Row>
@@ -91,10 +88,10 @@ export default function Shipping () {
             </div>
           </Row>
           <Row>
-            <div className='btn-dos'>
+            <div className="btn-dos">
               <CustomButton
-                btnStyle='btn-orange'
-                className='btn-shipping'
+                btnStyle="btn-orange"
+                className="btn-shipping"
                 callback={handleClick}
               >
                 Agregar otra Dirección
@@ -106,5 +103,21 @@ export default function Shipping () {
         </div>
       </div>
     </>
-  )
+  );
 }
+
+Shipping.getInitialProps = async (ctx) => {
+  if (redirectIfNotAuthenticated(ctx)) {
+    return {};
+  }
+
+  const jwt = getCookie("jwt", ctx.req);
+  const userInfo = await session(jwt);
+
+  return {
+    jwt,
+    userinfo: userInfo.data.user,
+  };
+};
+
+export default Shipping;

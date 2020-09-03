@@ -1,12 +1,12 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import Link from "next/link";
-// import Router from "next/router";
+import { useRouter } from "next/router";
 
 // Components
 import CustomInput from "../../Components/CustomInput";
 
 // Services
-import { signIn } from "../../lib/auth.js";
+import { signIn, redirectIfAuthenticated } from "../../lib/auth.js";
 import redirect from "../../lib/redirect.js";
 import { setCookie } from "../../lib/session.js";
 
@@ -16,12 +16,14 @@ const { Header, Content } = Layout;
 import { UserOutlined, LockOutlined } from "@ant-design/icons";
 import { ToastContainer, toast } from "react-toastify";
 
-export default function Login() {
+function Login() {
   const [form] = Form.useForm();
   const [loadings, setLoadings] = useState(false);
+  const router = useRouter();
 
   const onFinish = async (values) => {
     setLoadings(true);
+
     let result = await signIn(values);
 
     if (!result.success) {
@@ -29,18 +31,18 @@ export default function Login() {
       toast.error(result.error, {
         position: toast.POSITION.TOP_RIGHT,
       });
+      return null;
     } else {
       setLoadings(false);
-
-      // toast.success("¡¡Usuario creado con éxito!!", {
-      //   position: toast.POSITION.TOP_RIGHT,
-      // });
-
       setCookie("jwt", result.data.token);
       redirect("/home");
       return null;
     }
   };
+
+  useEffect(() => {
+    router.prefetch("/home");
+  }, []);
 
   return (
     <>
@@ -133,3 +135,13 @@ export default function Login() {
     </>
   );
 }
+
+Login.getInitialProps = async (ctx) => {
+  if (redirectIfAuthenticated(ctx)) {
+    return {};
+  }
+
+  return {};
+};
+
+export default Login;

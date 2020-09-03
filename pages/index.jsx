@@ -1,3 +1,9 @@
+import Product from "./product";
+
 export default function Home() {
-  return <></>;
+  return (
+    <>
+      <Product />
+    </>
+  );
 }

@@ -1,13 +1,13 @@
 import React, { useState, useEffect } from "react";
 import { useRouter } from "next/router";
+import Link from "next/link";
 
 import Search from "../Search";
-import UserAvatar from "./user-avatar";
+import UserAvatar from "./UserAvatar";
 import { Row, Col } from "antd";
 
-export default function NavBar() {
+export default function Navbar({ userinfo }) {
   const router = useRouter();
-
   const [home, setHome] = useState("/images/logo-navbar.png");
   const [home_on, sethome_on] = useState("home_on");
   const [shopping_on, setshopping_on] = useState("shopping_off");
@@ -27,6 +27,8 @@ export default function NavBar() {
   let searchIsActive;
   switch (router.pathname) {
     case "/detail":
+    case "/checkout":
+    case "/shipping":
       searchIsActive = false;
       break;
     default:
@@ -76,12 +78,13 @@ export default function NavBar() {
     <>
       <Row className="navbar">
         <Col span={4}>
-          <a onClick={handleActiveHome}>
-            <img src={home} width="35" height="35" />
-          </a>
+          <Link href="/home">
+            <a onClick={handleActiveHome}>
+              <img src={home} width="35" height="35" />
+            </a>
+          </Link>
         </Col>
-
-        {searchIsActive ? (
+        {searchIsActive && (
           <Col
             className="navbar-search-col"
             xs={{ order: 3 }}
@@ -89,8 +92,7 @@ export default function NavBar() {
           >
             <Search />
           </Col>
-        ) : null}
-
+        )}
         <Col className="perfil" span={4} xs={{ order: 2 }} sm={{ order: 3 }}>
           <div>
             <a className={message_on} onClick={handleActiveMessage}>
@@ -98,13 +100,17 @@ export default function NavBar() {
             </a>
           </div>
           <div>
-            <a className={shopping_on} onClick={handleActiveShopping}>
-              <img className="icons2" src={shopping} width="26" height="26" />
-            </a>
+            <Link href="/checkout">
+              <a className={shopping_on} onClick={handleActiveShopping}>
+                <img className="icons2" src={shopping} width="26" height="26" />
+              </a>
+            </Link>
           </div>
           <div>
-            <p className="nombre-perfil">Ernestino</p>
+            <p className="nombre-perfil">Venustiano Carranza</p>
             <p className="rol-perfil">Productor</p>
+            {/* <p className="nombre-perfil">{userinfo.name}</p>
+            <p className="rol-perfil">{userinfo.role}</p> */}
           </div>
           <UserAvatar />
         </Col>
