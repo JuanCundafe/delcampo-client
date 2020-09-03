@@ -17,26 +17,17 @@ function AddressUpdate({ jwt, userinfo }) {
   const [result, setResult] = useState([]);
   const router = useRouter();
   const [address, setaddress] = useState([]);
-  // console.log(router);
+
   const { _id, name } = userinfo;
   const handlerBackAddress = () => {
     router.back();
   };
-
-  // useEffect(() => {
-
-  //   setToken(tokencito);
-  // }, []);
 
   const id = router.query.id;
 
   const actualizarAddress = async (data) => {
     const response = await updateAddress(id, data);
     console.log("response", response);
-    // async function fetchAddress(data, token) {
-    //   console.log(response);
-    // }
-    // fetchAddress();
   };
 
   return (

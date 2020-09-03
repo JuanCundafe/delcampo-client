@@ -3,8 +3,6 @@ import Link from "next/link";
 
 import { Card, Avatar, Row, Col } from "antd";
 
-import redirect from "../../lib/redirect.js";
-
 export default function CardHarvest({
   product,
   price,
