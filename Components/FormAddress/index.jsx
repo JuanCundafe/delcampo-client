@@ -2,10 +2,13 @@ import { Input, Row, Col, Form, Button } from "antd";
 import CustomButton from "../CustomButton";
 
 function FormAddress({ callback }) {
+  const [form] = Form.useForm();
+  console.log(form);
   const onFinish = (values) => {
     console.log("prueba1");
     console.log(values);
     callback(values);
+    form.resetFields();
   };
 
   return (
@@ -13,7 +16,7 @@ function FormAddress({ callback }) {
       <div className="form-address-header">
         <h3>Dirección</h3>
       </div>
-      <Form onFinish={onFinish}>
+      <Form onFinish={onFinish} form={form}>
         <div className="form-address-body">
           <p>Nombre</p>
           <Form.Item name="name">
