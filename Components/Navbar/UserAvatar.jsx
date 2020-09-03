@@ -22,6 +22,11 @@ const menu = (
         Editar perfil
       </a>
     </Menu.Item>
+    <Menu.Item>
+      <a target="_blank" rel="noopener noreferrer" href="">
+        Cerrar sesión
+      </a>
+    </Menu.Item>
   </Menu>
 );
 
