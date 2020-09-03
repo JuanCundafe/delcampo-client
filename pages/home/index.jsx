@@ -123,6 +123,7 @@ Home.getInitialProps = async (ctx) => {
     harvest = response.data.harvest;
   }
 
+  harvest = harvest.reverse();
   return {
     jwt,
     userinfo,

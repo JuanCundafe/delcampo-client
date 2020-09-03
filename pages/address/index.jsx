@@ -1,30 +1,47 @@
+import { useRouter } from "next/router";
+
 import FormAddress from "../../Components/FormAddress";
 import CustomButton from "../../Components/CustomButton";
-import { LeftOutlined } from "@ant-design/icons";
-import { Row, Col } from "antd";
 import NavBar from "../../Components/Navbar";
 import MenuFooter from "../../Components/MenuFooter";
-import { updateAddress, addAddress } from "../../lib/services";
 
+import { LeftOutlined } from "@ant-design/icons";
+import { Row, Col } from "antd";
+import { ToastContainer, toast } from "react-toastify";
+
+import { addAddress } from "../../lib/services";
 import { getCookie } from "../../lib/session";
 import { session, redirectIfNotAuthenticated } from "../../lib/auth";
 
-const handler = null;
-
 function Address({ jwt, userinfo }) {
+  const router = useRouter();
+
   const saveAddress = async (data) => {
     data.user = userinfo._id;
-    console.log(data);
+
     const response = await addAddress(data, jwt);
-    console.log("response", response);
-    // async function fetchAddress(data, token) {
-    //   console.log(response);
-    // }
-    // fetchAddress();
+
+    if (response.success === true) {
+      toast.success("¡¡Tu dirección se ha guardado!!", {
+        position: toast.POSITION.TOP_RIGHT,
+      });
+      setTimeout(() => {
+        router.back();
+      }, 2000);
+    } else {
+      toast.error(result.error, {
+        position: toast.POSITION.TOP_RIGHT,
+      });
+    }
+  };
+
+  const handler = () => {
+    router.back();
   };
 
   return (
     <div className="Container-Address-page">
+      <ToastContainer />
       <div className="address-navbar">
         <NavBar />
       </div>

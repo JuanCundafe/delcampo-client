@@ -21,7 +21,7 @@ function Checkout({ jwt, userinfo }) {
   const router = useRouter();
 
   useEffect(() => {
-    const stringBag = localStorage.getItem("bag");
+    const stringBag = localStorage.getItem(`bag${_id}`);
 
     if (stringBag) {
       const parsedBag = JSON.parse(stringBag);

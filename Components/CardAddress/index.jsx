@@ -1,21 +1,16 @@
-import CustomButton from "../CustomButton";
 import { Row, Col, Space, Button } from "antd";
 import Link from "next/link";
 
 export default function CardAddress({
-  phone,
-  email,
   address,
   title,
   btnSelect,
   id,
-  selectCard,
   callback,
 }) {
-  const imgPhone = "/images/phone.jpg";
-  const imgEmail = "/images/email.jpg";
+  // const imgPhone = "/images/phone.jpg";
+  // const imgEmail = "/images/email.jpg";
   const imgAddress = "/images/address.jpg";
-  selectCard = false;
 
   const handlerClick = (id) => {
     callback(id);
@@ -27,7 +22,7 @@ export default function CardAddress({
         <h3>{title}</h3>
       </div>
       <div className="card-address-body">
-        <Row className="contact-information-phone">
+        {/* <Row className="contact-information-phone">
           <Col span={4}>
             <img src={imgPhone} width="20" height="20" />
           </Col>
@@ -38,7 +33,7 @@ export default function CardAddress({
             <img src={imgEmail} width="20" height="20" />
           </Col>
           <Col span={4}>{email}</Col>
-        </Row>
+        </Row> */}
         <div className="space-align-block">
           <Space align="start" className="contact-information-address">
             <Row align="top" className="contact-information-address">
@@ -59,26 +54,14 @@ export default function CardAddress({
           <Button className="btn-green" onClick={() => handlerClick(id)}>
             Seleccionar
           </Button>
-          <div classname="shipping-space-btn"></div>
+          <div className="shipping-space-btn"></div>
           <Link href="/address/[id]" as={`/address/${id}`}>
             <a>
-              <Button className="btn-green" onClick={handlerClick}>
-                Editar
-              </Button>
+              <Button className="btn-green">Editar</Button>
             </a>
           </Link>
         </div>
       </div>
     </div>
   );
-}
-
-{
-  /* <CardAddress
-  phone="9999999999"
-  email="email@gmail.com"
-  address="Tlaxiaco, Oaxaca"
-  title="Contacto"
-  btnSelect={false}
-/>; */
 }
