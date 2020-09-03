@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import Link from "next/link";
-// import Router from "next/router";
+import { redirectIfAuthenticated } from "../../lib/auth.js";
 
 import CustomInput from "../../Components/CustomInput";
 
@@ -23,19 +23,13 @@ const { Header, Content } = Layout;
 import { UserOutlined, LockOutlined, MailOutlined } from "@ant-design/icons";
 import { ToastContainer, toast } from "react-toastify";
 
-export default function Register() {
+function Register() {
   const [form] = Form.useForm();
   const [loadings, setLoadings] = useState(false);
 
   const onFinish = async (values) => {
     setLoadings(true);
     let result = await signUp(values);
-    // console.log(result);
-    // if (result == "users validation failed: email: El usuario ya existe") {
-    //   toast.error("¡El usuario ya existe!", {
-    //     position: toast.POSITION.TOP_RIGHT,
-    //   });
-    // }
 
     if (!result.success) {
       setLoadings(false);
@@ -210,3 +204,13 @@ export default function Register() {
     </>
   );
 }
+
+Register.getInitialProps = async (ctx) => {
+  if (redirectIfAuthenticated(ctx)) {
+    return {};
+  }
+
+  return {};
+};
+
+export default Register;
