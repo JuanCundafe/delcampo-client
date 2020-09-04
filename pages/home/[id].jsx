@@ -135,11 +135,18 @@ function Details({ jwt, userinfo, harvest }) {
           <Col xs={5} sm={3}>
             <img src="/images/icon-category.png" alt="Icon category" />
           </Col>
-          <Col xs={19} sm={18} className="description">
-            Lorem ipsum dolor sit, amet consectetur adipisicing elit. Iste nam
-            iusto accusantium. Saepe modi perspiciatis ullam, esse cupiditate
-            dicta culpa qui pariatur accusantium dolor ad aspernatur nihil quam
-            recusandae iste.
+          <Col xs={19} sm={18}>
+            <p className="home-description-detail">
+              Creemos que en el cuidado de nuestra forma de alimentarnos está la
+              clave para disfrutar de una buena forma física y de una salud de
+              hierro. Está demostrado que una elevada ingesta de alimentos de
+              origen vegetal en nuestra dieta es positivo a la hora de prevenir
+              enfermedades de todo tipo, es por ello, que cada vez somos más los
+              que nos sumamos a un estilo de vida “verde”, basado en el consumo
+              de frutas, verduras, legumbres, cereales y semillas. Alimentos de
+              origen vegetal repletos de propiedades, algunas de las cuales te
+              contamos en el artículo de hoy, así que no pierdas la oportunidad.
+            </p>
           </Col>
           <Col span={24}>
             <div>
