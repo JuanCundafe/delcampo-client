@@ -12,3 +12,16 @@
 .home-categories-margin {
   margin-bottom: 30px;
 }
+
+.home-description-detail {
+  padding: 2px 15px;
+}
+
+@media (max-width: 480px) {
+  .home-description-detail {
+    width: auto;
+    height: 70px;
+    overflow: scroll;
+    text-overflow: ellipsis;
+  }
+}

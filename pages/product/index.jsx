@@ -233,7 +233,7 @@ export default function Product() {
               <p className="product-text-sections" id="populares">
                 Mas populares
               </p>
-              <ul className="hs full">
+              <ul className="hs full no-scrollbar">
                 {Object.keys(uiCardsPopular) ? uiCardsPopular : null}
               </ul>
             </Row>
@@ -241,7 +241,7 @@ export default function Product() {
               <p className="product-text-sections" id="temporada">
                 En temporada
               </p>
-              <ul className="hs full">
+              <ul className="hs full no-scrollbar">
                 {Object.keys(uiCardsTemporada) ? uiCardsTemporada : null}
               </ul>
             </Row>
@@ -249,7 +249,7 @@ export default function Product() {
               <p className="product-text-sections" id="oferta">
                 En oferta
               </p>
-              <ul className="hs full">
+              <ul className="hs full no-scrollbar">
                 {Object.keys(uiCardsOferta) ? uiCardsOferta : null}
               </ul>
             </Row>

@@ -6,7 +6,7 @@ import { session, redirectIfNotAuthenticated } from "../lib/auth";
 function Posts({ jwt, userinfo }) {
   return (
     <>
-      <Layout>
+      <Layout className="full-vh">
         <Navbar />
         <h1>Publicaciones de {userinfo.name}</h1>
       </Layout>

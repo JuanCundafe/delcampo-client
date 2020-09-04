@@ -103,7 +103,11 @@ export default function Navbar({ userinfo }) {
           </div>
           <div>
             <Link href="/checkout">
-              <a className={shopping_on} onClick={handleActiveShopping}>
+              <a
+                className={shopping_on}
+                break-word
+                onClick={handleActiveShopping}
+              >
                 <img className="icons2" src={shopping} width="26" height="26" />
               </a>
             </Link>
