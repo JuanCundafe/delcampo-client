@@ -96,26 +96,19 @@ function Checkout({ jwt, userinfo }) {
 
   return (
     <div>
-      <Layout>
+      <Layout className="full-vh">
         <Navbar userinfo={userinfo} />
         <Content className="container-checkout">
-          {!image ? (
-            <Row>
+          <Row>
+            {!image ? (
               <Col xs={{ span: 20, offset: 2 }} md={{ span: 16, offset: 4 }}>
                 {uiItemBag}
               </Col>
-            </Row>
-          ) : (
-            <Row>
+            ) : (
               <Col xs={{ span: 20, offset: 2 }} lg={{ span: 16, offset: 4 }}>
                 <div className="container-image">
                   <h2>¡Su pedido está listo!</h2>
-                  <img
-                    style={{
-                      width: "60%",
-                    }}
-                    src="/images/fruit_box_1.png"
-                  />
+                  <img src="/images/fruit_box_1.png" />
                   <p>Usted pagará:</p>
                   <h3>Total: $ {totalPrice}.00</h3>
                   <Link href="/shipping/[id]" as={`/shipping/${_id}`}>
@@ -127,8 +120,8 @@ function Checkout({ jwt, userinfo }) {
                   </Link>
                 </div>
               </Col>
-            </Row>
-          )}
+            )}
+          </Row>
         </Content>
         <MenuFooter />
       </Layout>

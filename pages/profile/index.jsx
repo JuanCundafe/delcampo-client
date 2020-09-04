@@ -13,7 +13,7 @@ const { Content } = Layout;
 function Profile({ jwt, userinfo }) {
   return (
     <div>
-      <Layout>
+      <Layout className="full-vh">
         <Navbar />
         <Content className="profile-container" orientation="left">
           <Row>
