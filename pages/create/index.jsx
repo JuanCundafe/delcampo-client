@@ -23,100 +23,100 @@ import {
   Form,
   Button,
 } from "antd";
-const { Content } = Layout;
-const { TextArea } = Input;
 
 import { getCookie } from "../../lib/session";
 import { session, redirectIfNotAuthenticated } from "../../lib/auth";
+const { Content } = Layout;
+const { TextArea } = Input;
 
-function Create({ jwt, userinfo }) {
-  const [product, setProduct] = useState(false);
-  const [result, setResult] = useState([]);
-  const [images, setImages] = React.useState([]);
-  const [weight, setweight] = useState({});
-  const [date_end, setDate_end] = useState("");
-  const { Option } = Select;
+function Create ({ jwt, userinfo }) {
+  const [product, setProduct] = useState(false)
+  const [result, setResult] = useState([])
+  const [images, setImages] = React.useState([])
+  const [weight, setweight] = useState({})
+  const [date_end, setDate_end] = useState('')
+  const { Option } = Select
 
   const onChange = (imageList, addUpdateIndex) => {
-    setImages(imageList);
+    setImages(imageList)
   };
 
   useEffect(() => {
-    async function fetchproduc(jwt) {
+    async function fetchproduc (jwt) {
       try {
-        const response = await GetProduct(jwt);
-        const { data } = response;
-        const { products } = data;
-        setResult(products);
+        const response = await GetProduct(jwt)
+        const { data } = response
+        const { products } = data
+        setResult(products)
       } catch (error) {}
     }
-    fetchproduc(jwt);
-  }, [jwt]);
+    fetchproduc(jwt)
+  }, [jwt])
 
   useEffect(() => {
-    async function fetchHarvest() {
+    async function fetchHarvest () {
       try {
-        const response = await getHarvest();
-        const { dataHarvest } = response;
-        const { harvestProduct } = dataHarvest;
-        setResult(harvestProduct);
+        const response = await getHarvest()
+        const { dataHarvest } = response
+        const { harvestProduct } = dataHarvest
+        setResult(harvestProduct)
       } catch (error) {}
     }
-    fetchHarvest();
-  }, []);
+    fetchHarvest()
+  }, [])
 
   const handelFormProduct = () => {
-    setProduct(true);
+    setProduct(true)
   };
 
   const handeleTotal = (total) => {
-    setweight(total);
+    setweight(total)
   };
 
   const onFinish = async (values) => {
-    const harvest = { ...values, weight, date_end };
+    const harvest = { ...values, weight, date_end }
 
     try {
-      harvest.picture = "www.ejemplo.com";
-      harvest.tag = "populares";
+      harvest.picture = 'www.ejemplo.com';
+      harvest.tag = 'populares';
 
-      const data = await addHarvest(harvest, jwt);
-      const { _id } = data.data;
-      const picture = images[0].file;
-      const formData = new FormData();
+      const data = await addHarvest(harvest, jwt)
+      const { _id } = data.data
+      const picture = images[0].file
+      const formData = new FormData()
 
-      formData.append("images", picture);
+      formData.append('images', picture)
       try {
-        const hervestUpdate = await imageHarvest(_id, formData, jwt);
+        const hervestUpdate = await imageHarvest(_id, formData, jwt)
       } catch (error) {
-        console.log("error 1:", error);
+        console.log('error 1:', error)
       }
     } catch (error) {
-      console.log("error 2:", error);
+      console.log('error 2:', error)
     }
-  };
+  }
 
   return (
     <div>
       <Layout>
         <Navbar />
-        <Content className="container-create">
+        <Content className='container-create'>
           <Row>
             <Col xs={{ span: 20, offset: 2 }} md={{ span: 16, offset: 4 }}>
               <p>Agrega una foto interesante de tu cosecha</p>
               <div>
-                <div className="App">
+                <div className='App'>
                   <ImageUploading
                     value={images}
                     onChange={onChange}
                     maxNumber={1}
-                    dataURLKey="data_url"
+                    dataURLKey='data_url'
                   >
                     {({ imageList, onImageUpload, onImageRemoveAll }) => (
-                      <div className="upload__image-wrapper">
+                      <div className='upload__image-wrapper'>
                         <CustomButton
                           callback={onImageUpload}
-                          className="btn-image-upload"
+                          className='btn-image-upload'
                         >
                           Upload image
                         </CustomButton>
@@ -125,12 +125,12 @@ function Create({ jwt, userinfo }) {
                           Remove
                         </CustomButton>
                         {imageList.map((image, index) => (
-                          <div key={index} className="image-item">
+                          <div key={index} className='image-item'>
                             <img
                               src={image.data_url}
-                              alt=""
-                              width="265"
-                              height="200"
+                              alt=''
+                              width='265'
+                              height='200'
                             />
                           </div>
                         ))}
@@ -143,8 +143,8 @@ function Create({ jwt, userinfo }) {
               {product && <UploadProduct />}
 
               <Form onFinish={onFinish}>
-                <Form.Item name="product">
-                  <Select placeholder="Selecciona un Producto">
+                <Form.Item name='product'>
+                  <Select placeholder='Selecciona un Producto'>
                     {result.map(({ _id, name }) => (
                       <Option value={_id} key={_id}>
                         {name}
@@ -154,7 +154,7 @@ function Create({ jwt, userinfo }) {
                 </Form.Item>
 
                 <p>Describe tu cosecha:</p>
-                <Form.Item name="description">
+                <Form.Item name='description'>
                   <Input.TextArea />
                 </Form.Item>
 
@@ -162,14 +162,14 @@ function Create({ jwt, userinfo }) {
                 <div
                   style={{
                     marginBottom: 16,
-                    width: "70%",
+                    width: '70%'
                   }}
                 >
-                  <Form.Item name="price">
+                  <Form.Item name='price'>
                     <Input
-                      className="kilogramos"
-                      addonBefore="$"
-                      addonAfter="Kg"
+                      className='kilogramos'
+                      addonBefore='$'
+                      addonAfter='Kg'
                     />
                   </Form.Item>
                 </div>
@@ -178,18 +178,15 @@ function Create({ jwt, userinfo }) {
                 <InputKilograms callback={handeleTotal} />
 
                 <p>Fecha límite de venta de la cosecha</p>
-                <Form.Item name="date_end">
+                <Form.Item name='date_end'>
                   <DatePicker
                     onChange={(date, dateString) => setDate_end(dateString)}
-                    style={{ background: "#dfdfe3", width: "100%" }}
+                    style={{ background: '#dfdfe3', width: '100%' }}
                   />
                 </Form.Item>
 
-                <br />
-                <br />
-
                 <Form.Item>
-                  <Button type="primary" htmlType="submit">
+                  <Button type='primary' htmlType='submit'>
                     Agregar Cosecha
                   </Button>
                 </Form.Item>
@@ -200,21 +197,21 @@ function Create({ jwt, userinfo }) {
         <MenuFooter />
       </Layout>
     </div>
-  );
+  )
 }
 
 Create.getInitialProps = async (ctx) => {
   if (redirectIfNotAuthenticated(ctx)) {
-    return {};
+    return {}
   }
 
-  const jwt = getCookie("jwt", ctx.req);
-  const userInfo = await session(jwt);
+  const jwt = getCookie('jwt', ctx.req)
+  const userInfo = await session(jwt)
 
   return {
     jwt,
-    userinfo: userInfo.data.user,
-  };
+    userinfo: userInfo.data.user
+  }
 };
 
-export default Create;
+export default Create
