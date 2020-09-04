@@ -5,9 +5,12 @@ import Navbar from "../../Components/Navbar";
 import MenuFooter from "../../Components/MenuFooter";
 import CardAddress from "../../Components/CardAddress";
 
+import { getCookie } from "../../lib/session";
+import { session, redirectIfNotAuthenticated } from "../../lib/auth";
+
 const { Content } = Layout;
 
-export default function Profile() {
+function Profile({ jwt, userinfo }) {
   return (
     <div>
       <Layout>
@@ -21,9 +24,8 @@ export default function Profile() {
             >
               <Avatar size={110} src="images/avatar-test.png" />
               <p>CAMBIAR FOTO</p>
-              <h1>Ernestino</h1>
-              <p className="last-name">Flores Martínez</p>
-              <p>Productor</p>
+              <h1>{userinfo.name}</h1>
+              <p>{userinfo.role}</p>
             </Col>
             <Col
               className="contact-container"
@@ -57,3 +59,19 @@ export default function Profile() {
     </div>
   );
 }
+
+Profile.getInitialProps = async (ctx) => {
+  if (redirectIfNotAuthenticated(ctx)) {
+    return {};
+  }
+
+  const jwt = getCookie("jwt", ctx.req);
+  const userInfo = await session(jwt);
+
+  return {
+    jwt,
+    userinfo: userInfo.data.user,
+  };
+};
+
+export default Profile;
