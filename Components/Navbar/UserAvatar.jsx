@@ -1,26 +1,32 @@
 import { Menu, Avatar, Dropdown } from "antd";
+import Link from "next/link";
 
 const menu = (
   <Menu className="menu-dropdown">
     <Menu.Item>
-      <a target="_blank" rel="noopener noreferrer" href="">
-        Agegar cosecha
-      </a>
+      <Link href="/create">
+        <a>Agregar cosecha</a>
+      </Link>
     </Menu.Item>
     <Menu.Item>
-      <a target="_blank" rel="noopener noreferrer" href="">
-        Historial
-      </a>
+      <Link href="/history">
+        <a>Historial</a>
+      </Link>
     </Menu.Item>
     <Menu.Item>
-      <a target="_blank" rel="noopener noreferrer" href="">
-        Publicaciones
-      </a>
+      <Link href="/posts">
+        <a>Publicaciones</a>
+      </Link>
     </Menu.Item>
     <Menu.Item>
-      <a target="_blank" rel="noopener noreferrer" href="">
-        Editar perfil
-      </a>
+      <Link href="/profile">
+        <a>Editar perfil</a>
+      </Link>
+    </Menu.Item>
+    <Menu.Item>
+      <Link href="/logout">
+        <a>Cerrar sesión</a>
+      </Link>
     </Menu.Item>
   </Menu>
 );
@@ -31,7 +37,6 @@ class UserAvatar extends React.Component {
   };
 
   handleClick = (e) => {
-    console.log("click ", e);
     this.setState({ current: e.key });
   };
 

@@ -1,10 +1,9 @@
-import { useState, useEffect } from "react";
+import { useState } from "react";
 import { useRouter } from "next/router";
 
-import { getCookie, setCookie } from "../../lib/session";
+import { getCookie } from "../../lib/session";
 import { getHarvestById } from "../../lib/services";
 import { session, redirectIfNotAuthenticated } from "../../lib/auth";
-import redirect from "../../lib/redirect.js";
 
 import Layout from "../../Components/Layout";
 import InputKilograms from "../../Components/InputKilograms";
@@ -14,6 +13,7 @@ import { ToastContainer, toast } from "react-toastify";
 
 function Details({ jwt, userinfo, harvest }) {
   const router = useRouter();
+  const userId = userinfo._id;
 
   const {
     _id,
@@ -40,21 +40,21 @@ function Details({ jwt, userinfo, harvest }) {
     setLoadings(true);
 
     let totalKilograms = parseInt(e.target.elements[1].value);
-    let bag = localStorage.getItem("bag");
+    let bag = localStorage.getItem(`bag${userId}`);
 
     if (totalKilograms < 100) {
       setLoadings(false);
 
       toast.error("La compra mínima es de 100 Kg", {
         position: toast.POSITION.TOP_RIGHT,
-        autoClose: 2000,
+        autoClose: 3000,
       });
     } else {
       setLoadings(false);
 
       toast.success("El producto se agregó de forma exitosa!!", {
         position: toast.POSITION.TOP_RIGHT,
-        autoClose: 2000,
+        autoClose: 3000,
       });
 
       if (!bag) {
@@ -70,8 +70,8 @@ function Details({ jwt, userinfo, harvest }) {
         ];
 
         // setCookie("bag", JSON.stringify(bag));
-        localStorage.setItem("bag", JSON.stringify(bag));
-        redirect("/home");
+        localStorage.setItem(`bag${userId}`, JSON.stringify(bag));
+        // redirect("/home");
       } else {
         let bagDecode = JSON.parse(bag);
         let newItem = {
@@ -83,8 +83,8 @@ function Details({ jwt, userinfo, harvest }) {
         };
         bagDecode.push(newItem);
         // setCookie("bag", JSON.stringify(bagDecode));
-        localStorage.setItem("bag", JSON.stringify(bagDecode));
-        redirect("/home");
+        localStorage.setItem(`bag${userId}`, JSON.stringify(bagDecode));
+        // redirect("/home");
       }
     }
   };
@@ -193,7 +193,7 @@ Details.getInitialProps = async (ctx) => {
 
   const jwt = getCookie("jwt", ctx.req);
   const userinfo = await session(jwt);
-  const response = await getHarvestById(ctx.query.id);
+  const response = await getHarvestById(jwt, ctx.query.id);
 
   if (response.success === true) {
     response.data.harvest["createdDecode"] = new Date(
@@ -207,7 +207,7 @@ Details.getInitialProps = async (ctx) => {
 
   return {
     jwt,
-    userinfo,
+    userinfo: userinfo.data.user,
     harvest: response.data.harvest,
   };
 };

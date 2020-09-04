@@ -30,10 +30,7 @@ function Home({ jwt, userinfo, harvest }) {
   );
 
   const uiCardsTemporada = harvest.map(
-    (
-      { _id, product: { name }, price, description, picture, tag, weight },
-      index
-    ) => {
+    ({ _id, product: { name }, price, description, picture, tag, weight }) => {
       if (tag == "temporada") {
         return (
           <li key={_id} className="item">
@@ -52,10 +49,7 @@ function Home({ jwt, userinfo, harvest }) {
   );
 
   const uiCardsOferta = harvest.map(
-    (
-      { _id, product: { name }, price, description, picture, tag, weight },
-      index
-    ) => {
+    ({ _id, product: { name }, price, description, picture, tag, weight }) => {
       if (tag == "oferta") {
         return (
           <li key={_id} className="item">
@@ -129,6 +123,7 @@ Home.getInitialProps = async (ctx) => {
     harvest = response.data.harvest;
   }
 
+  harvest = harvest.reverse();
   return {
     jwt,
     userinfo,

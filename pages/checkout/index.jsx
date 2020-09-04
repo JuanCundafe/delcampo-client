@@ -21,7 +21,7 @@ function Checkout({ jwt, userinfo }) {
   const router = useRouter();
 
   useEffect(() => {
-    const stringBag = localStorage.getItem("bag");
+    const stringBag = localStorage.getItem(`bag${_id}`);
 
     if (stringBag) {
       const parsedBag = JSON.parse(stringBag);
@@ -38,15 +38,20 @@ function Checkout({ jwt, userinfo }) {
   const handlerShowImage = () => showImage(true);
 
   let uiItemBag = (
-    <div className="container-cardShoppingCard">
-      <h1>Tu carrito está vacio</h1>
-      <img
-        style={{
-          width: "60%",
-        }}
-        src="/images/fruit_box_2.png"
-      />
-    </div>
+    <Row>
+      <Col xs={{ span: 20, offset: 2 }} md={{ span: 16, offset: 4 }}>
+        <div className="container-cardShoppingCard2">
+          <h2 className="image-empty">Tu carrito está vacio</h2>
+          <img
+            className="image-car-empty"
+            style={{
+              width: "100%",
+            }}
+            src="/images/fruit_box_2.png"
+          />
+        </div>
+      </Col>
+    </Row>
   );
 
   if (bag.length) {
