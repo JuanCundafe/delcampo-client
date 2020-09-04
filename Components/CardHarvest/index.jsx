@@ -36,7 +36,7 @@ export default function CardHarvest({
                   className="avatar-cardHarvest"
                   src="images/avatar-test.png"
                 />
-                <Meta description="Frutas y verduas" />
+                <Meta description="Frutas y verduras" />
                 <Col
                   xs={{ offset: 1 }}
                   lg={{ offset: 10 }}
